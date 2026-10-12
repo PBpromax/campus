@@ -9,7 +9,7 @@
 - `mysql-init/` 和 Docker Compose：开发用 MySQL / Redis。
 - `docs/AI-Native/`：新课程课件与升级规划。
 
-当前业务分类和通用发布/接单能力保留；源码存在不代表已完成端到端验收。后续 M1 聚焦快递跑腿与学习求助。
+当前业务分类和通用发布/接单能力保留；源码存在不代表已完成端到端验收。M1 聚焦快递跑腿与学习求助，交付包见 [docs/M1](./docs/M1/README.md)，独立原型运行方式见 [prototype](./docs/M1/prototype/README.md)。
 
 ## 开发环境
 

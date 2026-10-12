@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-10-12T09:24:16.955Z",
+  "baseURL": "http://127.0.0.1:5181",
+  "browser": "155.0.8059.39",
+  "total": 13,
+  "passed": 13,
+  "failures": [],
+  "checks": [
+    {
+      "name": "首页明确标注模拟与两个业务入口",
+      "passed": true
+    },
+    {
+      "name": "十个场景载入并产生澄清或对话回应",
+      "passed": true
+    },
+    {
+      "name": "新生含糊校区保持未知并请求确认",
+      "passed": true
+    },
+    {
+      "name": "当面交付完整约定可确认，修改后需要重确认",
+      "passed": true
+    },
+    {
+      "name": "改成放置交付需要重新明确地点与完成确认",
+      "passed": true
+    },
+    {
+      "name": "时间冲突阻止执行，明确暂存约定后解除",
+      "passed": true
+    },
+    {
+      "name": "跨语言样本展示双语交接标签",
+      "passed": true
+    },
+    {
+      "name": "碎片小问题保持连续消息，不出现发布确认卡",
+      "passed": true
+    },
+    {
+      "name": "学习发布与预约按需出现确认，时长不能代替时段",
+      "passed": true
+    },
+    {
+      "name": "固定表单可补充非规则识别信息",
+      "passed": true
+    },
+    {
+      "name": "模拟接管与撤销阻止继续执行；重置清空上下文",
+      "passed": true
+    },
+    {
+      "name": "移动端无横向溢出且可发送小问题",
+      "passed": true
+    },
+    {
+      "name": "页面无运行异常、无外部业务请求和持久化数据",
+      "passed": true
+    }
+  ],
+  "pageErrors": [],
+  "externalRequests": []
+}

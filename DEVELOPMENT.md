@@ -1,73 +1,43 @@
-# **CampusHub 开发环境配置与协作规范手册**
+# CampusHub 开发环境与协作
 
-本手册旨在指导团队成员快速搭建开发环境，并明确开发过程中的技术规约，确保代码质量与 AI 协作流程的标准化。
+## 原平台开发环境
 
-## **1\. 环境准备**
+Java 17、Maven、Node.js 20+、npm、Docker。原平台与M1原型分别运行，原型无需数据库。
 
-在开始之前，请确保你的本地机器已安装以下软件版本：
+在根目录执行 `docker compose up -d`，MySQL使用宿主机3307端口、数据库campushub_db，Redis使用6379端口。Docker服务需要先启动。当前初始化使用根mysql-init脚本；后端旧脚本差异记录在M1现状文档，勿将清库脚本用于已有数据升级。
 
-| 组件 | 版本要求 | 说明 |
-| :---- | :---- | :---- |
-| **JDK** | 17 (LTS) | 核心后端运行环境 |
-| **Node.js** | 18.x 或 20.x (LTS) | 前端开发环境，建议配合 nvm 使用 |
-| **Docker** | Desktop 4.x+ | 用于一键运行基础设施 (MySQL, Redis) |
-| **Build Tool** | Maven 3.8+ | 后端依赖管理 |
-| **IDE** | IntelliJ IDEA / VS Code | 推荐安装 CheckStyle 与 AI 助手插件 |
+后端启动前提供私有JWT密钥：
 
-## **2\. 基础设施一键启动**
+```sh
+export JWT_SECRET_BASE64="$(openssl rand -base64 32)"
+cd backend
+mvn spring-boot:run
+```
 
-项目使用 Docker 统一基础设施环境，避免本地数据库版本不一致的问题。
+这是本地生成示例，不要提交生成值。需要登录跨重启有效时，安全保存并注入同一私有密钥。更换密钥会使旧Token失效。Spring Boot不会自动加载根目录.env；无JWT_SECRET_BASE64时启动缺少必要配置。
 
-1. **启动服务**：在项目根目录下执行：  
-   ```
-   docker-compose up \-d
-   ```
+原前端：
 
-2. **服务清单**：  
-   * **MySQL 8.0**: 端口 3306，初始数据库 campushub_db。  
-   * **Redis 7.0**: 端口 6379，用于存放 Session 与缓存数据。  
-3. **初始化数据**：首次启动后，请执行 `backend/src/main/resources/db/migration` 下的 SQL 脚本。
+```sh
+cd frontend
+npm ci
+npm run dev
+```
 
-## **3\. 后端开发规范**
+## M1独立原型
 
-* **框架**：Spring Boot 3 \+ MyBatis-Plus。  
-* **启动方式**：运行 `CampusHubApplication.java`。  
-* **配置管理**：  
-  * `application-dev.yml`：个人本地配置，**禁止**提交生产敏感信息。  
-  * 核心参数必须通过环境变量或 Spring Profiles 切换。  
-* **接口规范**：统一使用 RESTful 风格，所有接口返回值必须封装在 `Result<T>` 对象中。
+```sh
+cd docs/M1/prototype
+npm ci
+npm test
+npm run build
+npm run preview
+```
 
-## **4\. 前端开发规范**
+完整说明见 [M1原型README](./docs/M1/prototype/README.md)。默认预览地址为http://127.0.0.1:5181。所有推理与业务动作明确为模拟。
 
-* **框架**：Vue 3 (Composition API) \+ Vite \+ Element Plus。  
-* **启动方式**：  
-  ```
-  cd frontend  
-  npm install  
-  npm run dev
-  ```  
+## 协作与验证
 
-* **目录约束**：  
-  * api/：所有后端请求必须封装在此，严禁在页面内直接使用 axios。  
-  * components/：存放高复用组件；views/：按业务模块划分页面。
+origin为https://github.com/PBpromax/campus.git。main保存初始干净快照，后续使用feature/*分支。提交说明标注[AI-assisted]或[Human-written]，AI结果须由团队审查；测试、用户反馈、贡献与实验结果必须真实。
 
-## **5\. 常见问题排查**
-* 端口冲突：若本地已安装 MySQL 或 Redis 导致端口被占用，请修改 `docker-compose.yml` 中的 ports 映射左侧数值。
-
-* 连接超时：确保后端 `application-dev.yml` 中的数据库地址为 `localhost`（若在宿主机运行）或 `campushub-db`（若在容器内运行）。
-
-## **6\. AI 协作与工程规范**
-
-
-1. 开发过程中严格遵守《AI协助契约》
-2. 合并至 develop 前，使用AI工具对全量代码进行架构耦合扫描。针对订单状态机等核心逻辑，使用AI工具排查边界漏洞。
-
-
-
-## 当前升级环境补充（2026-10-12）
-
-- 当前 Compose 使用 MySQL 宿主机端口 3307，开发配置使用数据库 campushub_db。
-- 后端启动前执行 `export JWT_SECRET_BASE64="$(openssl rand -base64 32)"`，或从本地安全环境注入同一个密钥；更换密钥会使旧 Token 失效。不要提交生成值。Spring Boot 不会自动加载根目录 .env 文件。
-- 若需要 Token 跨重启有效，在本地环境持续使用同一私有密钥。
-- 新仓库 origin 为 https://github.com/PBpromax/campus.git；初始快照为 main，后续使用 feature/* 分支。
-- 原数据库脚本差异与完整订单迁移尚待后续治理；M1 独立原型无需数据库。
+当前CI验证原前端构建、后端评价/JWT独立单测、M1规则/构建/浏览器；没有将全Spring上下文与数据库端到端测试冒充已通过。

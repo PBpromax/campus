@@ -1,0 +1,354 @@
+{
+  "version": "M1-1.0",
+  "mode": "rule-prototype",
+  "businesses": [
+    {
+      "id": "EXPRESS",
+      "label": "快递跑腿",
+      "goal": "完成一批快递的取件与约定交接"
+    },
+    {
+      "id": "TUTORING",
+      "label": "学习求助",
+      "goal": "获得适合当前问题的帮助，理解课程知识或卡住的步骤"
+    }
+  ],
+  "concepts": [
+    "User",
+    "Goal",
+    "Resource",
+    "Context",
+    "Constraint",
+    "Task",
+    "Plan",
+    "Match",
+    "Credit",
+    "Authorization",
+    "Operation"
+  ],
+  "relations": [
+    [
+      "User",
+      "expresses",
+      "Goal"
+    ],
+    [
+      "Context",
+      "qualifies",
+      "Goal"
+    ],
+    [
+      "Resource",
+      "supports",
+      "Task"
+    ],
+    [
+      "Constraint",
+      "restricts",
+      "Plan"
+    ],
+    [
+      "Task",
+      "proposes",
+      "Plan"
+    ],
+    [
+      "User",
+      "confirms",
+      "Authorization"
+    ],
+    [
+      "Authorization",
+      "permits",
+      "Operation"
+    ],
+    [
+      "Credit",
+      "constrains",
+      "Match"
+    ]
+  ],
+  "fields": {
+    "EXPRESS": [
+      {
+        "key": "campus",
+        "label": "校区",
+        "placeholder": "例如：仙林校区",
+        "required": true
+      },
+      {
+        "key": "pickup",
+        "label": "取件点",
+        "placeholder": "完整名称或可识别位置",
+        "required": true
+      },
+      {
+        "key": "parcelCount",
+        "label": "快递件数",
+        "type": "number",
+        "required": true
+      },
+      {
+        "key": "handoffMode",
+        "label": "交接方式",
+        "options": [
+          [
+            "face",
+            "当面交付"
+          ],
+          [
+            "drop",
+            "指定点放置"
+          ]
+        ],
+        "required": true
+      },
+      {
+        "key": "destination",
+        "label": "交接地点",
+        "placeholder": "请写明校区内可识别的位置",
+        "required": true
+      },
+      {
+        "key": "timeWindow",
+        "label": "交接时间",
+        "placeholder": "例如：21:00—21:30",
+        "required": true
+      },
+      {
+        "key": "contact",
+        "label": "联络方式",
+        "placeholder": "例如：站内消息，到达后联系"
+      },
+      {
+        "key": "notice",
+        "label": "通知方式",
+        "options": [
+          [
+            "normal",
+            "普通站内通知"
+          ],
+          [
+            "silent",
+            "静默通知"
+          ]
+        ],
+        "required": true
+      },
+      {
+        "key": "completion",
+        "label": "放置完成确认",
+        "options": [
+          [
+            "message",
+            "位置文字说明后由我确认"
+          ],
+          [
+            "photo",
+            "放置照片后由我确认"
+          ]
+        ]
+      },
+      {
+        "key": "pickupDeadline",
+        "label": "最晚取件时间",
+        "placeholder": "例如：20:30 或暂不确定"
+      },
+      {
+        "key": "timingPlan",
+        "label": "时间冲突处理",
+        "options": [
+          [
+            "early",
+            "提前取件并约定临时存放"
+          ]
+        ]
+      },
+      {
+        "key": "storagePlace",
+        "label": "临时存放地点",
+        "placeholder": "提前取件时由你确认可识别的位置"
+      },
+      {
+        "key": "language",
+        "label": "沟通语言",
+        "options": [
+          [
+            "zh",
+            "中文"
+          ],
+          [
+            "bilingual",
+            "中英双语"
+          ]
+        ]
+      },
+      {
+        "key": "mobility",
+        "label": "本次搬运 / 接收限制",
+        "placeholder": "只记录本次任务需要的限制"
+      }
+    ],
+    "TUTORING": [
+      {
+        "key": "context",
+        "label": "问题上下文",
+        "placeholder": "贴出当前问题或相关两步表达式"
+      },
+      {
+        "key": "topic",
+        "label": "课程 / 知识点",
+        "placeholder": "知道的话补充即可"
+      },
+      {
+        "key": "stuckStep",
+        "label": "卡住的位置",
+        "placeholder": "例如：第二步到第三步"
+      },
+      {
+        "key": "helpDepth",
+        "label": "希望讲到哪一层",
+        "options": [
+          [
+            "step",
+            "只讲当前一步"
+          ],
+          [
+            "foundation",
+            "从必要基础开始"
+          ],
+          [
+            "example",
+            "用一个例子说明"
+          ]
+        ]
+      },
+      {
+        "key": "communication",
+        "label": "沟通方式",
+        "options": [
+          [
+            "chat",
+            "连续短消息"
+          ],
+          [
+            "async",
+            "在线异步"
+          ],
+          [
+            "live",
+            "预约实时协助"
+          ]
+        ]
+      },
+      {
+        "key": "availableTime",
+        "label": "可用时间 / 预约时段",
+        "placeholder": "有时间限制或预约时再填写"
+      },
+      {
+        "key": "priority",
+        "label": "最优先解决的问题",
+        "placeholder": "时间紧张时，选一个问题先解决"
+      },
+      {
+        "key": "language",
+        "label": "讲解语言",
+        "options": [
+          [
+            "zh",
+            "中文"
+          ],
+          [
+            "bilingual",
+            "中英双语"
+          ]
+        ]
+      }
+    ]
+  },
+  "states": [
+    "clarifying",
+    "ready",
+    "confirmed",
+    "cancelled",
+    "handed_off",
+    "resolved"
+  ],
+  "factSources": [
+    "user-message",
+    "user-field",
+    "user-choice"
+  ],
+  "contextLifetime": "session",
+  "rules": [
+    {
+      "id": "R01",
+      "meaning": "必要信息未知时追问"
+    },
+    {
+      "id": "R02",
+      "meaning": "候选交接方式须用户选择"
+    },
+    {
+      "id": "R03",
+      "meaning": "face要求contact；drop要求completion"
+    },
+    {
+      "id": "R04",
+      "meaning": "含糊地点、无效时间和件数不能确认"
+    },
+    {
+      "id": "R05",
+      "meaning": "时间冲突须调整或明确暂存方案"
+    },
+    {
+      "id": "R06",
+      "meaning": "修改使确认失效，确认不可重复模拟"
+    },
+    {
+      "id": "R07",
+      "meaning": "碎片问题按需补上下文"
+    },
+    {
+      "id": "R08",
+      "meaning": "发布/预约须确认必要协作信息"
+    },
+    {
+      "id": "R09",
+      "meaning": "终态禁止继续操作"
+    },
+    {
+      "id": "R10",
+      "meaning": "事件不记录原始消息/精确位置"
+    },
+    {
+      "id": "R11",
+      "meaning": "原业务确定性评价与信用规则",
+      "implementation": "original-business-partial"
+    },
+    {
+      "id": "R12",
+      "meaning": "生产工具后端鉴权授权幂等",
+      "implementation": "M2-planned"
+    }
+  ],
+  "scenarioIds": [
+    "E01",
+    "E02",
+    "E03",
+    "E04",
+    "E05",
+    "L01",
+    "L02",
+    "L03",
+    "L04",
+    "L05"
+  ],
+  "limitations": [
+    "无真实模型或生产工具",
+    "无永久个人画像",
+    "无地理核验",
+    "仅同日简单时间约束"
+  ]
+}

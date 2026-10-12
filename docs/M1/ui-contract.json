@@ -1,0 +1,75 @@
+{
+  "version": "M1-1.0",
+  "kind": "design-contract-not-runtime-schema",
+  "cards": [
+    {
+      "type": "handover-options",
+      "business": "EXPRESS",
+      "actions": [
+        "select-face",
+        "select-drop"
+      ]
+    },
+    {
+      "type": "missing-information",
+      "when": "missingFields.length>0",
+      "actions": [
+        "edit-field",
+        "send-message"
+      ]
+    },
+    {
+      "type": "constraint-risk",
+      "when": "conflicts.length>0",
+      "actions": [
+        "edit-field",
+        "choose-early-storage"
+      ]
+    },
+    {
+      "type": "confirmation",
+      "when": "EXPRESS or TUTORING publish/book",
+      "actions": [
+        "confirm-simulated",
+        "edit-field",
+        "cancel"
+      ]
+    },
+    {
+      "type": "fragment-conversation",
+      "when": "TUTORING conversation",
+      "actions": [
+        "send-message",
+        "resolve-by-user"
+      ]
+    },
+    {
+      "type": "simulated-result",
+      "when": "confirmed/cancelled/resolved/handed_off",
+      "actions": [
+        "reopen-confirmed",
+        "reset"
+      ]
+    },
+    {
+      "type": "fixed-form",
+      "when": "user-requested",
+      "actions": [
+        "edit-field"
+      ]
+    },
+    {
+      "type": "handoff-summary",
+      "when": "handed_off",
+      "actions": [
+        "reset"
+      ]
+    }
+  ],
+  "notice": "Vue预定义模板；模型Schema Renderer与生产Action权限留到M2",
+  "prohibited": [
+    "动态执行代码",
+    "任意SQL",
+    "前端直接真实工具执行"
+  ]
+}

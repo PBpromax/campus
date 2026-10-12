@@ -1,0 +1,13 @@
+
+> campus-m1-prototype@1.0.0 build
+> vite build
+
+vite v5.4.8 building for production...
+transforming...
+✓ 12 modules transformed.
+rendering chunks...
+computing gzip size...
+release/index.html                  0.48 kB │ gzip:  0.39 kB
+release/assets/index-B8KMB2nN.css   8.86 kB │ gzip:  2.50 kB
+release/assets/index-CgJjsn4X.js   82.86 kB │ gzip: 34.53 kB
+✓ built in 235ms

@@ -1,0 +1,5 @@
+Checked 10 Markdown deliverables: links and code fences valid.
+Checked 3 JSON design assets: valid.
+Ten design scenarios present.
+Old P0-P4 directories absent. JWT key is environment-only.
+CI YAML parses with three expected jobs (Ruby YAML).

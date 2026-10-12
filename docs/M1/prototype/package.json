@@ -1,0 +1,19 @@
+{
+  "name": "campus-m1-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5180 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 5181 --strictPort",
+    "test": "node --test tests/*.test.js",
+    "verify:browser": "node tests/browser.mjs"
+  },
+  "dependencies": { "vue": "3.5.12" },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "5.1.4",
+    "vite": "5.4.8",
+    "playwright": "1.51.1"
+  }
+}
