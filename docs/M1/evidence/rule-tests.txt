@@ -1,0 +1,57 @@
+
+> teacher-m1-personalized-prototype@1.0.0 test
+> node --test tests/*.test.js
+
+✔ B01 规格不确定 requires its own clarification (1.7725ms)
+✔ B02 时间紧张 requires its own clarification (0.1265ms)
+✔ B03 取还受限 requires its own clarification (0.084875ms)
+✔ B04 不熟悉使用 requires its own clarification (0.062291ms)
+✔ B05 跨天归还 requires its own clarification (0.063333ms)
+✔ L01 基础薄弱 requires its own clarification (0.050833ms)
+✔ L02 时间紧张 requires its own clarification (0.056667ms)
+✔ L03 时间地点受限 requires its own clarification (0.042291ms)
+✔ L04 跨语言解释 requires its own clarification (0.045459ms)
+✔ L05 碎片化小问题 requires its own clarification (0.095083ms)
+✔ borrow spec uncertainty cannot be confirmed (0.234458ms)
+✔ indefinite pickup place is rejected (0.089083ms)
+✔ indefinite return place is rejected (0.088417ms)
+✔ handoff change requires fresh place and consent (0.093875ms)
+✔ request to negotiate delivery does not claim lender agreement (0.074084ms)
+✔ unsupported options cannot authorize a draft (0.056125ms)
+✔ quantity rejects negative, fractional and oversized values (0.122791ms)
+✔ later pickup than use is a conflict (0.058666ms)
+✔ reverse use period is rejected (0.050167ms)
+✔ return before use ends is rejected (0.048542ms)
+✔ cross-day borrowing with clear return can be confirmed (0.373125ms)
+✔ explicit lender return deadline cannot be silently extended (0.112541ms)
+✔ invalid calendar dates and vague times do not authorize (0.156167ms)
+✔ beginners need accessories and support clarified (0.054125ms)
+✔ fragment chat needs context but no budget, place or appointment (0.173917ms)
+✔ short follow-up preserves expression context (0.113792ms)
+✔ foundation, limited, remote and language scenarios have distinct questions (0.038792ms)
+✔ publication never invents reward, time or location (0.084ms)
+✔ zero reward is blocked by current backend contract (0.059875ms)
+✔ STUDY publication preview maps to teacher contract (0.575375ms)
+✔ BORROW publication uses correct category and user fields (0.11175ms)
+✔ confirmed snapshot is not mutated by corrections (0.070959ms)
+✔ repeat confirmation and same-value input keep same revision (0.058ms)
+✔ undo restores last edit but invalidates confirmation (0.060791ms)
+✔ cancel ends local draft and prevents more actions (0.050958ms)
+✔ handoff is explicit simulation and freezes session (0.069542ms)
+✔ resolve requires context and user choice (0.037958ms)
+✔ returning to chat removes publication requirements (0.045458ms)
+✔ fresh reset does not retain modified fields or messages (0.058125ms)
+✔ unknown field cannot masquerade as production authority (0.033084ms)
+✔ source of scenario values and user corrections remains explicit (0.038959ms)
+✔ prototype state never pretends to be backend task state (0.035625ms)
+✔ scenario-dependent handoff controls and ordinary chat stay minimal (0.098333ms)
+✔ uniform mandatory publication form is disproved for a small question (0.035834ms)
+✔ beginner accessories and multi-day deadline appear only when relevant (0.064917ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 45
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 71.143583

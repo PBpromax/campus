@@ -1,0 +1,49 @@
+
+> campus-help-frontend@1.0.0 build
+> vite build
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+vite v5.4.21 building for production...
+transforming...
+✓ 1693 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                  0.46 kB │ gzip:   0.33 kB
+dist/assets/NotificationCenter-BXeRHRJZ.css      1.68 kB │ gzip:   0.60 kB
+dist/assets/CompleteInfo-U_DvYxh9.css            1.72 kB │ gzip:   0.60 kB
+dist/assets/Publish-2JCISbrc.css                 2.09 kB │ gzip:   0.68 kB
+dist/assets/AdminAppeals-DVi67K3u.css            2.37 kB │ gzip:   0.69 kB
+dist/assets/Register-Bdw3-6Pc.css                2.50 kB │ gzip:   0.85 kB
+dist/assets/Login-b_itYX2u.css                   2.98 kB │ gzip:   0.96 kB
+dist/assets/MyOrders-B5hs-1Rl.css                3.28 kB │ gzip:   0.96 kB
+dist/assets/MyDemands-DbRCParq.css               3.28 kB │ gzip:   0.97 kB
+dist/assets/Home-m-x_MoMJ.css                    4.73 kB │ gzip:   1.32 kB
+dist/assets/MainLayout-B-VgDHkE.css              4.89 kB │ gzip:   1.30 kB
+dist/assets/UserProfile-Cn__4ad8.css             4.99 kB │ gzip:   1.24 kB
+dist/assets/DemandDetail-D_3UOgIR.css            7.52 kB │ gzip:   1.62 kB
+dist/assets/index--567oy9a.css                 362.70 kB │ gzip:  48.70 kB
+dist/assets/review-DZc-IP3_.js                   0.26 kB │ gzip:   0.17 kB
+dist/assets/appeal-CwBXA_M5.js                   0.33 kB │ gzip:   0.19 kB
+dist/assets/notification-BGuG0vCr.js             0.35 kB │ gzip:   0.19 kB
+dist/assets/user-z0hB3-On.js                     0.40 kB │ gzip:   0.20 kB
+dist/assets/demand-BZZXl80f.js                   0.79 kB │ gzip:   0.27 kB
+dist/assets/NotificationCenter-Cto22fTW.js       2.22 kB │ gzip:   1.41 kB
+dist/assets/CompleteInfo-BjHAQFM4.js             2.75 kB │ gzip:   1.23 kB
+dist/assets/MyOrders-2cFwtuaf.js                 2.79 kB │ gzip:   1.62 kB
+dist/assets/AdminAppeals-CGCU3DS9.js             2.84 kB │ gzip:   1.46 kB
+dist/assets/MyDemands-BRnV0rIP.js                3.01 kB │ gzip:   1.62 kB
+dist/assets/Register-Dg8il_ti.js                 3.06 kB │ gzip:   1.51 kB
+dist/assets/Login-F52qMuxV.js                    3.97 kB │ gzip:   1.60 kB
+dist/assets/Publish-DtteH8Rz.js                  4.18 kB │ gzip:   1.97 kB
+dist/assets/Home-B1T-M2R5.js                     5.52 kB │ gzip:   2.50 kB
+dist/assets/MainLayout-BwOz5Z2c.js               6.27 kB │ gzip:   2.51 kB
+dist/assets/UserProfile-Cy4mftn7.js              7.18 kB │ gzip:   3.12 kB
+dist/assets/DemandDetail-CRoId45v.js            13.74 kB │ gzip:   4.89 kB
+dist/assets/request-LT7HpHTI.js                 52.02 kB │ gzip:  19.62 kB
+dist/assets/index-Bp7KG1PE.js                1,206.37 kB │ gzip: 386.68 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.90s

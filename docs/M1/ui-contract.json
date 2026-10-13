@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "status": "design_contract_not_ArkUI_renderer",
+  "cards": [
+    "borrow_specification",
+    "borrow_period",
+    "handoff_request",
+    "learning_context",
+    "publication_confirmation",
+    "conflict",
+    "simulation_result"
+  ],
+  "actions": [
+    "edit",
+    "undo",
+    "confirm_draft",
+    "simulate_publish",
+    "resolve",
+    "cancel_draft",
+    "reset",
+    "fixed_form",
+    "simulate_handoff"
+  ],
+  "publication": {
+    "endpoint": "POST /api/demands",
+    "sentByPrototype": false,
+    "fields": [
+      "title",
+      "description",
+      "category",
+      "expectedTime",
+      "reward",
+      "location"
+    ]
+  },
+  "safety": {
+    "simulation": true,
+    "productionNetwork": false,
+    "modelGeneratedCode": false,
+    "persistentStorage": false
+  }
+}

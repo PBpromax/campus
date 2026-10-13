@@ -1,0 +1,251 @@
+{
+  "version": "1.0",
+  "sourceCommit": "68d8484",
+  "commonConcepts": [
+    "User",
+    "Goal",
+    "Resource",
+    "Constraint",
+    "Task",
+    "Match",
+    "Credit",
+    "Authorization",
+    "Context",
+    "Operation"
+  ],
+  "categories": [
+    "BORROW",
+    "STUDY"
+  ],
+  "productionStates": [
+    "PENDING",
+    "IN_PROGRESS",
+    "PENDING_CONFIRMATION",
+    "COMPLETED",
+    "CANCELLED"
+  ],
+  "prototypeStates": [
+    "clarifying",
+    "ready",
+    "confirmed",
+    "cancelled",
+    "handed_off",
+    "resolved"
+  ],
+  "fields": {
+    "BORROW": [
+      {
+        "key": "item",
+        "label": "物品",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "purpose",
+        "label": "用途",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "spec",
+        "label": "规格 / 兼容要求",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "quantity",
+        "label": "数量",
+        "type": "number",
+        "options": []
+      },
+      {
+        "key": "needBy",
+        "label": "最晚拿到",
+        "type": "datetime-local",
+        "options": []
+      },
+      {
+        "key": "useStart",
+        "label": "开始使用",
+        "type": "datetime-local",
+        "options": []
+      },
+      {
+        "key": "useEnd",
+        "label": "结束使用",
+        "type": "datetime-local",
+        "options": []
+      },
+      {
+        "key": "returnAt",
+        "label": "归还时间",
+        "type": "datetime-local",
+        "options": []
+      },
+      {
+        "key": "returnDeadline",
+        "label": "出借方最晚归还约束",
+        "type": "datetime-local",
+        "options": []
+      },
+      {
+        "key": "pickupPlace",
+        "label": "取件 / 接收位置",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "returnPlace",
+        "label": "归还位置",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "handoff",
+        "label": "交接方式",
+        "type": "select",
+        "options": [
+          "当面交接",
+          "需要送达"
+        ]
+      },
+      {
+        "key": "deliveryConsent",
+        "label": "送达条件",
+        "type": "select",
+        "options": [
+          "待与出借方协商",
+          "已获同意（设计输入）"
+        ]
+      },
+      {
+        "key": "support",
+        "label": "使用说明",
+        "type": "select",
+        "options": [
+          "不需要说明",
+          "需要简短说明"
+        ]
+      },
+      {
+        "key": "accessories",
+        "label": "必要配件",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "restrictions",
+        "label": "使用限制 / 待协商事项",
+        "type": "text",
+        "options": []
+      }
+    ],
+    "STUDY": [
+      {
+        "key": "context",
+        "label": "问题上下文",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "topic",
+        "label": "知识点",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "stuckStep",
+        "label": "卡住的步骤",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "depth",
+        "label": "讲解起点",
+        "type": "select",
+        "options": [
+          "从基础讲",
+          "只看当前一步",
+          "先给思路"
+        ]
+      },
+      {
+        "key": "priority",
+        "label": "优先问题",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "availableTime",
+        "label": "可用时间 / 时长",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "communication",
+        "label": "沟通方式",
+        "type": "select",
+        "options": [
+          "短消息",
+          "线上异步",
+          "线上同步",
+          "线下协助"
+        ]
+      },
+      {
+        "key": "language",
+        "label": "解释语言",
+        "type": "select",
+        "options": [
+          "中文",
+          "英文",
+          "中英双语"
+        ]
+      }
+    ],
+    "publication": [
+      {
+        "key": "title",
+        "label": "发布标题",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "description",
+        "label": "发布描述",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "expectedTime",
+        "label": "期望完成时间",
+        "type": "datetime-local",
+        "options": []
+      },
+      {
+        "key": "reward",
+        "label": "报酬",
+        "type": "number",
+        "options": []
+      },
+      {
+        "key": "location",
+        "label": "服务位置",
+        "type": "text",
+        "options": []
+      }
+    ]
+  },
+  "rules": [
+    "unknown_requires_clarification",
+    "resource_availability_not_inferred",
+    "lender_consent_not_inferred",
+    "pickup_before_use",
+    "return_after_use",
+    "explicit_return_deadline",
+    "revision_bound_confirmation",
+    "fragment_chat_no_publication_fields",
+    "publication_positive_reward",
+    "side_effects_simulated"
+  ]
+}

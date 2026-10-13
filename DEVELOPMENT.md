@@ -42,3 +42,18 @@ test profile 使用 H2 create-drop，不连接云数据库，Redis 自动配置�
 ## 协作
 
 origin 为 PBpromax/campus，upstream 为老师原 GitLab。只向 origin 推送。main 是迁移后的稳定快照；M1 在 feature/m1-teacher-baseline 开发。老师原历史在本地 archive/teacher-original 和外部 Git bundle 中保存。
+
+## 本机Java21与M1原型
+
+本次已在本机缓存安装Temurin21用于验证；当前系统默认java可能仍是其他版本。需要复用时：
+
+```sh
+export JAVA_HOME="$HOME/.cache/campus-toolchains/jdk-21.0.12.1+1/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
+java -version
+mvn -version
+```
+
+其他电脑配置自己的JDK21路径即可，不要求相同缓存目录。
+
+M1独立原型：`cd docs/M1/prototype` 后执行 `npm ci`、`npm test`、`npm run build`、`npm run preview`，地址 http://127.0.0.1:5187 。Node需20.19+或22.12+；无需数据库和密钥。[完整交付](./docs/M1/README.md)。

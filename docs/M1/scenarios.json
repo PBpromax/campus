@@ -1,0 +1,221 @@
+{
+  "version": "1.0",
+  "status": "design_hypotheses",
+  "sourceCommit": "68d8484",
+  "scenarios": [
+    {
+      "id": "B01",
+      "domain": "BORROW",
+      "name": "规格不确定",
+      "text": "明天展示要借一个转接器，我不知道接口怎么选。",
+      "special": "compatibility",
+      "values": {
+        "item": "USB-C 转接器",
+        "purpose": "课堂展示连接 HDMI 投影",
+        "spec": "",
+        "quantity": "1",
+        "needBy": "2026-10-14T18:30",
+        "useStart": "2026-10-14T19:00",
+        "useEnd": "2026-10-14T20:00",
+        "returnAt": "2026-10-14T20:30",
+        "pickupPlace": "示例校区图书馆东门服务台",
+        "returnPlace": "示例校区图书馆东门服务台",
+        "handoff": "当面交接",
+        "support": "不需要说明"
+      },
+      "missing": "spec",
+      "question": "电脑是什么接口？投影设备的接口是什么？不知道的部分保留待核实。",
+      "hypothesis": true
+    },
+    {
+      "id": "B02",
+      "domain": "BORROW",
+      "name": "时间紧张",
+      "text": "19点就要展示，得提前拿到转接器。",
+      "special": "urgent",
+      "values": {
+        "item": "USB-C 转接器",
+        "purpose": "课堂展示连接 HDMI 投影",
+        "spec": "USB-C 输入、HDMI 输出；电脑是否支持视频输出待核实",
+        "quantity": "1",
+        "needBy": "",
+        "useStart": "2026-10-14T19:00",
+        "useEnd": "2026-10-14T20:00",
+        "returnAt": "2026-10-14T20:30",
+        "pickupPlace": "示例校区图书馆东门服务台",
+        "returnPlace": "示例校区图书馆东门服务台",
+        "handoff": "当面交接",
+        "support": "不需要说明"
+      },
+      "missing": "needBy",
+      "question": "最晚何时拿到？开始使用、结束使用和归还分别是什么时间？",
+      "hypothesis": true
+    },
+    {
+      "id": "B03",
+      "domain": "BORROW",
+      "name": "取还受限",
+      "text": "我行动不方便，想请对方送到宿舍门厅。",
+      "special": "handoff",
+      "values": {
+        "item": "USB-C 转接器",
+        "purpose": "课堂展示连接 HDMI 投影",
+        "spec": "USB-C 输入、HDMI 输出；电脑是否支持视频输出待核实",
+        "quantity": "1",
+        "needBy": "2026-10-14T18:30",
+        "useStart": "2026-10-14T19:00",
+        "useEnd": "2026-10-14T20:00",
+        "returnAt": "2026-10-14T20:30",
+        "pickupPlace": "示例校区6号宿舍一层门厅",
+        "returnPlace": "示例校区图书馆东门服务台",
+        "handoff": "需要送达",
+        "support": "不需要说明",
+        "deliveryConsent": ""
+      },
+      "missing": "deliveryConsent",
+      "question": "送达是你的请求，还是已经获得出借方同意？没有同意不能当作既定承诺。",
+      "hypothesis": true
+    },
+    {
+      "id": "B04",
+      "domain": "BORROW",
+      "name": "不熟悉使用",
+      "text": "想借相机拍活动，但我第一次用，需要简单说明。",
+      "special": "beginner",
+      "values": {
+        "item": "相机",
+        "purpose": "拍摄校园活动",
+        "spec": "可拍照片，型号与使用限制待双方核实",
+        "quantity": "1",
+        "needBy": "2026-10-14T18:30",
+        "useStart": "2026-10-14T19:00",
+        "useEnd": "2026-10-14T20:00",
+        "returnAt": "2026-10-14T20:30",
+        "pickupPlace": "示例校区图书馆东门服务台",
+        "returnPlace": "示例校区图书馆东门服务台",
+        "handoff": "当面交接",
+        "support": "需要简短说明",
+        "accessories": ""
+      },
+      "missing": "accessories",
+      "question": "需要哪些配件？例如充电器、存储卡；使用方法与限制须向出借方核实。",
+      "hypothesis": true
+    },
+    {
+      "id": "B05",
+      "domain": "BORROW",
+      "name": "跨天归还",
+      "text": "周末要借两天，归还时图书馆可能关门。",
+      "special": "multiDay",
+      "values": {
+        "item": "USB-C 转接器",
+        "purpose": "课堂展示连接 HDMI 投影",
+        "spec": "USB-C 输入、HDMI 输出；电脑是否支持视频输出待核实",
+        "quantity": "1",
+        "needBy": "2026-10-17T08:30",
+        "useStart": "2026-10-17T09:00",
+        "useEnd": "2026-10-18T18:00",
+        "returnAt": "2026-10-18T18:30",
+        "pickupPlace": "示例校区图书馆东门服务台",
+        "returnPlace": "",
+        "handoff": "当面交接",
+        "support": "不需要说明"
+      },
+      "missing": "returnPlace",
+      "question": "归还时在哪里交接？原地点不可用时，请明确替代位置和需协商的约定。",
+      "hypothesis": true
+    },
+    {
+      "id": "L01",
+      "domain": "STUDY",
+      "name": "基础薄弱",
+      "text": "我连导数定义都没理解，不知道该从哪里问。",
+      "special": "foundation",
+      "values": {
+        "context": "我不理解导数定义为什么要取极限。",
+        "topic": "导数定义",
+        "stuckStep": "不知道起点",
+        "depth": "",
+        "communication": "短消息",
+        "language": "中文"
+      },
+      "missing": "depth",
+      "question": "希望先从极限概念还是导数定义开始？可以选择从基础讲。",
+      "hypothesis": true
+    },
+    {
+      "id": "L02",
+      "domain": "STUDY",
+      "name": "时间紧张",
+      "text": "我只有20分钟，想先解决最关键的一步。",
+      "special": "limited",
+      "values": {
+        "context": "第二步 x = -2，第三步 -x = 2，我不懂为什么要取负号。",
+        "topic": "代数符号",
+        "stuckStep": "第二步到第三步",
+        "depth": "只看当前一步",
+        "communication": "短消息",
+        "language": "中文",
+        "availableTime": "20分钟",
+        "priority": ""
+      },
+      "missing": "priority",
+      "question": "20分钟内最想弄懂哪一个问题？先缩小范围，再决定讲解方式。",
+      "hypothesis": true
+    },
+    {
+      "id": "L03",
+      "domain": "STUDY",
+      "name": "时间地点受限",
+      "text": "今晚不方便见面，想发消息慢慢问。",
+      "special": "remote",
+      "values": {
+        "context": "第二步 x = -2，第三步 -x = 2，我不懂为什么要取负号。",
+        "topic": "代数符号",
+        "stuckStep": "第二步到第三步",
+        "depth": "只看当前一步",
+        "communication": "",
+        "language": "中文"
+      },
+      "missing": "communication",
+      "question": "需要线上异步、线上同步，还是线下协助？普通短消息不要求预约时段。",
+      "hypothesis": true
+    },
+    {
+      "id": "L04",
+      "domain": "STUDY",
+      "name": "跨语言解释",
+      "text": "英文材料里的 derivative 我不太懂，想看双语解释。",
+      "special": "language",
+      "values": {
+        "context": "英文教材用 derivative 表示导数，我想理解术语及定义。",
+        "topic": "derivative / 导数",
+        "stuckStep": "第二步到第三步",
+        "depth": "只看当前一步",
+        "communication": "短消息",
+        "language": ""
+      },
+      "missing": "language",
+      "question": "解释用中文、英文，还是中英双语术语？",
+      "hypothesis": true
+    },
+    {
+      "id": "L05",
+      "domain": "STUDY",
+      "name": "碎片化小问题",
+      "text": "第二步到第三步怎么来的？",
+      "special": "fragment",
+      "values": {
+        "context": "",
+        "topic": "代数符号",
+        "stuckStep": "第二步到第三步",
+        "depth": "只看当前一步",
+        "communication": "短消息",
+        "language": "中文"
+      },
+      "missing": "context",
+      "question": "请贴第二步和第三步，或补一小段题目；不需要重新填写整份资料。",
+      "hypothesis": true
+    }
+  ]
+}

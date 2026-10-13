@@ -32,3 +32,29 @@ jobs:
         working-directory: frontend
       - run: npm run build
         working-directory: frontend
+  m1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+        working-directory: docs/M1/prototype
+      - run: npm test && npm run build
+        working-directory: docs/M1/prototype
+      - run: npx playwright install --with-deps chromium
+        working-directory: docs/M1/prototype
+      - run: |
+          npm run preview > /tmp/m1-preview.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:5187/ > /dev/null; then break; fi
+            sleep 1
+          done
+          M1_BROWSER=chromium npm run verify:browser
+        working-directory: docs/M1/prototype
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m1-browser-evidence
+          path: docs/M1/evidence

@@ -1,0 +1,5 @@
+Checked 10 Markdown files: all local links exist.
+3 JSON assets valid.
+10 design scenarios: BORROW5 + STUDY5.
+Old P0-P4 absent.
+CI YAML parsed with backend/frontend/m1 jobs.

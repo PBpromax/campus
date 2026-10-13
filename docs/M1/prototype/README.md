@@ -1,0 +1,40 @@
+# M1 Vue 规则原型
+
+基于老师项目：BORROW物品借用、STUDY学习辅导。无数据库、模型密钥、生产接口或真实人员；所有发布/匹配/接管均为模拟。
+
+## 运行
+
+Node.js 20.19+（或22.12+），npm。依赖版本固定，锁文件已提交。
+
+```sh
+cd docs/M1/prototype
+npm ci
+npm test
+npm run build
+npm run preview
+```
+
+打开 http://127.0.0.1:5187；开发命令 npm run dev 使用5186。端口占用会报错，不自动换端口。
+
+构建放在release，随交付提交，可用静态HTTP服务器运行；不要直接双击HTML。相对base允许作为子目录部署。
+
+## 浏览器验证
+
+先启动preview，再在另一个终端执行npm run verify:browser。默认使用macOS的Google Chrome。
+
+Linux/CI可运行：
+
+```sh
+npx playwright install --with-deps chromium
+M1_BROWSER=chromium npm run verify:browser
+```
+
+报告和截图写到../evidence。固定表单、修改、撤销、连续消息、发布字段、模拟接管及移动布局均实际点击验证。
+
+## 操作提示
+
+十个场景入口为设计假设，预填信息不来自真实访谈。可切换空白需求并修改输入；键值式纠正使用字段标签，例如“物品：相机；用途：拍校园活动”。学习可贴表达式，再继续问。
+
+借用卡是请求草稿，资源是否可用与出借方同意需核实；普通学习对话不要求预算/位置/时间。只有准备发布才出现这些原系统字段，且报酬需>0。
+
+原型不请求网络API、不保存浏览器记忆；刷新/重置清空。用户标记解决不是模型效果验证。生产接口/表结构不因本原型改变；ui-contract.json是设计契约，不是ArkUI Renderer。

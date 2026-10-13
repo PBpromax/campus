@@ -1,0 +1,84 @@
+{
+  "timestamp": "2026-10-13T00:59:38.241Z",
+  "browser": "155.0.8059.40",
+  "checks": [
+    {
+      "name": "ten scene shortcuts show their distinct missing fields",
+      "passed": true
+    },
+    {
+      "name": "unknown compatibility cannot confirm",
+      "passed": true
+    },
+    {
+      "name": "explicit spec enables draft confirmation",
+      "passed": true
+    },
+    {
+      "name": "handoff modification invalidates old confirmation and needs consent",
+      "passed": true
+    },
+    {
+      "name": "ambiguous receiving location is rejected",
+      "passed": true
+    },
+    {
+      "name": "changed card contains pending negotiation rather than invented agreement",
+      "passed": true
+    },
+    {
+      "name": "return conflict blocks confirmation",
+      "passed": true
+    },
+    {
+      "name": "undo restores time and confirmation stays invalidated",
+      "passed": true
+    },
+    {
+      "name": "fixed form fallback is usable",
+      "passed": true
+    },
+    {
+      "name": "fragmented question starts without a publication card",
+      "passed": true
+    },
+    {
+      "name": "short follow-up keeps expression and step context",
+      "passed": true
+    },
+    {
+      "name": "publication asks for original required fields with no invented values",
+      "passed": true
+    },
+    {
+      "name": "zero reward conflict is visible",
+      "passed": true
+    },
+    {
+      "name": "simulation returns no real business identifier",
+      "passed": true
+    },
+    {
+      "name": "user resolution and reset work",
+      "passed": true
+    },
+    {
+      "name": "human handoff explicitly stays simulated",
+      "passed": true
+    },
+    {
+      "name": "draft cancellation is local and resettable",
+      "passed": true
+    },
+    {
+      "name": "mobile layout has no page overflow",
+      "passed": true
+    },
+    {
+      "name": "no page exceptions, production requests or browser memory",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "businessRequests": []
+}

@@ -1,0 +1,12 @@
+{
+  "java": "21.0.12.1",
+  "profile": "test",
+  "database": "isolated H2",
+  "testClasses": 31,
+  "result": {
+    "tests": 153,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}

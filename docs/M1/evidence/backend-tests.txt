@@ -1,0 +1,981 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.example:campus-help >-----------------------
+[INFO] Building campus-help 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.3.2 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.apache.maven.plugins:maven-clean-plugin:pom:3.3.2 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/3.3.2/maven-clean-plugin-3.3.2.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/3.3.2/maven-clean-plugin-3.3.2.pom (0 B at 0 B/s)
+[INFO] Artifact org.apache.maven.plugins:maven-clean-plugin:jar:3.3.2 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.apache.maven.plugins:maven-clean-plugin:jar:3.3.2 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/3.3.2/maven-clean-plugin-3.3.2.jar
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/3.3.2/maven-clean-plugin-3.3.2.jar (0 B at 0 B/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/com/aliyun/tea/maven-metadata.xml
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/com/aliyun/tea/maven-metadata.xml (2.7 kB at 8.8 kB/s)
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ campus-help ---
+[INFO] Deleting /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend/target
+[INFO] 
+[INFO] --- jacoco:0.8.11:prepare-agent (prepare-agent) @ campus-help ---
+[INFO] argLine set to "-javaagent:/Users/pbpromax/.m2/repository/org/jacoco/org.jacoco.agent/0.8.11/org.jacoco.agent-0.8.11-runtime.jar=destfile=/Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend/target/jacoco.exec"
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ campus-help ---
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ campus-help ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 58 source files with javac [debug release 21] to target/classes
+[INFO] 由于在类路径中发现了一个或多个处理程序，因此启用了
+  批注处理。未来发行版的 javac 可能会禁用批注处理，
+  除非至少按名称指定了一个处理程序 (-processor)，
+  或指定了搜索路径 (--processor-path, --processor-module-path)，
+  或显式启用了批注处理 (-proc:only, -proc:full)。
+  可使用 -Xlint:-options 隐藏此消息。
+  可使用 -proc:none 禁用批注处理。
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ campus-help ---
+[INFO] skip non existing resourceDirectory /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ campus-help ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 27 source files with javac [debug release 21] to target/test-classes
+[INFO] 由于在类路径中发现了一个或多个处理程序，因此启用了
+  批注处理。未来发行版的 javac 可能会禁用批注处理，
+  除非至少按名称指定了一个处理程序 (-processor)，
+  或指定了搜索路径 (--processor-path, --processor-module-path)，
+  或显式启用了批注处理 (-proc:only, -proc:full)。
+  可使用 -Xlint:-options 隐藏此消息。
+  可使用 -proc:none 禁用批注处理。
+[INFO] 
+[INFO] --- surefire:3.2.2:test (default-test) @ campus-help ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit-platform/3.2.2/surefire-junit-platform-3.2.2.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit-platform/3.2.2/surefire-junit-platform-3.2.2.pom (4.5 kB at 40 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-providers/3.2.2/surefire-providers-3.2.2.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-providers/3.2.2/surefire-providers-3.2.2.pom (2.5 kB at 18 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.2.2/common-java5-3.2.2.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.2.2/common-java5-3.2.2.pom (2.7 kB at 24 kB/s)
+[INFO] Artifact org.junit.platform:junit-platform-launcher:pom:1.9.3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), apache.snapshots (https://repository.apache.org/snapshots, default, snapshots)]
+[INFO] Artifact org.junit.platform:junit-platform-launcher:pom:1.9.3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), apache.snapshots (https://repository.apache.org/snapshots, default, snapshots)]
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.pom (0 B at 0 B/s)
+[INFO] Artifact org.junit.platform:junit-platform-engine:pom:1.9.3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), apache.snapshots (https://repository.apache.org/snapshots, default, snapshots)]
+[INFO] Artifact org.junit.platform:junit-platform-engine:pom:1.9.3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), apache.snapshots (https://repository.apache.org/snapshots, default, snapshots)]
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.pom (0 B at 0 B/s)
+[INFO] Artifact org.junit.platform:junit-platform-commons:pom:1.9.3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), apache.snapshots (https://repository.apache.org/snapshots, default, snapshots)]
+[INFO] Artifact org.junit.platform:junit-platform-commons:pom:1.9.3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), apache.snapshots (https://repository.apache.org/snapshots, default, snapshots)]
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.pom (0 B at 0 B/s)
+[INFO] Artifact org.junit.platform:junit-platform-launcher:jar:1.9.3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), apache.snapshots (https://repository.apache.org/snapshots, default, snapshots)]
+[INFO] Artifact org.junit.platform:junit-platform-engine:jar:1.9.3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), apache.snapshots (https://repository.apache.org/snapshots, default, snapshots)]
+[INFO] Artifact org.junit.platform:junit-platform-commons:jar:1.9.3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), apache.snapshots (https://repository.apache.org/snapshots, default, snapshots)]
+[INFO] Artifact org.junit.platform:junit-platform-launcher:jar:1.9.3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), apache.snapshots (https://repository.apache.org/snapshots, default, snapshots)]
+[INFO] Artifact org.junit.platform:junit-platform-engine:jar:1.9.3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), apache.snapshots (https://repository.apache.org/snapshots, default, snapshots)]
+[INFO] Artifact org.junit.platform:junit-platform-commons:jar:1.9.3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases), apache.snapshots (https://repository.apache.org/snapshots, default, snapshots)]
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit-platform/3.2.2/surefire-junit-platform-3.2.2.jar
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire-junit-platform/3.2.2/surefire-junit-platform-3.2.2.jar (27 kB at 217 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.2.2/common-java5-3.2.2.jar
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.jar
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.9.3/junit-platform-launcher-1.9.3.jar (0 B at 0 B/s)
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-engine/1.9.3/junit-platform-engine-1.9.3.jar (0 B at 0 B/s)
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-commons/1.9.3/junit-platform-commons-1.9.3.jar (0 B at 0 B/s)
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/maven/surefire/common-java5/3.2.2/common-java5-3.2.2.jar (18 kB at 57 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.10.1/junit-platform-launcher-1.10.1.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.10.1/junit-platform-launcher-1.10.1.pom (3.0 kB at 25 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.10.1/junit-platform-launcher-1.10.1.jar
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/junit/platform/junit-platform-launcher/1.10.1/junit-platform-launcher-1.10.1.jar (184 kB at 1.6 MB/s)
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.example.campushelp.dto.request.UserInfoRequestTest
+08:44:20.406 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.1.Final
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.210 s -- in com.example.campushelp.dto.request.UserInfoRequestTest
+[INFO] Running com.example.campushelp.dto.request.RegisterRequestTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.example.campushelp.dto.request.RegisterRequestTest
+[INFO] Running com.example.campushelp.dto.request.ReviewRequestTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 s -- in com.example.campushelp.dto.request.ReviewRequestTest
+[INFO] Running com.example.campushelp.dto.request.AppealRequestTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in com.example.campushelp.dto.request.AppealRequestTest
+[INFO] Running com.example.campushelp.dto.request.DemandRequestTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s -- in com.example.campushelp.dto.request.DemandRequestTest
+[INFO] Running com.example.campushelp.dto.request.MessageRequestTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.example.campushelp.dto.request.MessageRequestTest
+[INFO] Running com.example.campushelp.util.SecurityUtilsTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.038 s -- in com.example.campushelp.util.SecurityUtilsTest
+[INFO] Running com.example.campushelp.util.JwtUtilTest
+08:44:20.800 [main] ERROR com.example.campushelp.util.JwtUtil -- JWT验证失败
+com.auth0.jwt.exceptions.JWTDecodeException: The token was expected to have 3 parts, but got > 3.
+	at com.auth0.jwt.TokenUtils.wrongNumberOfParts(TokenUtils.java:45)
+	at com.auth0.jwt.TokenUtils.splitToken(TokenUtils.java:33)
+	at com.auth0.jwt.JWTDecoder.<init>(JWTDecoder.java:37)
+	at com.auth0.jwt.JWTVerifier.verify(JWTVerifier.java:444)
+	at com.example.campushelp.util.JwtUtil.validateTokenAndGetUserId(JwtUtil.java:39)
+	at com.example.campushelp.util.JwtUtilTest.testInvalidToken(JwtUtilTest.java:53)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.168 s -- in com.example.campushelp.util.JwtUtilTest
+[INFO] Running com.example.campushelp.QueryIntegrationTest
+08:44:20.844 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.campushelp.QueryIntegrationTest]: QueryIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+08:44:20.895 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.campushelp.CampusHelpApplication for test class com.example.campushelp.QueryIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2026-10-13T08:44:21.117+08:00  INFO 72803 --- [           main] c.e.campushelp.QueryIntegrationTest      : Starting QueryIntegrationTest using Java 21.0.12.1 with PID 72803 (started by pbpromax in /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend)
+2026-10-13T08:44:21.118+08:00  INFO 72803 --- [           main] c.e.campushelp.QueryIntegrationTest      : The following 1 profile is active: "test"
+2026-10-13T08:44:21.411+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-10-13T08:44:21.411+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-13T08:44:21.487+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 72 ms. Found 6 JPA repository interfaces.
+2026-10-13T08:44:21.685+08:00  INFO 72803 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-13T08:44:21.720+08:00  INFO 72803 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2026-10-13T08:44:21.738+08:00  INFO 72803 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-13T08:44:21.853+08:00  INFO 72803 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-13T08:44:21.867+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-13T08:44:22.021+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-13T08:44:22.542+08:00  INFO 72803 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: drop table if exists appeals cascade 
+Hibernate: drop table if exists demands cascade 
+Hibernate: drop table if exists messages cascade 
+Hibernate: drop table if exists notifications cascade 
+Hibernate: drop table if exists reviews cascade 
+Hibernate: drop table if exists users cascade 
+Hibernate: create table appeals (created_at timestamp(6) not null, handled_by bigint, id bigint generated by default as identity, updated_at timestamp(6) not null, user_id bigint not null, status varchar(20) not null, type varchar(50) not null, user_name varchar(50) not null, admin_note varchar(500), reason varchar(500) not null, primary key (id))
+Hibernate: create table demands (reward numeric(10,2) not null, acceptor_id bigint, canceled_at timestamp(6), created_at timestamp(6) not null, expected_time timestamp(6) not null, id bigint generated by default as identity, publisher_id bigint not null, updated_at timestamp(6) not null, canceled_by varchar(20), payment_status varchar(20) not null, status varchar(20) not null, acceptor_name varchar(50), category varchar(50) not null, publisher_name varchar(50), title varchar(100) not null, location varchar(200) not null, cancel_reason varchar(500), description varchar(500) not null, completion_proof TEXT, primary key (id))
+Hibernate: create table messages (created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, receiver_id bigint not null, sender_id bigint not null, sender_name varchar(50) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table notifications (is_read boolean not null, created_at timestamp(6) not null, id bigint generated by default as identity, related_id bigint, user_id bigint not null, type varchar(30) not null, title varchar(100) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table reviews (rating integer not null, created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, reviewer_id bigint not null, target_user_id bigint not null, reviewer_name varchar(50) not null, comment varchar(500), primary key (id))
+Hibernate: create table users (credit_score integer not null, created_at timestamp(6) not null, id bigint generated by default as identity, restricted_until timestamp(6), updated_at timestamp(6) not null, phone varchar(11) unique, role varchar(20) not null, student_id varchar(20) unique, name varchar(50), username varchar(50) not null unique, college varchar(100), major varchar(100), password varchar(100) not null, primary key (id))
+2026-10-13T08:44:22.602+08:00  INFO 72803 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-13T08:44:22.957+08:00  INFO 72803 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-13T08:44:23.456+08:00  WARN 72803 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-13T08:44:23.467+08:00  WARN 72803 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 8b1841e0-08e7-4e4c-b087-728b0ddd554e
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-10-13T08:44:23.639+08:00  INFO 72803 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@64dc21e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28d2ec29, org.springframework.security.web.context.SecurityContextHolderFilter@78f1103, org.springframework.security.web.header.HeaderWriterFilter@6c611538, org.springframework.web.filter.CorsFilter@3aec315f, org.springframework.security.web.authentication.logout.LogoutFilter@73695846, com.example.campushelp.filter.JwtAuthenticationFilter@5a85fcf8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@755dead5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@13bc8778, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@520bc7dc, org.springframework.security.web.session.SessionManagementFilter@5364681b, org.springframework.security.web.access.ExceptionTranslationFilter@22cc14bf, org.springframework.security.web.access.intercept.AuthorizationFilter@5e8e17e1]
+2026-10-13T08:44:23.813+08:00  INFO 72803 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-13T08:44:23.813+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-13T08:44:23.813+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-13T08:44:23.821+08:00  INFO 72803 --- [           main] c.e.campushelp.QueryIntegrationTest      : Started QueryIntegrationTest in 2.853 seconds (process running for 3.901)
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+Hibernate: insert into reviews (comment,created_at,demand_id,rating,reviewer_id,reviewer_name,target_user_id,id) values (?,?,?,?,?,?,?,default)
+Hibernate: insert into reviews (comment,created_at,demand_id,rating,reviewer_id,reviewer_name,target_user_id,id) values (?,?,?,?,?,?,?,default)
+Hibernate: select r1_0.id,r1_0.comment,r1_0.created_at,r1_0.demand_id,r1_0.rating,r1_0.reviewer_id,r1_0.reviewer_name,r1_0.target_user_id from reviews r1_0 where r1_0.demand_id=?
+Hibernate: insert into reviews (comment,created_at,demand_id,rating,reviewer_id,reviewer_name,target_user_id,id) values (?,?,?,?,?,?,?,default)
+Hibernate: insert into reviews (comment,created_at,demand_id,rating,reviewer_id,reviewer_name,target_user_id,id) values (?,?,?,?,?,?,?,default)
+Hibernate: select r1_0.id,r1_0.comment,r1_0.created_at,r1_0.demand_id,r1_0.rating,r1_0.reviewer_id,r1_0.reviewer_name,r1_0.target_user_id from reviews r1_0 where r1_0.target_user_id=?
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.508 s -- in com.example.campushelp.QueryIntegrationTest
+[INFO] Running com.example.campushelp.CampusMutualAssistanceIntegrationTest
+2026-10-13T08:44:24.314+08:00  INFO 72803 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.campushelp.CampusMutualAssistanceIntegrationTest]: CampusMutualAssistanceIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-13T08:44:24.316+08:00  INFO 72803 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.campushelp.CampusHelpApplication for test class com.example.campushelp.CampusMutualAssistanceIntegrationTest
+Hibernate: select u1_0.id from users u1_0 where u1_0.username=? fetch first ? rows only
+Hibernate: insert into users (college,created_at,credit_score,major,name,password,phone,restricted_until,role,student_id,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: select u1_0.id,u1_0.college,u1_0.created_at,u1_0.credit_score,u1_0.major,u1_0.name,u1_0.password,u1_0.phone,u1_0.restricted_until,u1_0.role,u1_0.student_id,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+Hibernate: select u1_0.id,u1_0.college,u1_0.created_at,u1_0.credit_score,u1_0.major,u1_0.name,u1_0.password,u1_0.phone,u1_0.restricted_until,u1_0.role,u1_0.student_id,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.id=?
+Hibernate: select u1_0.id,u1_0.college,u1_0.created_at,u1_0.credit_score,u1_0.major,u1_0.name,u1_0.password,u1_0.phone,u1_0.restricted_until,u1_0.role,u1_0.student_id,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.id=?
+Hibernate: update users set college=?,credit_score=?,major=?,name=?,password=?,phone=?,restricted_until=?,role=?,student_id=?,updated_at=?,username=? where id=?
+Hibernate: select u1_0.id from users u1_0 where u1_0.username=? fetch first ? rows only
+Hibernate: insert into users (college,created_at,credit_score,major,name,password,phone,restricted_until,role,student_id,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: select u1_0.id,u1_0.college,u1_0.created_at,u1_0.credit_score,u1_0.major,u1_0.name,u1_0.password,u1_0.phone,u1_0.restricted_until,u1_0.role,u1_0.student_id,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+Hibernate: select u1_0.id,u1_0.college,u1_0.created_at,u1_0.credit_score,u1_0.major,u1_0.name,u1_0.password,u1_0.phone,u1_0.restricted_until,u1_0.role,u1_0.student_id,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.id=?
+Hibernate: insert into demands (acceptor_id,acceptor_name,cancel_reason,canceled_at,canceled_by,category,completion_proof,created_at,description,expected_time,location,payment_status,publisher_id,publisher_name,reward,status,title,updated_at,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: select d1_0.id,d1_0.acceptor_id,d1_0.acceptor_name,d1_0.cancel_reason,d1_0.canceled_at,d1_0.canceled_by,d1_0.category,d1_0.completion_proof,d1_0.created_at,d1_0.description,d1_0.expected_time,d1_0.location,d1_0.payment_status,d1_0.publisher_id,d1_0.publisher_name,d1_0.reward,d1_0.status,d1_0.title,d1_0.updated_at from demands d1_0 where d1_0.id=?
+Hibernate: select u1_0.id,u1_0.college,u1_0.created_at,u1_0.credit_score,u1_0.major,u1_0.name,u1_0.password,u1_0.phone,u1_0.restricted_until,u1_0.role,u1_0.student_id,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.id=?
+Hibernate: insert into notifications (content,created_at,is_read,related_id,title,type,user_id,id) values (?,?,?,?,?,?,?,default)
+Hibernate: update demands set acceptor_id=?,acceptor_name=?,cancel_reason=?,canceled_at=?,canceled_by=?,category=?,completion_proof=?,description=?,expected_time=?,location=?,payment_status=?,publisher_id=?,publisher_name=?,reward=?,status=?,title=?,updated_at=? where id=?
+Hibernate: select d1_0.id,d1_0.acceptor_id,d1_0.acceptor_name,d1_0.cancel_reason,d1_0.canceled_at,d1_0.canceled_by,d1_0.category,d1_0.completion_proof,d1_0.created_at,d1_0.description,d1_0.expected_time,d1_0.location,d1_0.payment_status,d1_0.publisher_id,d1_0.publisher_name,d1_0.reward,d1_0.status,d1_0.title,d1_0.updated_at from demands d1_0 where d1_0.id=?
+Hibernate: insert into notifications (content,created_at,is_read,related_id,title,type,user_id,id) values (?,?,?,?,?,?,?,default)
+Hibernate: update demands set acceptor_id=?,acceptor_name=?,cancel_reason=?,canceled_at=?,canceled_by=?,category=?,completion_proof=?,description=?,expected_time=?,location=?,payment_status=?,publisher_id=?,publisher_name=?,reward=?,status=?,title=?,updated_at=? where id=?
+Hibernate: select d1_0.id,d1_0.acceptor_id,d1_0.acceptor_name,d1_0.cancel_reason,d1_0.canceled_at,d1_0.canceled_by,d1_0.category,d1_0.completion_proof,d1_0.created_at,d1_0.description,d1_0.expected_time,d1_0.location,d1_0.payment_status,d1_0.publisher_id,d1_0.publisher_name,d1_0.reward,d1_0.status,d1_0.title,d1_0.updated_at from demands d1_0 where d1_0.id=?
+Hibernate: insert into notifications (content,created_at,is_read,related_id,title,type,user_id,id) values (?,?,?,?,?,?,?,default)
+Hibernate: update demands set acceptor_id=?,acceptor_name=?,cancel_reason=?,canceled_at=?,canceled_by=?,category=?,completion_proof=?,description=?,expected_time=?,location=?,payment_status=?,publisher_id=?,publisher_name=?,reward=?,status=?,title=?,updated_at=? where id=?
+Hibernate: select d1_0.id,d1_0.acceptor_id,d1_0.acceptor_name,d1_0.cancel_reason,d1_0.canceled_at,d1_0.canceled_by,d1_0.category,d1_0.completion_proof,d1_0.created_at,d1_0.description,d1_0.expected_time,d1_0.location,d1_0.payment_status,d1_0.publisher_id,d1_0.publisher_name,d1_0.reward,d1_0.status,d1_0.title,d1_0.updated_at from demands d1_0 where d1_0.id=?
+Hibernate: select r1_0.id from reviews r1_0 where r1_0.demand_id=? and r1_0.reviewer_id=? fetch first ? rows only
+Hibernate: select u1_0.id,u1_0.college,u1_0.created_at,u1_0.credit_score,u1_0.major,u1_0.name,u1_0.password,u1_0.phone,u1_0.restricted_until,u1_0.role,u1_0.student_id,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.id=?
+Hibernate: select u1_0.id,u1_0.college,u1_0.created_at,u1_0.credit_score,u1_0.major,u1_0.name,u1_0.password,u1_0.phone,u1_0.restricted_until,u1_0.role,u1_0.student_id,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.id=?
+Hibernate: insert into reviews (comment,created_at,demand_id,rating,reviewer_id,reviewer_name,target_user_id,id) values (?,?,?,?,?,?,?,default)
+Hibernate: insert into notifications (content,created_at,is_read,related_id,title,type,user_id,id) values (?,?,?,?,?,?,?,default)
+Hibernate: insert into notifications (content,created_at,is_read,related_id,title,type,user_id,id) values (?,?,?,?,?,?,?,default)
+Hibernate: update users set college=?,credit_score=?,major=?,name=?,password=?,phone=?,restricted_until=?,role=?,student_id=?,updated_at=?,username=? where id=?
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.377 s -- in com.example.campushelp.CampusMutualAssistanceIntegrationTest
+[INFO] Running com.example.campushelp.controller.UserControllerTest
+2026-10-13T08:44:24.692+08:00  INFO 72803 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.campushelp.controller.UserControllerTest]: UserControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-13T08:44:24.697+08:00  INFO 72803 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.campushelp.CampusHelpApplication for test class com.example.campushelp.controller.UserControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2026-10-13T08:44:24.711+08:00  INFO 72803 --- [           main] c.e.c.controller.UserControllerTest      : Starting UserControllerTest using Java 21.0.12.1 with PID 72803 (started by pbpromax in /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend)
+2026-10-13T08:44:24.711+08:00  INFO 72803 --- [           main] c.e.c.controller.UserControllerTest      : The following 1 profile is active: "test"
+2026-10-13T08:44:24.765+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-10-13T08:44:24.765+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-13T08:44:24.772+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 6 JPA repository interfaces.
+2026-10-13T08:44:25.096+08:00  INFO 72803 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-13T08:44:25.100+08:00  INFO 72803 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-13T08:44:25.103+08:00  INFO 72803 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-13T08:44:25.104+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-10-13T08:44:25.106+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-10-13T08:44:25.225+08:00  INFO 72803 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: drop table if exists appeals cascade 
+Hibernate: drop table if exists demands cascade 
+Hibernate: drop table if exists messages cascade 
+Hibernate: drop table if exists notifications cascade 
+Hibernate: drop table if exists reviews cascade 
+Hibernate: drop table if exists users cascade 
+Hibernate: create table appeals (created_at timestamp(6) not null, handled_by bigint, id bigint generated by default as identity, updated_at timestamp(6) not null, user_id bigint not null, status varchar(20) not null, type varchar(50) not null, user_name varchar(50) not null, admin_note varchar(500), reason varchar(500) not null, primary key (id))
+Hibernate: create table demands (reward numeric(10,2) not null, acceptor_id bigint, canceled_at timestamp(6), created_at timestamp(6) not null, expected_time timestamp(6) not null, id bigint generated by default as identity, publisher_id bigint not null, updated_at timestamp(6) not null, canceled_by varchar(20), payment_status varchar(20) not null, status varchar(20) not null, acceptor_name varchar(50), category varchar(50) not null, publisher_name varchar(50), title varchar(100) not null, location varchar(200) not null, cancel_reason varchar(500), description varchar(500) not null, completion_proof TEXT, primary key (id))
+Hibernate: create table messages (created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, receiver_id bigint not null, sender_id bigint not null, sender_name varchar(50) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table notifications (is_read boolean not null, created_at timestamp(6) not null, id bigint generated by default as identity, related_id bigint, user_id bigint not null, type varchar(30) not null, title varchar(100) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table reviews (rating integer not null, created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, reviewer_id bigint not null, target_user_id bigint not null, reviewer_name varchar(50) not null, comment varchar(500), primary key (id))
+Hibernate: create table users (credit_score integer not null, created_at timestamp(6) not null, id bigint generated by default as identity, restricted_until timestamp(6), updated_at timestamp(6) not null, phone varchar(11) unique, role varchar(20) not null, student_id varchar(20) unique, name varchar(50), username varchar(50) not null unique, college varchar(100), major varchar(100), password varchar(100) not null, primary key (id))
+2026-10-13T08:44:25.239+08:00  INFO 72803 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-13T08:44:25.380+08:00  WARN 72803 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-13T08:44:25.385+08:00  WARN 72803 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: e7376a6d-af2a-49e4-9f96-9694dfb00ce8
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-10-13T08:44:25.438+08:00  INFO 72803 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7870dc3c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@714e624b, org.springframework.security.web.context.SecurityContextHolderFilter@12fb510f, org.springframework.security.web.header.HeaderWriterFilter@ee5e1a3, org.springframework.web.filter.CorsFilter@182dcc4b, org.springframework.security.web.authentication.logout.LogoutFilter@ac07eff, com.example.campushelp.filter.JwtAuthenticationFilter@596324c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1ea10d21, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3fe80faf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5906a685, org.springframework.security.web.session.SessionManagementFilter@28baba9e, org.springframework.security.web.access.ExceptionTranslationFilter@26d55069, org.springframework.security.web.access.intercept.AuthorizationFilter@637443c8]
+2026-10-13T08:44:25.487+08:00  INFO 72803 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-13T08:44:25.487+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-13T08:44:25.487+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-13T08:44:25.492+08:00  INFO 72803 --- [           main] c.e.c.controller.UserControllerTest      : Started UserControllerTest in 0.794 seconds (process running for 5.572)
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.882 s -- in com.example.campushelp.controller.UserControllerTest
+[INFO] Running com.example.campushelp.controller.NotificationControllerTest
+2026-10-13T08:44:25.577+08:00  INFO 72803 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.campushelp.controller.NotificationControllerTest]: NotificationControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-13T08:44:25.580+08:00  INFO 72803 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.campushelp.CampusHelpApplication for test class com.example.campushelp.controller.NotificationControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2026-10-13T08:44:25.604+08:00  INFO 72803 --- [           main] c.e.c.c.NotificationControllerTest       : Starting NotificationControllerTest using Java 21.0.12.1 with PID 72803 (started by pbpromax in /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend)
+2026-10-13T08:44:25.604+08:00  INFO 72803 --- [           main] c.e.c.c.NotificationControllerTest       : The following 1 profile is active: "test"
+2026-10-13T08:44:25.716+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-10-13T08:44:25.716+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-13T08:44:25.729+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 6 JPA repository interfaces.
+2026-10-13T08:44:25.829+08:00  INFO 72803 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-13T08:44:25.831+08:00  INFO 72803 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-13T08:44:25.834+08:00  INFO 72803 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-13T08:44:25.836+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2026-10-13T08:44:25.837+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2026-10-13T08:44:25.914+08:00  INFO 72803 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: drop table if exists appeals cascade 
+Hibernate: drop table if exists demands cascade 
+Hibernate: drop table if exists messages cascade 
+Hibernate: drop table if exists notifications cascade 
+Hibernate: drop table if exists reviews cascade 
+Hibernate: drop table if exists users cascade 
+Hibernate: create table appeals (created_at timestamp(6) not null, handled_by bigint, id bigint generated by default as identity, updated_at timestamp(6) not null, user_id bigint not null, status varchar(20) not null, type varchar(50) not null, user_name varchar(50) not null, admin_note varchar(500), reason varchar(500) not null, primary key (id))
+Hibernate: create table demands (reward numeric(10,2) not null, acceptor_id bigint, canceled_at timestamp(6), created_at timestamp(6) not null, expected_time timestamp(6) not null, id bigint generated by default as identity, publisher_id bigint not null, updated_at timestamp(6) not null, canceled_by varchar(20), payment_status varchar(20) not null, status varchar(20) not null, acceptor_name varchar(50), category varchar(50) not null, publisher_name varchar(50), title varchar(100) not null, location varchar(200) not null, cancel_reason varchar(500), description varchar(500) not null, completion_proof TEXT, primary key (id))
+Hibernate: create table messages (created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, receiver_id bigint not null, sender_id bigint not null, sender_name varchar(50) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table notifications (is_read boolean not null, created_at timestamp(6) not null, id bigint generated by default as identity, related_id bigint, user_id bigint not null, type varchar(30) not null, title varchar(100) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table reviews (rating integer not null, created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, reviewer_id bigint not null, target_user_id bigint not null, reviewer_name varchar(50) not null, comment varchar(500), primary key (id))
+Hibernate: create table users (credit_score integer not null, created_at timestamp(6) not null, id bigint generated by default as identity, restricted_until timestamp(6), updated_at timestamp(6) not null, phone varchar(11) unique, role varchar(20) not null, student_id varchar(20) unique, name varchar(50), username varchar(50) not null unique, college varchar(100), major varchar(100), password varchar(100) not null, primary key (id))
+2026-10-13T08:44:25.921+08:00  INFO 72803 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-13T08:44:25.997+08:00  WARN 72803 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-13T08:44:25.999+08:00  WARN 72803 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: bd8f2b2d-3303-488d-be67-de265c3dbcaf
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-10-13T08:44:26.021+08:00  INFO 72803 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@119da3e7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1fd781c3, org.springframework.security.web.context.SecurityContextHolderFilter@3e6e55b3, org.springframework.security.web.header.HeaderWriterFilter@7cb5bf31, org.springframework.web.filter.CorsFilter@61f7b800, org.springframework.security.web.authentication.logout.LogoutFilter@11a3ece3, com.example.campushelp.filter.JwtAuthenticationFilter@39752029, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e86264c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4f1b4e9a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5dd9bcba, org.springframework.security.web.session.SessionManagementFilter@6c7fdb5a, org.springframework.security.web.access.ExceptionTranslationFilter@422c5c9e, org.springframework.security.web.access.intercept.AuthorizationFilter@2b42fa0e]
+2026-10-13T08:44:26.058+08:00  INFO 72803 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-13T08:44:26.058+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-13T08:44:26.058+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-13T08:44:26.061+08:00  INFO 72803 --- [           main] c.e.c.c.NotificationControllerTest       : Started NotificationControllerTest in 0.477 seconds (process running for 6.141)
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.540 s -- in com.example.campushelp.controller.NotificationControllerTest
+[INFO] Running com.example.campushelp.controller.AppealControllerTest
+2026-10-13T08:44:26.118+08:00  INFO 72803 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.campushelp.controller.AppealControllerTest]: AppealControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-13T08:44:26.119+08:00  INFO 72803 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.campushelp.CampusHelpApplication for test class com.example.campushelp.controller.AppealControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2026-10-13T08:44:26.135+08:00  INFO 72803 --- [           main] c.e.c.controller.AppealControllerTest    : Starting AppealControllerTest using Java 21.0.12.1 with PID 72803 (started by pbpromax in /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend)
+2026-10-13T08:44:26.135+08:00  INFO 72803 --- [           main] c.e.c.controller.AppealControllerTest    : The following 1 profile is active: "test"
+2026-10-13T08:44:26.198+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-10-13T08:44:26.199+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-13T08:44:26.218+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 6 JPA repository interfaces.
+2026-10-13T08:44:26.279+08:00  INFO 72803 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-13T08:44:26.280+08:00  INFO 72803 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-13T08:44:26.281+08:00  INFO 72803 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-13T08:44:26.281+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2026-10-13T08:44:26.282+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2026-10-13T08:44:26.343+08:00  INFO 72803 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: drop table if exists appeals cascade 
+Hibernate: drop table if exists demands cascade 
+Hibernate: drop table if exists messages cascade 
+Hibernate: drop table if exists notifications cascade 
+Hibernate: drop table if exists reviews cascade 
+Hibernate: drop table if exists users cascade 
+Hibernate: create table appeals (created_at timestamp(6) not null, handled_by bigint, id bigint generated by default as identity, updated_at timestamp(6) not null, user_id bigint not null, status varchar(20) not null, type varchar(50) not null, user_name varchar(50) not null, admin_note varchar(500), reason varchar(500) not null, primary key (id))
+Hibernate: create table demands (reward numeric(10,2) not null, acceptor_id bigint, canceled_at timestamp(6), created_at timestamp(6) not null, expected_time timestamp(6) not null, id bigint generated by default as identity, publisher_id bigint not null, updated_at timestamp(6) not null, canceled_by varchar(20), payment_status varchar(20) not null, status varchar(20) not null, acceptor_name varchar(50), category varchar(50) not null, publisher_name varchar(50), title varchar(100) not null, location varchar(200) not null, cancel_reason varchar(500), description varchar(500) not null, completion_proof TEXT, primary key (id))
+Hibernate: create table messages (created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, receiver_id bigint not null, sender_id bigint not null, sender_name varchar(50) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table notifications (is_read boolean not null, created_at timestamp(6) not null, id bigint generated by default as identity, related_id bigint, user_id bigint not null, type varchar(30) not null, title varchar(100) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table reviews (rating integer not null, created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, reviewer_id bigint not null, target_user_id bigint not null, reviewer_name varchar(50) not null, comment varchar(500), primary key (id))
+Hibernate: create table users (credit_score integer not null, created_at timestamp(6) not null, id bigint generated by default as identity, restricted_until timestamp(6), updated_at timestamp(6) not null, phone varchar(11) unique, role varchar(20) not null, student_id varchar(20) unique, name varchar(50), username varchar(50) not null unique, college varchar(100), major varchar(100), password varchar(100) not null, primary key (id))
+2026-10-13T08:44:26.354+08:00  INFO 72803 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-13T08:44:26.431+08:00  WARN 72803 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-13T08:44:26.436+08:00  WARN 72803 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 2961e0c0-2952-4f97-9f5f-fc237958803f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-10-13T08:44:26.475+08:00  INFO 72803 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@3b944829, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6eea46f, org.springframework.security.web.context.SecurityContextHolderFilter@44bfe4fd, org.springframework.security.web.header.HeaderWriterFilter@130b3704, org.springframework.web.filter.CorsFilter@62b15496, org.springframework.security.web.authentication.logout.LogoutFilter@26236c98, com.example.campushelp.filter.JwtAuthenticationFilter@3ae1e959, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2d1ddba8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@67e47a18, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@46cefa40, org.springframework.security.web.session.SessionManagementFilter@6583f3ae, org.springframework.security.web.access.ExceptionTranslationFilter@39aa0c3e, org.springframework.security.web.access.intercept.AuthorizationFilter@2150a169]
+2026-10-13T08:44:26.506+08:00  INFO 72803 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-13T08:44:26.506+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-13T08:44:26.507+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-13T08:44:26.509+08:00  INFO 72803 --- [           main] c.e.c.controller.AppealControllerTest    : Started AppealControllerTest in 0.387 seconds (process running for 6.589)
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.413 s -- in com.example.campushelp.controller.AppealControllerTest
+[INFO] Running com.example.campushelp.controller.MessageControllerTest
+2026-10-13T08:44:26.530+08:00  INFO 72803 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.campushelp.controller.MessageControllerTest]: MessageControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-13T08:44:26.531+08:00  INFO 72803 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.campushelp.CampusHelpApplication for test class com.example.campushelp.controller.MessageControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2026-10-13T08:44:26.544+08:00  INFO 72803 --- [           main] c.e.c.controller.MessageControllerTest   : Starting MessageControllerTest using Java 21.0.12.1 with PID 72803 (started by pbpromax in /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend)
+2026-10-13T08:44:26.544+08:00  INFO 72803 --- [           main] c.e.c.controller.MessageControllerTest   : The following 1 profile is active: "test"
+2026-10-13T08:44:26.594+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-10-13T08:44:26.594+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-13T08:44:26.603+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 6 JPA repository interfaces.
+2026-10-13T08:44:26.667+08:00  INFO 72803 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-13T08:44:26.669+08:00  INFO 72803 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-13T08:44:26.671+08:00  INFO 72803 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-13T08:44:26.672+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2026-10-13T08:44:26.674+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2026-10-13T08:44:26.746+08:00  INFO 72803 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: drop table if exists appeals cascade 
+Hibernate: drop table if exists demands cascade 
+Hibernate: drop table if exists messages cascade 
+Hibernate: drop table if exists notifications cascade 
+Hibernate: drop table if exists reviews cascade 
+Hibernate: drop table if exists users cascade 
+Hibernate: create table appeals (created_at timestamp(6) not null, handled_by bigint, id bigint generated by default as identity, updated_at timestamp(6) not null, user_id bigint not null, status varchar(20) not null, type varchar(50) not null, user_name varchar(50) not null, admin_note varchar(500), reason varchar(500) not null, primary key (id))
+Hibernate: create table demands (reward numeric(10,2) not null, acceptor_id bigint, canceled_at timestamp(6), created_at timestamp(6) not null, expected_time timestamp(6) not null, id bigint generated by default as identity, publisher_id bigint not null, updated_at timestamp(6) not null, canceled_by varchar(20), payment_status varchar(20) not null, status varchar(20) not null, acceptor_name varchar(50), category varchar(50) not null, publisher_name varchar(50), title varchar(100) not null, location varchar(200) not null, cancel_reason varchar(500), description varchar(500) not null, completion_proof TEXT, primary key (id))
+Hibernate: create table messages (created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, receiver_id bigint not null, sender_id bigint not null, sender_name varchar(50) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table notifications (is_read boolean not null, created_at timestamp(6) not null, id bigint generated by default as identity, related_id bigint, user_id bigint not null, type varchar(30) not null, title varchar(100) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table reviews (rating integer not null, created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, reviewer_id bigint not null, target_user_id bigint not null, reviewer_name varchar(50) not null, comment varchar(500), primary key (id))
+Hibernate: create table users (credit_score integer not null, created_at timestamp(6) not null, id bigint generated by default as identity, restricted_until timestamp(6), updated_at timestamp(6) not null, phone varchar(11) unique, role varchar(20) not null, student_id varchar(20) unique, name varchar(50), username varchar(50) not null unique, college varchar(100), major varchar(100), password varchar(100) not null, primary key (id))
+2026-10-13T08:44:26.757+08:00  INFO 72803 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-13T08:44:26.806+08:00  WARN 72803 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-13T08:44:26.807+08:00  WARN 72803 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 441577f1-c5bd-4896-bd00-98c97048dcec
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-10-13T08:44:26.833+08:00  INFO 72803 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5c1e3e44, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@d607584, org.springframework.security.web.context.SecurityContextHolderFilter@688d4fbf, org.springframework.security.web.header.HeaderWriterFilter@5b7223c0, org.springframework.web.filter.CorsFilter@72d96d7a, org.springframework.security.web.authentication.logout.LogoutFilter@65d69f3c, com.example.campushelp.filter.JwtAuthenticationFilter@36b2a550, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a58a3f8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@60fee950, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4294669, org.springframework.security.web.session.SessionManagementFilter@747e7473, org.springframework.security.web.access.ExceptionTranslationFilter@71267620, org.springframework.security.web.access.intercept.AuthorizationFilter@1ddd7b6b]
+2026-10-13T08:44:26.856+08:00  INFO 72803 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-13T08:44:26.856+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-13T08:44:26.856+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-13T08:44:26.858+08:00  INFO 72803 --- [           main] c.e.c.controller.MessageControllerTest   : Started MessageControllerTest in 0.326 seconds (process running for 6.938)
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.350 s -- in com.example.campushelp.controller.MessageControllerTest
+[INFO] Running com.example.campushelp.controller.DemandControllerTest
+2026-10-13T08:44:26.880+08:00  INFO 72803 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.campushelp.controller.DemandControllerTest]: DemandControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-13T08:44:26.880+08:00  INFO 72803 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.campushelp.CampusHelpApplication for test class com.example.campushelp.controller.DemandControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2026-10-13T08:44:26.890+08:00  INFO 72803 --- [           main] c.e.c.controller.DemandControllerTest    : Starting DemandControllerTest using Java 21.0.12.1 with PID 72803 (started by pbpromax in /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend)
+2026-10-13T08:44:26.890+08:00  INFO 72803 --- [           main] c.e.c.controller.DemandControllerTest    : The following 1 profile is active: "test"
+2026-10-13T08:44:26.939+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-10-13T08:44:26.939+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-13T08:44:26.944+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 6 JPA repository interfaces.
+2026-10-13T08:44:27.014+08:00  INFO 72803 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-13T08:44:27.015+08:00  INFO 72803 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-13T08:44:27.016+08:00  INFO 72803 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-13T08:44:27.017+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2026-10-13T08:44:27.018+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2026-10-13T08:44:27.074+08:00  INFO 72803 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: drop table if exists appeals cascade 
+Hibernate: drop table if exists demands cascade 
+Hibernate: drop table if exists messages cascade 
+Hibernate: drop table if exists notifications cascade 
+Hibernate: drop table if exists reviews cascade 
+Hibernate: drop table if exists users cascade 
+Hibernate: create table appeals (created_at timestamp(6) not null, handled_by bigint, id bigint generated by default as identity, updated_at timestamp(6) not null, user_id bigint not null, status varchar(20) not null, type varchar(50) not null, user_name varchar(50) not null, admin_note varchar(500), reason varchar(500) not null, primary key (id))
+Hibernate: create table demands (reward numeric(10,2) not null, acceptor_id bigint, canceled_at timestamp(6), created_at timestamp(6) not null, expected_time timestamp(6) not null, id bigint generated by default as identity, publisher_id bigint not null, updated_at timestamp(6) not null, canceled_by varchar(20), payment_status varchar(20) not null, status varchar(20) not null, acceptor_name varchar(50), category varchar(50) not null, publisher_name varchar(50), title varchar(100) not null, location varchar(200) not null, cancel_reason varchar(500), description varchar(500) not null, completion_proof TEXT, primary key (id))
+Hibernate: create table messages (created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, receiver_id bigint not null, sender_id bigint not null, sender_name varchar(50) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table notifications (is_read boolean not null, created_at timestamp(6) not null, id bigint generated by default as identity, related_id bigint, user_id bigint not null, type varchar(30) not null, title varchar(100) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table reviews (rating integer not null, created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, reviewer_id bigint not null, target_user_id bigint not null, reviewer_name varchar(50) not null, comment varchar(500), primary key (id))
+Hibernate: create table users (credit_score integer not null, created_at timestamp(6) not null, id bigint generated by default as identity, restricted_until timestamp(6), updated_at timestamp(6) not null, phone varchar(11) unique, role varchar(20) not null, student_id varchar(20) unique, name varchar(50), username varchar(50) not null unique, college varchar(100), major varchar(100), password varchar(100) not null, primary key (id))
+2026-10-13T08:44:27.080+08:00  INFO 72803 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-13T08:44:27.125+08:00  WARN 72803 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-13T08:44:27.126+08:00  WARN 72803 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 69a8ac0e-3b91-4c1e-b571-54b6f2503af5
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-10-13T08:44:27.155+08:00  INFO 72803 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2a5b5c6f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@c4faecf, org.springframework.security.web.context.SecurityContextHolderFilter@3a6b61b4, org.springframework.security.web.header.HeaderWriterFilter@553ebd62, org.springframework.web.filter.CorsFilter@6bc3d564, org.springframework.security.web.authentication.logout.LogoutFilter@5b9fa5be, com.example.campushelp.filter.JwtAuthenticationFilter@2d32d022, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@328352cc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@12763c53, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1616c71b, org.springframework.security.web.session.SessionManagementFilter@61a93de8, org.springframework.security.web.access.ExceptionTranslationFilter@32874cf1, org.springframework.security.web.access.intercept.AuthorizationFilter@5095a7a0]
+2026-10-13T08:44:27.171+08:00  INFO 72803 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-13T08:44:27.171+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-13T08:44:27.171+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-13T08:44:27.175+08:00  INFO 72803 --- [           main] c.e.c.controller.DemandControllerTest    : Started DemandControllerTest in 0.294 seconds (process running for 7.255)
+[INFO] Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.359 s -- in com.example.campushelp.controller.DemandControllerTest
+[INFO] Running com.example.campushelp.controller.ReviewControllerTest
+2026-10-13T08:44:27.239+08:00  INFO 72803 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.campushelp.controller.ReviewControllerTest]: ReviewControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-13T08:44:27.240+08:00  INFO 72803 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.campushelp.CampusHelpApplication for test class com.example.campushelp.controller.ReviewControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.0)
+
+2026-10-13T08:44:27.251+08:00  INFO 72803 --- [           main] c.e.c.controller.ReviewControllerTest    : Starting ReviewControllerTest using Java 21.0.12.1 with PID 72803 (started by pbpromax in /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend)
+2026-10-13T08:44:27.251+08:00  INFO 72803 --- [           main] c.e.c.controller.ReviewControllerTest    : The following 1 profile is active: "test"
+2026-10-13T08:44:27.293+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-10-13T08:44:27.293+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-13T08:44:27.298+08:00  INFO 72803 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 6 JPA repository interfaces.
+2026-10-13T08:44:27.356+08:00  INFO 72803 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-13T08:44:27.356+08:00  INFO 72803 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-13T08:44:27.357+08:00  INFO 72803 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-13T08:44:27.357+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2026-10-13T08:44:27.358+08:00  INFO 72803 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2026-10-13T08:44:27.401+08:00  INFO 72803 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: drop table if exists appeals cascade 
+Hibernate: drop table if exists demands cascade 
+Hibernate: drop table if exists messages cascade 
+Hibernate: drop table if exists notifications cascade 
+Hibernate: drop table if exists reviews cascade 
+Hibernate: drop table if exists users cascade 
+Hibernate: create table appeals (created_at timestamp(6) not null, handled_by bigint, id bigint generated by default as identity, updated_at timestamp(6) not null, user_id bigint not null, status varchar(20) not null, type varchar(50) not null, user_name varchar(50) not null, admin_note varchar(500), reason varchar(500) not null, primary key (id))
+Hibernate: create table demands (reward numeric(10,2) not null, acceptor_id bigint, canceled_at timestamp(6), created_at timestamp(6) not null, expected_time timestamp(6) not null, id bigint generated by default as identity, publisher_id bigint not null, updated_at timestamp(6) not null, canceled_by varchar(20), payment_status varchar(20) not null, status varchar(20) not null, acceptor_name varchar(50), category varchar(50) not null, publisher_name varchar(50), title varchar(100) not null, location varchar(200) not null, cancel_reason varchar(500), description varchar(500) not null, completion_proof TEXT, primary key (id))
+Hibernate: create table messages (created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, receiver_id bigint not null, sender_id bigint not null, sender_name varchar(50) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table notifications (is_read boolean not null, created_at timestamp(6) not null, id bigint generated by default as identity, related_id bigint, user_id bigint not null, type varchar(30) not null, title varchar(100) not null, content varchar(500) not null, primary key (id))
+Hibernate: create table reviews (rating integer not null, created_at timestamp(6) not null, demand_id bigint not null, id bigint generated by default as identity, reviewer_id bigint not null, target_user_id bigint not null, reviewer_name varchar(50) not null, comment varchar(500), primary key (id))
+Hibernate: create table users (credit_score integer not null, created_at timestamp(6) not null, id bigint generated by default as identity, restricted_until timestamp(6), updated_at timestamp(6) not null, phone varchar(11) unique, role varchar(20) not null, student_id varchar(20) unique, name varchar(50), username varchar(50) not null unique, college varchar(100), major varchar(100), password varchar(100) not null, primary key (id))
+2026-10-13T08:44:27.409+08:00  INFO 72803 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-13T08:44:27.448+08:00  WARN 72803 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-13T08:44:27.449+08:00  WARN 72803 --- [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 8152628e-ae4f-43d2-a564-f2a3f5687d57
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-10-13T08:44:27.466+08:00  INFO 72803 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@bd7d442, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a5076b6, org.springframework.security.web.context.SecurityContextHolderFilter@4265a8bf, org.springframework.security.web.header.HeaderWriterFilter@3aa25cf, org.springframework.web.filter.CorsFilter@4e5f2af6, org.springframework.security.web.authentication.logout.LogoutFilter@6a7f6d3b, com.example.campushelp.filter.JwtAuthenticationFilter@709cfd02, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@82d390b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5a7bf19c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@88f5632, org.springframework.security.web.session.SessionManagementFilter@2c8e7352, org.springframework.security.web.access.ExceptionTranslationFilter@2991373, org.springframework.security.web.access.intercept.AuthorizationFilter@e0913fc]
+2026-10-13T08:44:27.486+08:00  INFO 72803 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-13T08:44:27.486+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-13T08:44:27.486+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-13T08:44:27.488+08:00  INFO 72803 --- [           main] c.e.c.controller.ReviewControllerTest    : Started ReviewControllerTest in 0.247 seconds (process running for 7.568)
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.264 s -- in com.example.campushelp.controller.ReviewControllerTest
+[INFO] Running com.example.campushelp.filter.JwtAuthenticationFilterTest
+2026-10-13T08:44:27.571+08:00 ERROR 72803 --- [           main] c.e.c.filter.JwtAuthenticationFilter     : Could not set user authentication in security context
+
+java.lang.RuntimeException: JWT signature does not match
+	at com.example.campushelp.util.JwtUtil.isTokenExpired(JwtUtil.java:49) ~[classes/:na]
+	at com.example.campushelp.filter.JwtAuthenticationFilter.doFilterInternal(JwtAuthenticationFilter.java:35) ~[classes/:na]
+	at com.example.campushelp.filter.JwtAuthenticationFilterTest.shouldHandleExceptionAndContinueChain(JwtAuthenticationFilterTest.java:120) ~[test-classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728) ~[junit-platform-commons-1.10.1.jar:1.10.1]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.2.2.jar:3.2.2]
+
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.077 s -- in com.example.campushelp.filter.JwtAuthenticationFilterTest
+[INFO] Running com.example.campushelp.service.impl.UserServiceImplTest
+[INFO] Running com.example.campushelp.service.impl.UserServiceImplTest$DeleteUserTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.089 s -- in com.example.campushelp.service.impl.UserServiceImplTest$DeleteUserTest
+[INFO] Running com.example.campushelp.service.impl.UserServiceImplTest$CheckPublishPermissionTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.example.campushelp.service.impl.UserServiceImplTest$CheckPublishPermissionTest
+[INFO] Running com.example.campushelp.service.impl.UserServiceImplTest$UpdateUserInfoTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.example.campushelp.service.impl.UserServiceImplTest$UpdateUserInfoTest
+[INFO] Running com.example.campushelp.service.impl.UserServiceImplTest$RegisterTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s -- in com.example.campushelp.service.impl.UserServiceImplTest$RegisterTest
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.101 s -- in com.example.campushelp.service.impl.UserServiceImplTest
+[INFO] Running com.example.campushelp.service.impl.MockSmsServiceImplTest
+2026-10-13T08:44:27.685+08:00  INFO 72803 --- [           main] c.e.c.service.impl.MockSmsServiceImpl    : 【模拟短信发送】验证码: 123456 发送到手机: 13800138000
+2026-10-13T08:44:27.685+08:00  INFO 72803 --- [           main] c.e.c.service.impl.MockSmsServiceImpl    : 提示：如需真实发送短信，请配置阿里云短信服务参数并设置 sms.enabled=true
+2026-10-13T08:44:27.686+08:00  INFO 72803 --- [           main] c.e.c.service.impl.MockSmsServiceImpl    : 【模拟短信发送】验证码:  发送到手机: 
+2026-10-13T08:44:27.686+08:00  INFO 72803 --- [           main] c.e.c.service.impl.MockSmsServiceImpl    : 提示：如需真实发送短信，请配置阿里云短信服务参数并设置 sms.enabled=true
+2026-10-13T08:44:27.686+08:00  INFO 72803 --- [           main] c.e.c.service.impl.MockSmsServiceImpl    : 【模拟短信发送】验证码: null 发送到手机: null
+2026-10-13T08:44:27.686+08:00  INFO 72803 --- [           main] c.e.c.service.impl.MockSmsServiceImpl    : 提示：如需真实发送短信，请配置阿里云短信服务参数并设置 sms.enabled=true
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in com.example.campushelp.service.impl.MockSmsServiceImplTest
+[INFO] Running com.example.campushelp.service.impl.ReviewServiceImplTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.102 s -- in com.example.campushelp.service.impl.ReviewServiceImplTest
+[INFO] Running com.example.campushelp.service.impl.AliyunSmsServiceImplTest
+2026-10-13T08:44:27.905+08:00 ERROR 72803 --- [           main] c.e.c.service.impl.AliyunSmsServiceImpl  : 短信发送异常
+
+java.lang.RuntimeException: Timeout
+	at com.aliyun.dysmsapi20170525.Client.sendSms(Client.java:1600) ~[dysmsapi20170525-2.0.24.jar:na]
+	at com.example.campushelp.service.impl.AliyunSmsServiceImpl.sendVerificationCode(AliyunSmsServiceImpl.java:54) ~[classes/:na]
+	at com.example.campushelp.service.impl.AliyunSmsServiceImplTest.lambda$testSendVerificationCode_ThrowsException$5(AliyunSmsServiceImplTest.java:100) ~[test-classes/:na]
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53) ~[junit-jupiter-api-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35) ~[junit-jupiter-api-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115) ~[junit-jupiter-api-5.10.1.jar:5.10.1]
+	at com.example.campushelp.service.impl.AliyunSmsServiceImplTest.testSendVerificationCode_ThrowsException(AliyunSmsServiceImplTest.java:99) ~[test-classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728) ~[junit-platform-commons-1.10.1.jar:1.10.1]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.2.2.jar:3.2.2]
+
+2026-10-13T08:44:27.910+08:00  INFO 72803 --- [           main] c.e.c.service.impl.AliyunSmsServiceImpl  : 短信发送成功，验证码: 123456 发送到手机: 13800000000
+2026-10-13T08:44:27.912+08:00 ERROR 72803 --- [           main] c.e.c.service.impl.AliyunSmsServiceImpl  : 短信发送失败，错误码: isv.MOBILE_NUMBER_ILLEGAL, 错误信息: 手机号码格式错误
+2026-10-13T08:44:27.912+08:00 ERROR 72803 --- [           main] c.e.c.service.impl.AliyunSmsServiceImpl  : 短信发送异常
+
+java.lang.RuntimeException: 短信发送失败: 手机号码格式错误
+	at com.example.campushelp.service.impl.AliyunSmsServiceImpl.sendVerificationCode(AliyunSmsServiceImpl.java:60) ~[classes/:na]
+	at com.example.campushelp.service.impl.AliyunSmsServiceImplTest.lambda$testSendVerificationCode_AliyunReturnError$3(AliyunSmsServiceImplTest.java:84) ~[test-classes/:na]
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53) ~[junit-jupiter-api-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35) ~[junit-jupiter-api-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115) ~[junit-jupiter-api-5.10.1.jar:5.10.1]
+	at com.example.campushelp.service.impl.AliyunSmsServiceImplTest.testSendVerificationCode_AliyunReturnError(AliyunSmsServiceImplTest.java:83) ~[test-classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728) ~[junit-platform-commons-1.10.1.jar:1.10.1]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.2.2.jar:3.2.2]
+
+2026-10-13T08:44:27.913+08:00  INFO 72803 --- [           main] c.e.c.service.impl.AliyunSmsServiceImpl  : 短信服务未启用，验证码: 123456 发送到手机: 13800000000
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.124 s -- in com.example.campushelp.service.impl.AliyunSmsServiceImplTest
+[INFO] Running com.example.campushelp.service.impl.MessageServiceImplTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.058 s -- in com.example.campushelp.service.impl.MessageServiceImplTest
+[INFO] Running com.example.campushelp.service.impl.NotificationServiceImplTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.039 s -- in com.example.campushelp.service.impl.NotificationServiceImplTest
+[INFO] Running com.example.campushelp.service.impl.AppealServiceImplTest
+[INFO] Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.039 s -- in com.example.campushelp.service.impl.AppealServiceImplTest
+[INFO] Running com.example.campushelp.service.impl.DemandServiceImplTest
+[INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.example.campushelp.service.impl.DemandServiceImplTest
+[INFO] Running com.example.campushelp.CampusMutualAssistanceExceptionIntegrationTest
+2026-10-13T08:44:28.078+08:00  INFO 72803 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.example.campushelp.CampusMutualAssistanceExceptionIntegrationTest]: CampusMutualAssistanceExceptionIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-13T08:44:28.079+08:00  INFO 72803 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.example.campushelp.CampusHelpApplication for test class com.example.campushelp.CampusMutualAssistanceExceptionIntegrationTest
+Hibernate: select u1_0.id from users u1_0 where u1_0.username=? fetch first ? rows only
+Hibernate: insert into users (college,created_at,credit_score,major,name,password,phone,restricted_until,role,student_id,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: select u1_0.id,u1_0.college,u1_0.created_at,u1_0.credit_score,u1_0.major,u1_0.name,u1_0.password,u1_0.phone,u1_0.restricted_until,u1_0.role,u1_0.student_id,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+Hibernate: insert into demands (acceptor_id,acceptor_name,cancel_reason,canceled_at,canceled_by,category,completion_proof,created_at,description,expected_time,location,payment_status,publisher_id,publisher_name,reward,status,title,updated_at,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default)
+2026-10-13T08:44:28.216+08:00 ERROR 72803 --- [           main] c.e.c.exception.GlobalExceptionHandler   : 业务异常: 不能接自己发布的需求
+Hibernate: select u1_0.id from users u1_0 where u1_0.username=? fetch first ? rows only
+Hibernate: insert into users (college,created_at,credit_score,major,name,password,phone,restricted_until,role,student_id,updated_at,username,id) values (?,?,?,?,?,?,?,?,?,?,?,?,default)
+Hibernate: select u1_0.id,u1_0.college,u1_0.created_at,u1_0.credit_score,u1_0.major,u1_0.name,u1_0.password,u1_0.phone,u1_0.restricted_until,u1_0.role,u1_0.student_id,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+Hibernate: insert into demands (acceptor_id,acceptor_name,cancel_reason,canceled_at,canceled_by,category,completion_proof,created_at,description,expected_time,location,payment_status,publisher_id,publisher_name,reward,status,title,updated_at,id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,default)
+2026-10-13T08:44:28.343+08:00 ERROR 72803 --- [           main] c.e.c.exception.GlobalExceptionHandler   : 业务异常: 只能评价已完成的需求
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.268 s -- in com.example.campushelp.CampusMutualAssistanceExceptionIntegrationTest
+[INFO] Running com.example.campushelp.exception.GlobalExceptionHandlerTest
+2026-10-13T08:44:28.353+08:00  INFO 72803 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-13T08:44:28.353+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-13T08:44:28.354+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-13T08:44:28.357+08:00 ERROR 72803 --- [           main] c.e.c.exception.GlobalExceptionHandler   : 参数校验失败: {name=名称不能为空}
+2026-10-13T08:44:28.362+08:00  INFO 72803 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-13T08:44:28.362+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-13T08:44:28.362+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-13T08:44:28.362+08:00 ERROR 72803 --- [           main] c.e.c.exception.GlobalExceptionHandler   : 系统异常: 
+
+java.lang.NullPointerException: 故意制造的空指针异常
+	at com.example.campushelp.exception.GlobalExceptionHandlerTest$TestController.throwSystemException(GlobalExceptionHandlerTest.java:81) ~[test-classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:254) ~[spring-web-6.1.1.jar:6.1.1]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:182) ~[spring-web-6.1.1.jar:6.1.1]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.1.jar:6.1.1]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:917) ~[spring-webmvc-6.1.1.jar:6.1.1]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:829) ~[spring-webmvc-6.1.1.jar:6.1.1]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.1.jar:6.1.1]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.1.jar:6.1.1]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.1.jar:6.1.1]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.1.jar:6.1.1]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.1.jar:6.1.1]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.16.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.1.jar:6.1.1]
+	at org.springframework.test.web.servlet.TestDispatcherServlet.service(TestDispatcherServlet.java:72) ~[spring-test-6.1.1.jar:6.1.1]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.16.jar:6.0]
+	at org.springframework.mock.web.MockFilterChain$ServletFilterProxy.doFilter(MockFilterChain.java:165) ~[spring-test-6.1.1.jar:6.1.1]
+	at org.springframework.mock.web.MockFilterChain.doFilter(MockFilterChain.java:132) ~[spring-test-6.1.1.jar:6.1.1]
+	at org.springframework.test.web.servlet.MockMvc.perform(MockMvc.java:201) ~[spring-test-6.1.1.jar:6.1.1]
+	at com.example.campushelp.exception.GlobalExceptionHandlerTest.testHandleGeneralException(GlobalExceptionHandlerTest.java:60) ~[test-classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728) ~[junit-platform-commons-1.10.1.jar:1.10.1]
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:218) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:214) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:139) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:69) ~[junit-jupiter-engine-5.10.1.jar:5.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596) ~[na:na]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54) ~[junit-platform-engine-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47) ~[junit-platform-launcher-1.10.1.jar:1.10.1]
+	at org.apache.maven.surefire.junitplatform.LazyLauncher.execute(LazyLauncher.java:56) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:184) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:148) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:122) ~[surefire-junit-platform-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385) ~[surefire-booter-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162) ~[surefire-booter-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507) ~[surefire-booter-3.2.2.jar:3.2.2]
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495) ~[surefire-booter-3.2.2.jar:3.2.2]
+
+2026-10-13T08:44:28.367+08:00  INFO 72803 --- [           main] o.s.mock.web.MockServletContext          : Initializing Spring TestDispatcherServlet ''
+2026-10-13T08:44:28.367+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-13T08:44:28.367+08:00  INFO 72803 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-13T08:44:28.367+08:00 ERROR 72803 --- [           main] c.e.c.exception.GlobalExceptionHandler   : 业务异常: 没有操作权限
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.example.campushelp.exception.GlobalExceptionHandlerTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 153, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (report) @ campus-help ---
+[INFO] Loading execution data file /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend/target/jacoco.exec
+[INFO] Analyzed bundle 'campus-help' with 20 classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  14.311 s
+[INFO] Finished at: 2026-10-13T08:44:28+08:00
+[INFO] ------------------------------------------------------------------------

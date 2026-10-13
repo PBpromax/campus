@@ -1,0 +1,23 @@
+
+> teacher-m1-personalized-prototype@1.0.0 verify:browser
+> node scripts/verify-browser.mjs
+
+PASS ten scene shortcuts show their distinct missing fields
+PASS unknown compatibility cannot confirm
+PASS explicit spec enables draft confirmation
+PASS handoff modification invalidates old confirmation and needs consent
+PASS ambiguous receiving location is rejected
+PASS changed card contains pending negotiation rather than invented agreement
+PASS return conflict blocks confirmation
+PASS undo restores time and confirmation stays invalidated
+PASS fixed form fallback is usable
+PASS fragmented question starts without a publication card
+PASS short follow-up keeps expression and step context
+PASS publication asks for original required fields with no invented values
+PASS zero reward conflict is visible
+PASS simulation returns no real business identifier
+PASS user resolution and reset work
+PASS human handoff explicitly stays simulated
+PASS draft cancellation is local and resettable
+PASS mobile layout has no page overflow
+PASS no page exceptions, production requests or browser memory
