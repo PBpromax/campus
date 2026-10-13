@@ -1,20 +1,19 @@
-# CampusHub / campus
+# 校园互助平台：老师项目接管与 AI 原生升级
 
-校园互助服务平台，基于 [Octonauts](https://github.com/jiahuizhong205/Octonauts) 的 P4-yrh 代码升级开发。新仓库：<https://github.com/PBpromax/campus>。
+本仓库从老师提供的 `sec-ii-2026` 项目接管，来源为学校 GitLab 的 even-begging-has-to-wait-in-line/sec-ii-2026，基线提交 `68d8484f3a8a9ebeab69dc0d7e164bd44348f1fc`。原团队源码是继承成果，不将其历史作业、访谈或测试结论作为我们的交付。
 
-## 现有代码
+GitHub 保留先前项目历史；当前代码已替换为老师项目快照，旧的 feature/m1-personalized-needs 分支仅对应旧项目。老师原始历史及 P0—P4 文档保存在本地备份，未合并到 GitHub。
 
-- `frontend/`：Vue 3 + Vite 校园互助页面。
-- `backend/`：Java 17 / Spring Boot 业务服务。
-- `mysql-init/` 和 Docker Compose：开发用 MySQL / Redis。
-- `docs/AI-Native/`：新课程课件与升级规划。
+## 当前业务和技术
 
-当前业务分类和通用发布/接单能力保留；源码存在不代表已完成端到端验收。后续 M1 聚焦快递跑腿与学习求助。
+分类：跑腿代办 RUNNING、学习辅导 STUDY、物品借用 BORROW、其他 OTHER。后端 Java 21 / Spring Boot 3.2 / JPA / MySQL，前端 Vue 3 / Vite / Element Plus。
 
-## 开发环境
+存在注册登录、需求发布与接单、交付和完成确认、取消、通知、任务双方聊天、评价信用及申诉实现。支付状态字段不代表已接入真实支付。
 
-先阅读 [DEVELOPMENT.md](./DEVELOPMENT.md)。后端 JWT 密钥必须通过 `JWT_SECRET_BASE64` 环境变量提供，没有内置密钥。Compose 中数据库口令仅为本地演示配置。
+M1 聚焦物品借用与学习辅导的个性化需求、本体和对话卡片原型；M2 再落实鸿蒙客户端与真实 AI 工具执行。
 
-## 代码来源与历史
+- [运行与配置](./DEVELOPMENT.md)
+- [接管记录](./docs/接管记录.md)
+- [课程课件](./docs/reference/00-课程介绍.pdf)
 
-新仓库从清理后的代码快照开始，未上传旧作业交付物及旧提交历史。旧版本保留在本地 `archive/original-code` 和 `archive/original-main` 分支。原项目作者的代码贡献来源保留如上。
+后续 M1 交付在 docs/M1/。原团队旧文档仅作本地参考，不是本学期任务要求。

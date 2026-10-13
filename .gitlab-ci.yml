@@ -1,0 +1,98 @@
+# yaml-language-server: $schema=https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json
+
+image: maven:3.9.6-eclipse-temurin-21
+
+variables:
+  # 🛡️ 稳健的克隆策略，防止文件死锁
+  GIT_STRATEGY: clone
+  
+  # 🌍 时区对齐：确保时间戳断言全国统一
+  TZ: "Asia/Shanghai"
+
+  # 🚀 降为单线程串行，完全模拟本地运行环境，防止 H2 并发锁死
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/backend/target/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
+  MAVEN_CLI_OPTS: "-T 1 -B"
+
+stages:
+  - install          
+  - check            
+  - unit-test        
+  - integration-test 
+  - deploy           
+
+services:
+  - name: redis:7.0-alpine
+    alias: redis      # 💡 确保 Redis 在网络里的名称叫 redis
+
+# 【1. 自动安装依赖】
+install_dependencies_job:
+  stage: install
+  script:
+    - cd backend
+    - echo "=== 正在自动安装和解析项目所需的全部依赖 ==="
+    - mvn dependency:go-offline $MAVEN_CLI_OPTS
+  only:
+    - branches
+    - merge_requests
+
+# 【2. 自动运行静态检查】
+static_code_check_job:
+  stage: check
+  script:
+    - cd backend
+    - echo "=== 开始自动进行代码规范性静态扫描与编译预验证 ==="
+    - mvn validate $MAVEN_CLI_OPTS
+  artifacts:
+    expire_in: 1 hr
+    paths:
+      - backend/target/  
+  only:
+    - branches
+    - merge_requests
+
+# 【3. 自动运行单元测试】 —— 🔥 真正的硬核修复就在这里！
+run_unit_tests_job:
+  stage: unit-test
+  script:
+    - cd backend
+    - echo "=== 开始自动运行核心模块单元测试 ==="
+    
+    - mvn test -Dspring.profiles.active=test -Dspring.data.redis.host=redis -Dtest='*,!*IntegrationTest' -DfailIfNoTests=false $MAVEN_CLI_OPTS -DforkCount=1 -DreuseForks=true
+  artifacts:
+    when: always
+    reports:
+      junit: backend/target/surefire-reports/*.xml
+  only:
+    - branches
+    - merge_requests
+
+# 【4. 自动运行集成测试】
+run_integration_tests_job:
+  stage: integration-test
+  script:
+    - cd backend
+    - echo "=== 开始自动运行集成测试，验证完整长流程 ==="
+    - mvn test -Dspring.profiles.active=test -Dspring.data.redis.host=redis -Dtest='*IntegrationTest' -DfailIfNoTests=false $MAVEN_CLI_OPTS -DforkCount=1 -DreuseForks=true
+  artifacts:
+    when: always
+    reports:
+      junit: backend/target/surefire-reports/*.xml
+  only:
+    - branches
+    - merge_requests
+
+# 【5. 自动构建项目】
+build_and_package_job:
+  stage: deploy
+  script:
+    - cd backend
+    - echo "=== 各级质量安全检查已全绿通过，开始验证项目是否能正常打包部署 ==="
+    - mvn package -DskipTests $MAVEN_CLI_OPTS
+    - echo "=== 项目打包成功！生成产物已妥善归档 ==="
+  artifacts:
+    name: "campus-help-backend-build-$CI_COMMIT_REF_SLUG"
+    paths:
+      - backend/target/*.jar
+    expire_in: 1 week
+  only:
+    - branches

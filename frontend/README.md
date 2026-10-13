@@ -1,8 +1,3 @@
-# CampusHub Frontend
+# 原平台 Vue 前端
 
-```bash
-npm install
-npm run dev
-```
-
-默认通过 `/api` 代理访问后端 `http://localhost:8080`。
+运行 `npm ci` 后执行 `npm run dev`；构建 `npm run build`。使用统一发布表单；分类为 RUNNING、STUDY、BORROW、OTHER。代理与环境说明见 [DEVELOPMENT](../DEVELOPMENT.md)。

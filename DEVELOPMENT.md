@@ -1,73 +1,44 @@
-# **CampusHub 开发环境配置与协作规范手册**
+# 开发和验证
 
-本手册旨在指导团队成员快速搭建开发环境，并明确开发过程中的技术规约，确保代码质量与 AI 协作流程的标准化。
+工作目录为老师项目文件夹。需要 Java 21、Maven、Node.js 20+，完整平台需要 MySQL；原型无需数据库和模型密钥。
 
-## **1\. 环境准备**
+## 本地数据库与后端
 
-在开始之前，请确保你的本地机器已安装以下软件版本：
+复制 `.env.example` 为 `.env`，填写自己的 DB_PASSWORD、MYSQL_ROOT_PASSWORD、JWT_SECRET。可用 `openssl rand -base64 48` 在本机生成 JWT_SECRET，不提交生成值。Docker Compose 会读取 .env；Spring Boot 和 shell 不会自动读取它。
 
-| 组件 | 版本要求 | 说明 |
-| :---- | :---- | :---- |
-| **JDK** | 17 (LTS) | 核心后端运行环境 |
-| **Node.js** | 18.x 或 20.x (LTS) | 前端开发环境，建议配合 nvm 使用 |
-| **Docker** | Desktop 4.x+ | 用于一键运行基础设施 (MySQL, Redis) |
-| **Build Tool** | Maven 3.8+ | 后端依赖管理 |
-| **IDE** | IntelliJ IDEA / VS Code | 推荐安装 CheckStyle 与 AI 助手插件 |
+```sh
+docker compose up -d
+export DB_PASSWORD='本机数据库密码'
+export JWT_SECRET='本机生成并安全保存的随机值'
+cd backend
+mvn spring-boot:run
+```
 
-## **2\. 基础设施一键启动**
+默认 MySQL 地址为 127.0.0.1:3307/campus_help，用户 campus。也可用 DB_URL / DB_USERNAME 指定自己的隔离数据库，不使用原团队云端连接。现有 JPA ddl-auto=update 仅适合开发，生产迁移列为技术债。
 
-项目使用 Docker 统一基础设施环境，避免本地数据库版本不一致的问题。
+默认不创建演示账号。仅在隔离演示数据库需要时设置 DEMO_SEED_ENABLED=true；会创建 testuser1、testuser2、admin，演示密码123456，勿用于真实部署。
 
-1. **启动服务**：在项目根目录下执行：  
-   ```
-   docker-compose up \-d
-   ```
+Redis 已提供可选服务，当前主要用户/任务流程没有 Redis 调用。短信默认模拟，不代表真实发送。数据库 init.sql 仅保留 UTF-8 建表，未导入原用户数据；它不是已有数据库升级脚本。
 
-2. **服务清单**：  
-   * **MySQL 8.0**: 端口 3306，初始数据库 campushub_db。  
-   * **Redis 7.0**: 端口 6379，用于存放 Session 与缓存数据。  
-3. **初始化数据**：首次启动后，请执行 `backend/src/main/resources/db/migration` 下的 SQL 脚本。
+## 原平台前端
 
-## **3\. 后端开发规范**
+```sh
+cd frontend
+npm ci
+npm run dev
+```
 
-* **框架**：Spring Boot 3 \+ MyBatis-Plus。  
-* **启动方式**：运行 `CampusHubApplication.java`。  
-* **配置管理**：  
-  * `application-dev.yml`：个人本地配置，**禁止**提交生产敏感信息。  
-  * 核心参数必须通过环境变量或 Spring Profiles 切换。  
-* **接口规范**：统一使用 RESTful 风格，所有接口返回值必须封装在 `Result<T>` 对象中。
+默认 localhost:5173，/api 代理到 localhost:8080。改后端端口时同步调整代理。
 
-## **4\. 前端开发规范**
+## 后端隔离验证
 
-* **框架**：Vue 3 (Composition API) \+ Vite \+ Element Plus。  
-* **启动方式**：  
-  ```
-  cd frontend  
-  npm install  
-  npm run dev
-  ```  
+```sh
+cd backend
+mvn -B -Dspring.profiles.active=test test
+```
 
-* **目录约束**：  
-  * api/：所有后端请求必须封装在此，严禁在页面内直接使用 axios。  
-  * components/：存放高复用组件；views/：按业务模块划分页面。
+test profile 使用 H2 create-drop，不连接云数据库，Redis 自动配置关闭，短信模拟。测试环境 JWT 仅为公开测试夹具，与私有运行配置分开。必须使用 Java 21；先用 java -version 和 mvn -version 检查，不以旧 jar 或原团队覆盖率作为本次测试证据。
 
-## **5\. 常见问题排查**
-* 端口冲突：若本地已安装 MySQL 或 Redis 导致端口被占用，请修改 `docker-compose.yml` 中的 ports 映射左侧数值。
+## 协作
 
-* 连接超时：确保后端 `application-dev.yml` 中的数据库地址为 `localhost`（若在宿主机运行）或 `campushub-db`（若在容器内运行）。
-
-## **6\. AI 协作与工程规范**
-
-
-1. 开发过程中严格遵守《AI协助契约》
-2. 合并至 develop 前，使用AI工具对全量代码进行架构耦合扫描。针对订单状态机等核心逻辑，使用AI工具排查边界漏洞。
-
-
-
-## 当前升级环境补充（2026-10-12）
-
-- 当前 Compose 使用 MySQL 宿主机端口 3307，开发配置使用数据库 campushub_db。
-- 后端启动前执行 `export JWT_SECRET_BASE64="$(openssl rand -base64 32)"`，或从本地安全环境注入同一个密钥；更换密钥会使旧 Token 失效。不要提交生成值。Spring Boot 不会自动加载根目录 .env 文件。
-- 若需要 Token 跨重启有效，在本地环境持续使用同一私有密钥。
-- 新仓库 origin 为 https://github.com/PBpromax/campus.git；初始快照为 main，后续使用 feature/* 分支。
-- 原数据库脚本差异与完整订单迁移尚待后续治理；M1 独立原型无需数据库。
+origin 为 PBpromax/campus，upstream 为老师原 GitLab。只向 origin 推送。main 是迁移后的稳定快照；M1 在 feature/m1-teacher-baseline 开发。老师原历史在本地 archive/teacher-original 和外部 Git bundle 中保存。

@@ -1,46 +1,18 @@
+
 import { createApp } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import App from './App.vue'
+import router from './router'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
-import App from './App.vue'
-import LoginView from './views/LoginView.vue'
-import RegisterView from './views/RegisterView.vue'
-import ProfileView from './views/ProfileView.vue'
-import RequirementListView from './views/RequirementListView.vue'
-import RequirementDetailView from './views/RequirementDetailView.vue'
-import PublishRequirementView from './views/PublishRequirementView.vue'
-import NotificationView from './views/NotificationView.vue'
-import OrderListView from './views/OrderListView.vue'
-import OrderDetailView from './views/OrderDetailView.vue'
-import { isLoggedIn } from './utils/auth'
-import './styles.css'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
-const routes = [
-  { path: '/', redirect: '/requirements' },
-  { path: '/login', component: LoginView },
-  { path: '/register', component: RegisterView },
-  { path: '/profile', component: ProfileView, meta: { requiresAuth: true } },
-  { path: '/requirements', component: RequirementListView, meta: { requiresAuth: true } },
-  { path: '/requirements/publish', component: PublishRequirementView, meta: { requiresAuth: true } },
-  { path: '/requirements/:reqId', component: RequirementDetailView, meta: { requiresAuth: true } },
-  { path: '/orders', component: OrderListView, meta: { requiresAuth: true } },
-  { path: '/orders/:orderId', component: OrderDetailView, meta: { requiresAuth: true } },
-  { path: '/notifications', component: NotificationView, meta: { requiresAuth: true } }
-]
+const app = createApp(App)
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-})
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 
-router.beforeEach((to, from, next) => {
-  if (to.meta.requiresAuth && !isLoggedIn()) {
-    next('/login')
-  } else if ((to.path === '/login' || to.path === '/register') && isLoggedIn()) {
-    next('/profile')
-  } else {
-    next()
-  }
-})
-
-createApp(App).use(router).use(ElementPlus).mount('#app')
+app.use(router)
+app.use(ElementPlus, { locale: zhCn })
+app.mount('#app')

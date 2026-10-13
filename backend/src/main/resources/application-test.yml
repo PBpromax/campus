@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=http://json.schemastore.org/spring-boot
+# 上面这行用来消除编辑器的架构校验误报
+
+server:
+  port: 8081
+
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+  datasource:
+    url: jdbc:h2:mem:campus_help;MODE=MySQL;DB_CLOSE_DELAY=0;DATABASE_TO_UPPER=false;LOCK_TIMEOUT=10000
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    hikari:
+      maximum-pool-size: 2
+      minimum-idle: 0
+      connection-timeout: 5000
+      validation-timeout: 3000
+
+  # 测试环境未使用 Redis，已排除自动配置；保留配置项供 CI 环境中强行引用时的兼容支持
+  data:
+    redis:
+      host: redis  # 💡 核心修改：与 .gitlab-ci.yml 中的 alias: redis 对齐，防止网络死等
+      port: 6379
+
+  jpa:
+    hibernate:
+      # 💡 核心修改：从 update 改为 create-drop
+      # 每次测试运行直接在内存中干净地建表，跑完即销毁，彻底杜绝在 GitLab Runner 里假死
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        jdbc:
+          time_zone: Asia/Shanghai
+
+logging:
+  level:
+    org.hibernate.orm.deprecation: ERROR
+
+jwt:
+  secret: campus-help-jwt-secret-key-2024
+  expire-time: 86400000
+
+sms:
+  enabled: false
