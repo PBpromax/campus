@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "sourceCommit": "68d8484",
   "commonConcepts": [
     "User",
@@ -11,11 +11,18 @@
     "Credit",
     "Authorization",
     "Context",
-    "Operation"
+    "Operation",
+    "BusinessRoute",
+    "SuspendedDraft",
+    "CompletionCriteria",
+    "AuthorizationCondition",
+    "OrganizationPlan"
   ],
   "categories": [
     "BORROW",
-    "STUDY"
+    "STUDY",
+    "RUNNING",
+    "OTHER"
   ],
   "productionStates": [
     "PENDING",
@@ -33,6 +40,190 @@
     "resolved"
   ],
   "fields": {
+    "AUTO": [],
+    "RUNNING": [
+      {
+        "key": "taskKind",
+        "label": "代办类型",
+        "type": "select",
+        "options": [
+          "代取快递",
+          "代买物品",
+          "物品送达"
+        ]
+      },
+      {
+        "key": "item",
+        "label": "物品",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "quantity",
+        "label": "数量",
+        "type": "number",
+        "options": []
+      },
+      {
+        "key": "pickupPlace",
+        "label": "取件位置",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "destination",
+        "label": "送达位置",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "earliestPickup",
+        "label": "取件开始",
+        "type": "datetime-local",
+        "options": []
+      },
+      {
+        "key": "latestDelivery",
+        "label": "最晚送达",
+        "type": "datetime-local",
+        "options": []
+      },
+      {
+        "key": "handoff",
+        "label": "交接方式",
+        "type": "select",
+        "options": [
+          "当面交付",
+          "指定点放置"
+        ]
+      },
+      {
+        "key": "dropPlace",
+        "label": "具体放置点",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "notice",
+        "label": "通知方式",
+        "type": "select",
+        "options": [
+          "短消息",
+          "电话",
+          "静默消息"
+        ]
+      },
+      {
+        "key": "completionProof",
+        "label": "完成确认方式",
+        "type": "select",
+        "options": [
+          "当面确认",
+          "放置照片与通知"
+        ]
+      },
+      {
+        "key": "language",
+        "label": "确认语言",
+        "type": "select",
+        "options": [
+          "中文",
+          "英文",
+          "中英双语"
+        ]
+      },
+      {
+        "key": "handling",
+        "label": "搬运限制 / 等待约定",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "costLimit",
+        "label": "代买预算上限",
+        "type": "number",
+        "options": []
+      }
+    ],
+    "OTHER": [
+      {
+        "key": "serviceType",
+        "label": "协助类型",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "serviceGoal",
+        "label": "协助目标",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "resourceRequirements",
+        "label": "必要资源 / 条件",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "serviceStart",
+        "label": "协助开始",
+        "type": "datetime-local",
+        "options": []
+      },
+      {
+        "key": "serviceEnd",
+        "label": "协助结束",
+        "type": "datetime-local",
+        "options": []
+      },
+      {
+        "key": "servicePlace",
+        "label": "协助位置 / 联系渠道",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "communication",
+        "label": "沟通方式",
+        "type": "select",
+        "options": [
+          "线上异步",
+          "线上同步",
+          "线下协助"
+        ]
+      },
+      {
+        "key": "completionCriteria",
+        "label": "完成标准",
+        "type": "text",
+        "options": []
+      },
+      {
+        "key": "consent",
+        "label": "授权条件",
+        "type": "select",
+        "options": [
+          "无需额外授权",
+          "待相关方授权",
+          "已获授权（设计输入）"
+        ]
+      },
+      {
+        "key": "helperCount",
+        "label": "所需协助人数",
+        "type": "number",
+        "options": []
+      },
+      {
+        "key": "splitMode",
+        "label": "多人组织方式",
+        "type": "select",
+        "options": [
+          "拆分为单人任务（模拟）",
+          "由一人协调（模拟）"
+        ]
+      }
+    ],
     "BORROW": [
       {
         "key": "item",
@@ -246,6 +437,19 @@
     "revision_bound_confirmation",
     "fragment_chat_no_publication_fields",
     "publication_positive_reward",
-    "side_effects_simulated"
+    "side_effects_simulated",
+    "courier_explicit_drop_location",
+    "courier_proof_matches_handoff",
+    "quiet_notification_constraint",
+    "service_time_interval",
+    "service_scope_and_authorization",
+    "multiple_helpers_explicit_plan",
+    "unknown_intent_requires_choice",
+    "mixed_goals_not_auto_combined",
+    "switch_preserves_draft_revokes_confirmation",
+    "derived_publication_tracks_corrections"
+  ],
+  "entryModes": [
+    "AUTO"
   ]
 }

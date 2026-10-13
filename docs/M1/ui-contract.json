@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "status": "design_contract_not_ArkUI_renderer",
   "cards": [
     "borrow_specification",
@@ -8,7 +8,12 @@
     "learning_context",
     "publication_confirmation",
     "conflict",
-    "simulation_result"
+    "simulation_result",
+    "business_routing",
+    "suspended_drafts",
+    "courier_handoff",
+    "service_scope",
+    "organization_plan"
   ],
   "actions": [
     "edit",
@@ -19,7 +24,10 @@
     "cancel_draft",
     "reset",
     "fixed_form",
-    "simulate_handoff"
+    "simulate_handoff",
+    "choose_domain",
+    "restore_draft",
+    "simulate_split_plan"
   ],
   "publication": {
     "endpoint": "POST /api/demands",
@@ -31,12 +39,29 @@
       "expectedTime",
       "reward",
       "location"
-    ]
+    ],
+    "splitPlan": {
+      "simulated": true,
+      "endpointPerTask": "POST /api/demands",
+      "requiresPerTaskReview": true
+    }
   },
   "safety": {
     "simulation": true,
     "productionNetwork": false,
     "modelGeneratedCode": false,
-    "persistentStorage": false
-  }
+    "persistentStorage": false,
+    "unknownIntentAutoOther": false,
+    "crossDomainFieldsCopied": false,
+    "restoreRevokesConfirmation": true
+  },
+  "categories": [
+    "BORROW",
+    "STUDY",
+    "RUNNING",
+    "OTHER"
+  ],
+  "entryModes": [
+    "AUTO"
+  ]
 }

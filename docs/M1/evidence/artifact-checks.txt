@@ -1,5 +1,7 @@
-Checked 10 Markdown files: all local links exist.
-3 JSON assets valid.
-10 design scenarios: BORROW5 + STUDY5.
-Old P0-P4 absent.
-CI YAML parsed with backend/frontend/m1 jobs.
+PASS 20 design scenes, five per actual category
+PASS ontology and UI contract contain all four categories; AUTO only an entry mode
+PASS delivery Markdown local artifact links resolve (dependencies excluded)
+PASS 31 browser checks; no page exceptions or business requests
+PASS 112 rule tests; four-category pairwise switching and 20 publication simulations
+PASS no original P0-P4 delivery directories reintroduced
+PASS private M2 config and account credentials ignored

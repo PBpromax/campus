@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-10-13T00:59:38.241Z",
+  "timestamp": "2026-10-13T07:06:59.945Z",
   "browser": "155.0.8059.40",
   "checks": [
     {
-      "name": "ten scene shortcuts show their distinct missing fields",
+      "name": "twenty scene shortcuts show their distinct missing fields",
       "passed": true
     },
     {
@@ -72,6 +72,54 @@
     },
     {
       "name": "mobile layout has no page overflow",
+      "passed": true
+    },
+    {
+      "name": "courier dropoff asks for a concrete place",
+      "passed": true
+    },
+    {
+      "name": "courier handoff change clears confirmation and old proof",
+      "passed": true
+    },
+    {
+      "name": "quiet classroom delivery rejects phone notification",
+      "passed": true
+    },
+    {
+      "name": "other assistance requires a verifiable scope",
+      "passed": true
+    },
+    {
+      "name": "multi-helper assistance needs an organization decision",
+      "passed": true
+    },
+    {
+      "name": "all ten new scenarios reach a category-correct publication preview",
+      "passed": true
+    },
+    {
+      "name": "unified entry can recognize courier needs without auto-publishing",
+      "passed": true
+    },
+    {
+      "name": "chosen courier route asks for its own fields",
+      "passed": true
+    },
+    {
+      "name": "cross-business input requires choice and archives the borrow draft",
+      "passed": true
+    },
+    {
+      "name": "unknown input has manual routes and never defaults to OTHER",
+      "passed": true
+    },
+    {
+      "name": "mixed goals remain separate until the user chooses",
+      "passed": true
+    },
+    {
+      "name": "four-business mobile entry fits the screen",
       "passed": true
     },
     {

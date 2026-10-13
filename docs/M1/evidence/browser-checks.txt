@@ -2,7 +2,7 @@
 > teacher-m1-personalized-prototype@1.0.0 verify:browser
 > node scripts/verify-browser.mjs
 
-PASS ten scene shortcuts show their distinct missing fields
+PASS twenty scene shortcuts show their distinct missing fields
 PASS unknown compatibility cannot confirm
 PASS explicit spec enables draft confirmation
 PASS handoff modification invalidates old confirmation and needs consent
@@ -20,4 +20,16 @@ PASS user resolution and reset work
 PASS human handoff explicitly stays simulated
 PASS draft cancellation is local and resettable
 PASS mobile layout has no page overflow
+PASS courier dropoff asks for a concrete place
+PASS courier handoff change clears confirmation and old proof
+PASS quiet classroom delivery rejects phone notification
+PASS other assistance requires a verifiable scope
+PASS multi-helper assistance needs an organization decision
+PASS all ten new scenarios reach a category-correct publication preview
+PASS unified entry can recognize courier needs without auto-publishing
+PASS chosen courier route asks for its own fields
+PASS cross-business input requires choice and archives the borrow draft
+PASS unknown input has manual routes and never defaults to OTHER
+PASS mixed goals remain separate until the user chooses
+PASS four-business mobile entry fits the screen
 PASS no page exceptions, production requests or browser memory
