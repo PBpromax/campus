@@ -1,6 +1,7 @@
+import { buildCards, decodeCards } from '../../../main/ets/ui/CardProtocol';
 import { describe, it, expect } from '@ohos/hypium';
 import { http } from '@kit.NetworkKit';
-import { NeedCategory, NeedDraft, NeedSession, LoginResult, LoginRequest, CategoryRequest, EditRequest,
+import { NeedCategory, NeedDraft, NeedSession, DomainCatalog, LoginResult, LoginRequest, CategoryRequest, EditRequest,
   MessageRequest, VersionRequest, emptySession, activeDraft, copyFields, draftStatus, contextOptions } from '../../../main/ets/domain/NeedModels';
 import { NeedApi } from '../../../main/ets/data/NeedApi';
 
@@ -36,6 +37,7 @@ export default function needModelTest(): void {
       try {
         await api.login(credentials.username, credentials.password);
         session = await api.send<NeedSession>('/need-sessions', http.RequestMethod.POST);
+        const definitions = await api.send<DomainCatalog[]>('/need-sessions/catalog');
         const categories: NeedCategory[] = [NeedCategory.RUNNING, NeedCategory.STUDY, NeedCategory.BORROW, NeedCategory.OTHER];
         for (let i = 0; i < categories.length; i++) {
           const choice: CategoryRequest = { revision: session.revision, category: categories[i] };
@@ -46,6 +48,7 @@ export default function needModelTest(): void {
           else { fields['item'] = categories[i] === NeedCategory.RUNNING ? '快递' : '相机'; }
           const edit: EditRequest = { revision: session.revision, fields: fields, contexts: [] };
           session = await api.send<NeedSession>('/need-sessions/' + session.id + '/draft', http.RequestMethod.PUT, JSON.stringify(edit));
+          expect(decodeCards(JSON.stringify(buildCards(session)), session, definitions).error).assertEqual('');
         }
         const restored = await api.send<NeedSession>('/need-sessions/' + session.id);
         expect(restored.drafts.length).assertEqual(4);

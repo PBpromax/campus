@@ -1,3 +1,4 @@
+import { CardSchema, CardNode, emptySchema, buildCards, decodeCards, allowsAction } from '../ui/CardProtocol';
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { NeedApi } from '../data/NeedApi';
@@ -7,6 +8,9 @@ import { NeedCategory, NeedSession, NeedDraft, NeedField, DomainCatalog, EditReq
 @Entry
 @Component
 struct Needs {
+  @State private cardSchema: CardSchema = emptySchema();
+  @State private cardError: string = '';
+  @State private fixedForm: boolean = false;
   private api: NeedApi = new NeedApi();
   private categories: NeedCategory[] = [NeedCategory.RUNNING, NeedCategory.STUDY, NeedCategory.BORROW, NeedCategory.OTHER];
   @State private username: string = '';
@@ -29,6 +33,8 @@ struct Needs {
     this.edits = draft === undefined ? {} : copyFields(draft.fields);
     this.contexts = draft === undefined ? [] : draft.contexts.slice();
     this.dirty = false;
+    const decoded = decodeCards(JSON.stringify(buildCards(session)), session, this.catalog);
+    this.cardSchema = decoded.schema; this.cardError = decoded.error;
     this.sessions = [session].concat(this.sessions.filter((s: NeedSession) => s.id !== session.id));
   }
   private async login(): Promise<void> {
@@ -85,6 +91,43 @@ struct Needs {
     return entry === undefined ? [] : entry.fields;
   }
 
+  private fieldLabel(key: string): string {
+    const field = this.definitions().find((entry: NeedField) => entry.key === key);
+    return field === undefined ? '待确认条件' : field.label;
+  }
+  private readable(text: string): string {
+    let result = text;
+    this.definitions().slice().sort((a: NeedField, b: NeedField) => b.key.length - a.key.length)
+      .forEach((field: NeedField) => { result = result.split(field.key).join(field.label); });
+    return result;
+  }
+  private async cardAction(schema: CardSchema, id: string, action: string): Promise<void> {
+    if (this.busy || !allowsAction(schema, id, action, this.session, this.catalog, this.dirty || this.messageInput.trim().length > 0)) {
+      this.notice = '卡片已更新或仍有未保存输入，请重新核对。'; return;
+    }
+    if (action === 'form') { this.fixedForm = true; }
+    else if (action === 'save') { await this.save(); }
+    else if (action === 'review') {
+      const body: VersionRequest = { revision: schema.sessionRevision };
+      await this.perform('/confirm', http.RequestMethod.POST, JSON.stringify(body));
+    }
+  }
+  @Builder
+  dynamicCard(card: CardNode, schema: CardSchema) {
+    Column({ space: 10 }) {
+      Text(card.title).fontSize(19).fontWeight(FontWeight.Bold)
+      Text(this.readable(card.message)).fontSize(13)
+      ForEach(this.definitions().filter((field: NeedField) => card.fields.includes(field.key)), (field: NeedField) => {
+        this.editor(field);
+      }, (field: NeedField) => field.key)
+      ForEach(card.actions, (action: string) => {
+        Button(action === 'save' ? '保存并继续澄清' : action === 'review' ? '确认当前草稿（不发布）' : '补充其他条件')
+          .enabled(!this.busy && !(action === 'review' && (this.dirty || this.messageInput.trim().length > 0)))
+          .onClick(() => { this.cardAction(schema, card.id, action); })
+      }, (action: string) => action)
+    }.width('100%').padding(14).borderRadius(14).backgroundColor('#EAF2EE').alignItems(HorizontalAlign.Start)
+  }
+
   @Builder
   editor(field: NeedField) {
     Column({ space: 6 }) {
@@ -126,16 +169,29 @@ struct Needs {
           Text(option.label).fontSize(14)
         }
       }, (option: ContextOption) => option.key)
-      ForEach(this.definitions(), (field: NeedField) => { this.editor(field); }, (field: NeedField) => field.key)
-      if (draft.assessment.missing.length > 0) {
-        Text('待补充：' + draft.assessment.missing.join('、')).fontColor('#875500').width('100%')
+      Button(this.fixedForm ? '返回需求卡片' : '使用完整表单').enabled(!this.busy)
+        .onClick(() => { this.fixedForm = !this.fixedForm; })
+      if (!this.fixedForm && this.cardError.length === 0) {
+        Text('按当前缺失信息生成 · 规则卡片').fontSize(13)
+        ForEach(this.cardSchema.cards, (card: CardNode) => { this.dynamicCard(card, this.cardSchema); },
+          (card: CardNode) => this.cardSchema.sessionRevision.toString() + ':' + card.id)
+      } else {
+        if (this.cardError.length > 0) { Text('卡片暂不可用，已保留输入并回到完整表单。').fontColor('#875500') }
+        ForEach(this.definitions(), (field: NeedField) => { this.editor(field); }, (field: NeedField) => field.key)
       }
-      ForEach(draft.assessment.conflicts, (risk: string) => { Text(risk).fontColor('#AA3030'); })
+      if (draft.assessment.missing.length > 0) {
+        Text('待补充：' + draft.assessment.missing.map((key: string) => this.fieldLabel(key)).join('、')).fontColor('#875500').width('100%')
+      }
+      ForEach(draft.assessment.conflicts, (risk: string) => { Text(this.readable(risk)).fontColor('#AA3030'); })
       if (this.dirty) { Text('有未保存修改；保存后重新校验，旧确认将失效。').fontColor('#AA5500') }
       Button('保存并校验草稿').enabled(!this.busy).onClick(() => { this.save(); })
       Button('确认当前草稿（不发布）')
-        .enabled(!this.busy && !this.dirty && !this.session.routePending && draft.assessment.ready)
+        .enabled(!this.busy && !this.dirty && this.messageInput.trim().length === 0 && !this.session.routePending && draft.assessment.ready)
         .onClick(() => {
+          const current = activeDraft(this.session);
+          if (current === undefined || current.id !== draft.id || current.revision !== draft.revision) {
+            this.notice = '草稿已更新，请重新核对。'; return;
+          }
           const body: VersionRequest = { revision: this.session.revision };
           this.perform('/confirm', http.RequestMethod.POST, JSON.stringify(body));
         })
@@ -146,7 +202,7 @@ struct Needs {
     Scroll() {
       Column({ space: 16 }) {
         Text('Campus · 四业务需求草稿').fontSize(26).fontWeight(FontWeight.Bold)
-        Text('第二步：领域模型与真实持久化；尚未接入模型或真实发布工具。').fontSize(13)
+        Text('按需补充信息并保存草稿 · 卡片由规则生成，尚未接入模型或发布工具。').fontSize(13)
         if (!this.loggedIn) {
           TextInput({ text: this.username, placeholder: '已有平台用户名' }).onChange((v: string) => { this.username = v; })
           TextInput({ text: this.password, placeholder: '密码（不保存）' }).type(InputType.Password).onChange((v: string) => { this.password = v; })

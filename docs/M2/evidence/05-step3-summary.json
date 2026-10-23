@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-24",
+  "timestamp": "2026-10-24T02:23:13.372354+08:00",
+  "step": 3,
+  "categories": [
+    "RUNNING",
+    "STUDY",
+    "BORROW",
+    "OTHER"
+  ],
+  "schemaVersion": 1,
+  "generator": "local_rules",
+  "components": [
+    "fields",
+    "notice",
+    "review"
+  ],
+  "actions": [
+    "save",
+    "review",
+    "form"
+  ],
+  "device": "127.0.0.1:5555",
+  "emulator": "Campus_M2_Phone",
+  "deviceTests": {
+    "total": 17,
+    "passed": 17,
+    "failed": 0,
+    "errors": 0,
+    "newCardTests": 12,
+    "includesRealBackendFourDomainCardValidation": true
+  },
+  "mainBuild": "SUCCESS",
+  "testBuild": "SUCCESS",
+  "installedAndStarted": true,
+  "signed": false,
+  "backendHttp": 200,
+  "hapSha256": "451805d54192fed37e53b8c4731c5f28cad04669dfe638a474dc8d806313a0db",
+  "limitations": [
+    "No real model or streaming UI",
+    "No task publication",
+    "No complete visual/button-flow or fallback UI verification",
+    "Backend tests unchanged: 191 tests belong to step 2, not rerun in this step"
+  ]
+}
