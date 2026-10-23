@@ -20,3 +20,7 @@ application-dev.*
 *.p12
 *.key
 # Commit package-lock.json for reproducible npm ci.
+
+# Python development helpers
+**/__pycache__/
+*.pyc

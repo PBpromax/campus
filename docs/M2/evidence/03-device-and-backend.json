@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-10-23T20:30:13.784639+08:00",
+  "emulator": "Campus_M2_Phone",
+  "system": "HarmonyOS 7.0.0 / API26",
+  "device": "127.0.0.1:5555",
+  "install": "install bundle successfully",
+  "start": "start ability successfully",
+  "signed": false,
+  "forward": "hdc rport tcp:8081 tcp:8081",
+  "backend": "http://127.0.0.1:8081",
+  "request": "GET /api/demands",
+  "backendResponse": {
+    "http": 200,
+    "code": 200,
+    "taskCount": 0
+  },
+  "deviceLog": "10-23 20:27:02.756  6840  6840 I A00000/com.pbpromax.campus/CampusEnv: BACKEND_OK HTTP=200 count=0",
+  "hapSha256": "7643ffff7d5e5a42b38eaf5251f2995ef6fa3f361b70f1e9c04c7ad40ebd51f9",
+  "scope": "Environment validation only. No AI model or task publication implemented.",
+  "backendAuthSmokeChecks": [
+    {
+      "testAccount": 1,
+      "login": 200,
+      "authenticatedProfile": 200
+    },
+    {
+      "testAccount": 2,
+      "login": 200,
+      "authenticatedProfile": 200
+    }
+  ]
+}

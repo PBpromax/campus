@@ -1,0 +1,59 @@
+{
+  "timestamp": "2026-10-13T13:57:53.847644+08:00",
+  "backend": "http://127.0.0.1:8081",
+  "java": "Temurin 21.0.12.1",
+  "database": "campus_m2_dev",
+  "mysql": "9.6.0 (existing local development instance)",
+  "checks": [
+    {
+      "account": "m2_publisher",
+      "registration": 200,
+      "login": 200,
+      "authenticatedProfile": 200
+    },
+    {
+      "account": "m2_helper",
+      "registration": 200,
+      "login": 200,
+      "authenticatedProfile": 200
+    },
+    {
+      "endpoint": "GET /api/demands",
+      "http": 200,
+      "code": 200,
+      "taskCount": 0
+    }
+  ],
+  "startupEvidence": [
+    "2026-10-13T13:56:58.985+08:00  INFO 87723 --- [           main] c.e.campushelp.CampusHelpApplication     : Starting CampusHelpApplication using Java 21.0.12.1 with PID 87723 (/Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend/target/classes started by pbpromax in /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend)",
+    "2026-10-13T13:57:00.686+08:00  INFO 87723 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path ''",
+    "2026-10-13T13:57:00.689+08:00  INFO 87723 --- [           main] c.e.campushelp.CampusHelpApplication     : Started CampusHelpApplication in 1.819 seconds (process running for 1.927)"
+  ],
+  "harmony": {
+    "ideInstalled": true,
+    "sdkVerified": true,
+    "deviceVerified": true,
+    "ideVersion": "26.0.0.851",
+    "targetSdk": "26.0.0",
+    "compatibleSdk": "6.1.1(24)",
+    "buildVerified": true,
+    "signed": false,
+    "deviceSetup": "2026-10-23: API26 image installed, Campus_M2_Phone started, app installed and launched, backend HTTP200 verified.",
+    "project": "harmony",
+    "bundleName": "com.pbpromax.campus",
+    "verifiedAt": "2026-10-13T14:52:10.024355+08:00",
+    "diskCheck": {
+      "timestamp": "2026-10-13T15:02:41.214151+08:00",
+      "availableGiB": 12.85,
+      "minimumShownByInstalledIDE": "10G",
+      "creationSucceeded": false,
+      "source": "Installed DevEco26.0.0.851 HvdBundle_zh.properties and actual CreateHvdAction failure log"
+    },
+    "backendConnectionVerified": true
+  },
+  "limitations": [
+    "MySQL9.6 local development environment; MySQL8 compatibility not verified.",
+    "Unsigned HAP installed only on development emulator; release signing and physical device not verified.",
+    "AI and M2 business execution flow not implemented."
+  ]
+}

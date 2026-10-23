@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-10-23T21:09:10.044130+08:00",
+  "m1Baseline": "c0fce40",
+  "branch": "feature/m2-harmony-client",
+  "categories": [
+    "RUNNING",
+    "STUDY",
+    "BORROW",
+    "OTHER"
+  ],
+  "fieldCounts": {
+    "RUNNING": 14,
+    "STUDY": 8,
+    "BORROW": 16,
+    "OTHER": 11
+  },
+  "contexts": 20,
+  "backendTests": {
+    "tests": 191,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "deviceTests": {
+    "run": 5,
+    "pass": 5,
+    "failure": 0,
+    "error": 0,
+    "includesRealHttp": true
+  },
+  "mysqlRestartRestoredFourDrafts": true,
+  "backendHttp": 200,
+  "emulator": "Campus_M2_Phone",
+  "device": "127.0.0.1:5555",
+  "sdkApi": 26,
+  "mainHapBuild": "SUCCESS",
+  "testHapBuild": "SUCCESS",
+  "installed": true,
+  "signed": false,
+  "mainHapSha256": "b9227691906ae04ebfff1940a8cf2856d8a31a15b9e1252dbddc87d1e3acb54d",
+  "scope": "Local development deployment; persisted drafts and rule validation. No AI model, dynamic renderer or task publishing implemented.",
+  "uiReview": "No complete visual/button-flow verification of the Needs page in this step.",
+  "startup": "start ability successfully",
+  "currentApplicationPid": 62867
+}

@@ -1,0 +1,27 @@
+{
+  "database": "campus_m2_dev",
+  "mysql": "9.6.0",
+  "backendRestart": {
+    "oldApplicationPid": 50005,
+    "currentApplicationPid": 62867
+  },
+  "seed": {
+    "phase": "seed",
+    "domains": 4,
+    "fieldDefinitions": 49,
+    "allFourReadyAndConfirmed": true,
+    "ownership404": true,
+    "staleWrite409": true,
+    "invalidAuto400": true
+  },
+  "verify": {
+    "phase": "verify",
+    "backendRestartRestoredExactSnapshot": true,
+    "draftCount": 4,
+    "restoreInvalidatedConfirmation": true,
+    "noCrossDomainFields": true,
+    "mixedRequiresChoice": true,
+    "unknownNotAutoOther": true,
+    "disposableFixturesCleaned": true
+  }
+}

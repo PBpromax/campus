@@ -1,0 +1,2 @@
+10-23 21:04:02.062   661   661 I A00000/com.pbpromax.campus/CampusEnv: BACKEND_OK HTTP=200 count=0
+10-23 21:08:33.640  5051  5051 I A00000/com.pbpromax.campus/CampusEnv: BACKEND_OK HTTP=200 count=0
