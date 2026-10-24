@@ -27,6 +27,7 @@ class RequestTraceIntegrationTest {
     @Autowired MockMvc mvc;@Autowired JwtUtil jwt;@Autowired ObjectMapper json;
     @Autowired UserRepository users;@Autowired NeedService needs;@Autowired ToolAuditRepository audits;
     @Autowired ModelObservations observations;
+    @Autowired ModelInvocationRepository modelInvocations;
     @MockBean DeepSeekClient client;
     User user(String role) {var user=new User();user.setUsername("trace-"+UUID.randomUUID());user.setPassword("fixture-hash");user.setRole(role);return users.saveAndFlush(user);}
     @Test void createsIdsBeforeAuthenticationAndIgnoresInvalidCorrelationInput() throws Exception {
@@ -45,7 +46,7 @@ class RequestTraceIntegrationTest {
     }
     @Test void workerCarriesRequestTraceAndRejectsStaleRequestsWithoutLeakingAdmission() throws Exception {
         var u=user("USER");var s=needs.create(u.getId());s=needs.select(u.getId(),s.id(),new Select(s.revision(),NeedCategory.STUDY));
-        when(client.configured()).thenReturn(true);when(client.model()).thenReturn("fixture");
+        when(client.configured()).thenReturn(true);when(client.model()).thenReturn("deepseek-flash");when(client.model()).thenReturn("deepseek-flash");
         String trace=UUID.randomUUID().toString();var seen=new AtomicReference<String>();var span=new AtomicReference<String>();
         doAnswer(inv->{seen.set(RequestTrace.traceId());span.set(RequestTrace.requestId());return new DeepSeekClient.Reply("fixture answer","");})
             .when(client).stream(anyList(),anyMap(),any(),any());
@@ -66,4 +67,16 @@ class RequestTraceIntegrationTest {
         assertEquals(trace,audit.getTraceId());assertEquals(response.getHeader(RequestTrace.REQUEST_HEADER),audit.getRequestId());
         assertEquals("REJECTED",audit.getOutcome());
     }
+    @Test void budgetViewIsScopedToTheAuthenticatedAccount() throws Exception {
+        var owner=user("USER");var other=user("USER");
+        var invocation=new com.example.campushelp.ai.ModelInvocation();
+        invocation.setId(UUID.randomUUID().toString());invocation.setOwnerId(other.getId());invocation.setBudgetDay(java.time.LocalDate.now(java.time.ZoneId.of("Asia/Shanghai")));
+        invocation.setModel("deepseek-flash");invocation.setPriceVersion("fixture");invocation.setReservedTokens(1);invocation.setReservedUsd(java.math.BigDecimal.ONE);
+        // Another user's existing ledger row must not appear, even if a caller supplies its ID as a query parameter.
+        modelInvocations.saveAndFlush(invocation);
+        var response=mvc.perform(get("/api/need-sessions/ai-budget?ownerId="+other.getId()).header("Authorization","Bearer "+jwt.generateToken(owner.getId()))).andReturn().getResponse();
+        assertEquals(200,response.getStatus());assertEquals(0,json.readTree(response.getContentAsByteArray()).at("/data/recent").size());
+        assertEquals(403,mvc.perform(get("/api/need-sessions/ai-budget")).andReturn().getResponse().getStatus());
+    }
+
 }

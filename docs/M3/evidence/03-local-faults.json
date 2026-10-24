@@ -1,0 +1,211 @@
+{
+  "at": "2026-10-24T21:58:30.016705+08:00",
+  "traceId": "45db1b60-3965-4f5f-a98f-f1682fe7c62d",
+  "provider": "127.0.0.1 local fixture; no real DeepSeek request",
+  "paidModelCalls": 0,
+  "cases": [
+    {
+      "sessionId": 38,
+      "httpStatus": 200,
+      "durationMs": 754.42,
+      "requestId": "d9838dcf-80cc-4884-aa79-62c7b109bb9c",
+      "case": "timeout-1",
+      "streamEvidence": "event:session\ndata:{\"id\":38,\"revision\":2,\"activeCategory\":\"STUDY\",\"routePending\":false,\"intakeText\":\"\",\"candidates\":[],\"drafts\":[{\"id\":71,\"category\":\"STUDY\",\"revision\":2,\"confirmedRevision\":null,\"fields\":{},\"provenance\":{},\"contexts\":[],\"assessment\":{\"ready\":false,\"missing\":[\"context\"],\"conflicts\":[]}}],\"messages\":[{\"id\":39,\"category\":\"STUDY\",\"role\":\"USER\",\"text\":\"本地故障测试：为什么y=-x的导数是-1？\",\"createdAt\":\"2026-10-24T21:58:30.068644\"}],\"updatedAt\":\"2026-10-24T21:58:30.069897\"}\n\nevent:text_delta\ndata:{\"text\":\"本地模拟答复，仅用于验证链路。\"}\n\nevent:failure\ndata:{\"message\":\"模型回复超过全程时限，已停止；已保存的上下文保留，可使用完整表单，不会自动重试。\",\"kind\":\"TIMEOUT\"}\n\n"
+    },
+    {
+      "sessionId": 39,
+      "httpStatus": 200,
+      "durationMs": 732.23,
+      "requestId": "b4713609-197d-4c2c-be39-621574aa9160",
+      "case": "timeout-2",
+      "streamEvidence": "event:session\ndata:{\"id\":39,\"revision\":2,\"activeCategory\":\"STUDY\",\"routePending\":false,\"intakeText\":\"\",\"candidates\":[],\"drafts\":[{\"id\":72,\"category\":\"STUDY\",\"revision\":2,\"confirmedRevision\":null,\"fields\":{},\"provenance\":{},\"contexts\":[],\"assessment\":{\"ready\":false,\"missing\":[\"context\"],\"conflicts\":[]}}],\"messages\":[{\"id\":40,\"category\":\"STUDY\",\"role\":\"USER\",\"text\":\"本地故障测试：为什么y=-x的导数是-1？\",\"createdAt\":\"2026-10-24T21:58:30.837707\"}],\"updatedAt\":\"2026-10-24T21:58:30.83827\"}\n\nevent:text_delta\ndata:{\"text\":\"本地模拟答复，仅用于验证链路。\"}\n\nevent:failure\ndata:{\"message\":\"模型回复超过全程时限，已停止；已保存的上下文保留，可使用完整表单，不会自动重试。\",\"kind\":\"TIMEOUT\"}\n\n"
+    },
+    {
+      "sessionId": 40,
+      "httpStatus": 503,
+      "durationMs": 5.94,
+      "requestId": "17ad5021-b1a8-4b0b-a958-8aca99d4807a",
+      "case": "circuit-open-no-upstream",
+      "streamEvidence": "{\"code\":503,\"message\":\"模型正在故障冷却，请稍后再试；可继续使用完整表单\",\"data\":null}"
+    },
+    {
+      "sessionId": 41,
+      "httpStatus": 200,
+      "durationMs": 27.48,
+      "requestId": "b3d9d168-3f76-4a47-b403-8ca65a36aef1",
+      "case": "half-open-recovery",
+      "streamEvidence": "event:session\ndata:{\"id\":41,\"revision\":2,\"activeCategory\":\"STUDY\",\"routePending\":false,\"intakeText\":\"\",\"candidates\":[],\"drafts\":[{\"id\":74,\"category\":\"STUDY\",\"revision\":2,\"confirmedRevision\":null,\"fields\":{},\"provenance\":{},\"contexts\":[],\"assessment\":{\"ready\":false,\"missing\":[\"context\"],\"conflicts\":[]}}],\"messages\":[{\"id\":41,\"category\":\"STUDY\",\"role\":\"USER\",\"text\":\"本地故障测试：为什么y=-x的导数是-1？\",\"createdAt\":\"2026-10-24T21:58:33.732919\"}],\"updatedAt\":\"2026-10-24T21:58:33.733631\"}\n\nevent:text_delta\ndata:{\"text\":\"本地模拟答复，仅用于验证链路。\"}\n\nevent:session\ndata:{\"id\":41,\"revision\":3,\"activeCategory\":\"STUDY\",\"routePending\":false,\"intakeText\":\"\",\"candidates\":[],\"drafts\":[{\"id\":74,\"category\":\"STUDY\",\"revision\":2,\"confirmedRevision\":null,\"fields\":{},\"provenance\":{},\"contexts\":[],\"assessment\":{\"ready\":false,\"missing\":[\"context\"],\"conflicts\":[]}}],\"messages\":[{\"id\":41,\"category\":\"STUDY\",\"role\":\"USER\",\"text\":\"本地故障测试：为什么y=-x的导数是-1？\",\"createdAt\":\"2026-10-24T21:58:33.732919\"},{\"id\":42,\"category\":\"STUDY\",\"role\":\"ASSISTANT\",\"text\":\"本地模拟答复，仅用于验证链路。\",\"createdAt\":\"2026-10-24T21:58:33.748321\"}],\"updatedAt\":\"2026-10-24T21:58:33.748886\"}\n\nevent:done\ndata:{\"complete\":true}\n\n"
+    },
+    {
+      "sessionId": 42,
+      "httpStatus": 200,
+      "durationMs": 18.58,
+      "requestId": "9bf9f88f-57fb-4d19-b875-624e8e0df5ef",
+      "case": "provider-429-no-retry",
+      "streamEvidence": "event:session\ndata:{\"id\":42,\"revision\":2,\"activeCategory\":\"STUDY\",\"routePending\":false,\"intakeText\":\"\",\"candidates\":[],\"drafts\":[{\"id\":75,\"category\":\"STUDY\",\"revision\":2,\"confirmedRevision\":null,\"fields\":{},\"provenance\":{},\"contexts\":[],\"assessment\":{\"ready\":false,\"missing\":[\"context\"],\"conflicts\":[]}}],\"messages\":[{\"id\":43,\"category\":\"STUDY\",\"role\":\"USER\",\"text\":\"本地故障测试：为什么y=-x的导数是-1？\",\"createdAt\":\"2026-10-24T21:58:33.775328\"}],\"updatedAt\":\"2026-10-24T21:58:33.775877\"}\n\nevent:failure\ndata:{\"message\":\"回复未完成或草稿已更新。请重新加载核对；可以使用完整表单，不会自动重试。\",\"kind\":\"UPSTREAM_RATE_LIMIT\"}\n\n"
+    },
+    {
+      "case": "explicit-cancel",
+      "durationMs": 19.37,
+      "sessionId": 44,
+      "ledgerState": "CANCELLED"
+    },
+    {
+      "sessionId": 45,
+      "httpStatus": 200,
+      "durationMs": 34.78,
+      "requestId": "07a10f5a-91ce-476f-a6d3-5df29f109007",
+      "case": "quota-no-upstream",
+      "streamEvidence": "event:session\ndata:{\"id\":45,\"revision\":2,\"activeCategory\":\"STUDY\",\"routePending\":false,\"intakeText\":\"\",\"candidates\":[],\"drafts\":[{\"id\":78,\"category\":\"STUDY\",\"revision\":2,\"confirmedRevision\":null,\"fields\":{},\"provenance\":{},\"contexts\":[],\"assessment\":{\"ready\":false,\"missing\":[\"context\"],\"conflicts\":[]}}],\"messages\":[{\"id\":47,\"category\":\"STUDY\",\"role\":\"USER\",\"text\":\"本地故障测试：为什么y=-x的导数是-1？\",\"createdAt\":\"2026-10-24T21:58:33.870586\"}],\"updatedAt\":\"2026-10-24T21:58:33.871642\"}\n\nevent:failure\ndata:{\"message\":\"本平台今日模型额度已达上限（次数、Token或估算费用），可继续使用完整表单，次日再试\",\"kind\":\"POLICY_OR_CONTEXT\"}\n\n"
+    }
+  ],
+  "otherAccountCalls": 1,
+  "tasksUnchanged": true,
+  "ownerBudgetBeforeRestart": {
+    "day": "2026-10-24",
+    "timezone": "Asia/Shanghai",
+    "currency": "USD",
+    "priceVersion": "LOCAL-FIXTURE-NO-REAL-CHARGE",
+    "calls": 6,
+    "reservedTokens": 402816,
+    "reservedUsd": 0.1294848,
+    "callLimit": 6,
+    "tokenLimit": 2000000,
+    "estimateLimitUsd": 0.5,
+    "recent": [
+      {
+        "id": "90678ff8-3c7c-4008-89b4-ef9b8c67955c",
+        "ownerId": 34,
+        "budgetDay": "2026-10-24",
+        "traceId": "45db1b60-3965-4f5f-a98f-f1682fe7c62d",
+        "requestId": "15c5bc0c-c952-49cb-ab01-ce67fc101441",
+        "model": "deepseek-flash",
+        "priceVersion": "LOCAL-FIXTURE-NO-REAL-CHARGE",
+        "state": "CANCELLED",
+        "failureKind": "CLIENT_CANCELLED",
+        "reservedTokens": 67136,
+        "reservedUsd": 0.0215808,
+        "promptTokens": null,
+        "completionTokens": null,
+        "estimatedUsd": null,
+        "estimateBasis": "USAGE_UNKNOWN",
+        "createdAt": "2026-10-24T13:58:33.838021Z",
+        "finishedAt": "2026-10-24T13:58:33.845171Z"
+      },
+      {
+        "id": "0f1143f5-cd45-4c33-bbbb-1717686d95ef",
+        "ownerId": 34,
+        "budgetDay": "2026-10-24",
+        "traceId": "45db1b60-3965-4f5f-a98f-f1682fe7c62d",
+        "requestId": "4af09eda-6203-48e6-ac42-7c2721a998a0",
+        "model": "deepseek-flash",
+        "priceVersion": "LOCAL-FIXTURE-NO-REAL-CHARGE",
+        "state": "SUCCEEDED",
+        "failureKind": null,
+        "reservedTokens": 67136,
+        "reservedUsd": 0.0215808,
+        "promptTokens": 20,
+        "completionTokens": 3,
+        "estimatedUsd": 5.19e-06,
+        "estimateBasis": "PEAK_SNAPSHOT_ESTIMATE",
+        "createdAt": "2026-10-24T13:58:33.808967Z",
+        "finishedAt": "2026-10-24T13:58:33.812709Z"
+      },
+      {
+        "id": "ef3a952e-6619-466d-910b-6e964656000e",
+        "ownerId": 34,
+        "budgetDay": "2026-10-24",
+        "traceId": "45db1b60-3965-4f5f-a98f-f1682fe7c62d",
+        "requestId": "9bf9f88f-57fb-4d19-b875-624e8e0df5ef",
+        "model": "deepseek-flash",
+        "priceVersion": "LOCAL-FIXTURE-NO-REAL-CHARGE",
+        "state": "FAILED",
+        "failureKind": "UPSTREAM_RATE_LIMIT",
+        "reservedTokens": 67136,
+        "reservedUsd": 0.0215808,
+        "promptTokens": null,
+        "completionTokens": null,
+        "estimatedUsd": null,
+        "estimateBasis": "USAGE_UNKNOWN",
+        "createdAt": "2026-10-24T13:58:33.780065Z",
+        "finishedAt": "2026-10-24T13:58:33.784060Z"
+      },
+      {
+        "id": "509c6bb4-be42-4c12-8f16-e1bc66934c81",
+        "ownerId": 34,
+        "budgetDay": "2026-10-24",
+        "traceId": "45db1b60-3965-4f5f-a98f-f1682fe7c62d",
+        "requestId": "b3d9d168-3f76-4a47-b403-8ca65a36aef1",
+        "model": "deepseek-flash",
+        "priceVersion": "LOCAL-FIXTURE-NO-REAL-CHARGE",
+        "state": "SUCCEEDED",
+        "failureKind": null,
+        "reservedTokens": 67136,
+        "reservedUsd": 0.0215808,
+        "promptTokens": 20,
+        "completionTokens": 3,
+        "estimatedUsd": 5.19e-06,
+        "estimateBasis": "PEAK_SNAPSHOT_ESTIMATE",
+        "createdAt": "2026-10-24T13:58:33.739800Z",
+        "finishedAt": "2026-10-24T13:58:33.745134Z"
+      },
+      {
+        "id": "986a0544-69d2-4859-86a9-5a0cf4b839c4",
+        "ownerId": 34,
+        "budgetDay": "2026-10-24",
+        "traceId": "45db1b60-3965-4f5f-a98f-f1682fe7c62d",
+        "requestId": "b4713609-197d-4c2c-be39-621574aa9160",
+        "model": "deepseek-flash",
+        "priceVersion": "LOCAL-FIXTURE-NO-REAL-CHARGE",
+        "state": "FAILED",
+        "failureKind": "TIMEOUT",
+        "reservedTokens": 67136,
+        "reservedUsd": 0.0215808,
+        "promptTokens": null,
+        "completionTokens": null,
+        "estimatedUsd": null,
+        "estimateBasis": "USAGE_UNKNOWN",
+        "createdAt": "2026-10-24T13:58:30.843485Z",
+        "finishedAt": "2026-10-24T13:58:31.556476Z"
+      },
+      {
+        "id": "1a051efa-a147-4ed4-b33e-d6db4916c1cb",
+        "ownerId": 34,
+        "budgetDay": "2026-10-24",
+        "traceId": "45db1b60-3965-4f5f-a98f-f1682fe7c62d",
+        "requestId": "d9838dcf-80cc-4884-aa79-62c7b109bb9c",
+        "model": "deepseek-flash",
+        "priceVersion": "LOCAL-FIXTURE-NO-REAL-CHARGE",
+        "state": "FAILED",
+        "failureKind": "TIMEOUT",
+        "reservedTokens": 67136,
+        "reservedUsd": 0.0215808,
+        "promptTokens": null,
+        "completionTokens": null,
+        "estimatedUsd": null,
+        "estimateBasis": "USAGE_UNKNOWN",
+        "createdAt": "2026-10-24T13:58:30.085915Z",
+        "finishedAt": "2026-10-24T13:58:30.802318Z"
+      }
+    ]
+  },
+  "fakeRequests": 7,
+  "restartQuotaPreserved": {
+    "calls": 6,
+    "callLimit": 6,
+    "fakeRequestsUnchanged": true,
+    "streamEvidence": "event:session\ndata:{\"id\":48,\"revision\":2,\"activeCategory\":\"STUDY\",\"routePending\":false,\"intakeText\":\"\",\"candidates\":[],\"drafts\":[{\"id\":82,\"category\":\"STUDY\",\"revision\":2,\"confirmedRevision\":null,\"fields\":{},\"provenance\":{},\"contexts\":[],\"assessment\":{\"ready\":false,\"missing\":[\"context\"],\"conflicts\":[]}}],\"messages\":[{\"id\":50,\"category\":\"STUDY\",\"role\":\"USER\",\"text\":\"本地故障测试：为什么y=-x的导数是-1？\",\"createdAt\":\"2026-10-24T22:00:04.807022\"}],\"updatedAt\":\"2026-10-24T22:00:04.808057\"}\n\nevent:failure\ndata:{\"kind\":\"POLICY_OR_CONTEXT\",\"message\":\"本平台今日模型额度已达上限（次数、Token或估算费用），可继续使用完整表单，次日再试\"}\n\n"
+  },
+  "nativeUiChecks": {
+    "budget": "6/6 displayed",
+    "quota": "blocked with saved context; no upstream request",
+    "egress": "synthetic pickup code rejected; no upstream request",
+    "providerRequestsUnchanged": true
+  },
+  "normalConfigurationRestored": {
+    "configured": true,
+    "callLimit": 20,
+    "previousReservationsRetained": 6,
+    "fixturePricesRemainMarkedOnHistoricalRows": true
+  }
+}

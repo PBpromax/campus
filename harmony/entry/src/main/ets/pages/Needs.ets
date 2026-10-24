@@ -1,7 +1,7 @@
 import { HumanHelp } from '../ui/HumanHelp';
 import { TrustedTools } from '../ui/TrustedTools';
 import { ToolHint, validHint } from '../domain/ToolModels';
-import { AiEvent, AiText, AiNotice } from '../data/AiStream';
+import { AiEvent, AiText, AiNotice, AiBudget } from '../data/AiStream';
 import { AiProposal } from '../domain/NeedModels';
 import { CardSchema, CardNode, emptySchema, buildCards, decodeCards, allowsAction } from '../ui/CardProtocol';
 import { http } from '@kit.NetworkKit';
@@ -22,6 +22,7 @@ struct Needs {
   @State private toolBusy: boolean = false;
   @State private toolHint: ToolHint | undefined = undefined;
   private aiNotice: string = '';
+  @State private budgetNotice: string = '';
   private api: NeedApi = new NeedApi();
   private categories: NeedCategory[] = [NeedCategory.RUNNING, NeedCategory.STUDY, NeedCategory.BORROW, NeedCategory.OTHER];
   @State private username: string = '';
@@ -119,8 +120,17 @@ struct Needs {
           this.aiNotice = (JSON.parse(event.data) as AiNotice).message; this.notice = this.aiNotice;
         } else if (event.kind === 'done') { this.aiText = ''; this.notice = this.aiNotice || '回复完成；字段建议需核对后采用，操作建议需另行确认执行。'; }
       });
-    } catch (error) { this.aiProposal = undefined; this.toolHint = undefined; this.notice = (error as BusinessError).message + '；已有草稿保留，请重新加载核对。'; }
+    } catch (error) { this.aiProposal = undefined; this.toolHint = undefined; this.notice = (this.aiNotice || (error as BusinessError).message) + '；已有草稿保留，请重新加载核对。'; }
     finally { this.busy = false; this.aiRunning = false; }
+  }
+  private async loadBudget(): Promise<void> {
+    this.busy = true;
+    try {
+      const value = await this.api.send<AiBudget>('/need-sessions/ai-budget');
+      this.budgetNotice = value.day + '（上海时间）本平台今日已占用 ' + value.calls + '/' + value.callLimit + ' 次；保守预留 Token ' + value.reservedTokens + '/' + value.tokenLimit +
+        '；估算额度 USD ' + value.reservedUsd.toFixed(5) + '/' + value.estimateLimitUsd.toFixed(2) + '。这是额度占用，实际账单以供应商为准；失败或用量未知不自动退额度。';
+    } catch (error) { this.budgetNotice = (error as BusinessError).message; }
+    finally { this.busy = false; }
   }
   private async adoptProposal(proposal: AiProposal): Promise<void> {
     if (this.busy || this.dirty || this.messageInput.trim().length > 0 || proposal.sessionId !== this.session.id || proposal.revision !== this.session.revision) {
@@ -259,25 +269,28 @@ struct Needs {
       Column({ space: 16 }) {
         Text('Campus · 四业务需求草稿').fontSize(26).fontWeight(FontWeight.Bold)
         Text('DeepSeek对话 → 核对字段建议 → 采用并更新卡片；发布、接单和取消需独立确认；支付仅为状态记录。').fontSize(13)
+        Text('发送给DeepSeek会使用当前业务草稿和相关对话；请勿输入取件码、密码或联系方式。').fontSize(12)
         Text(this.notice).accessibilityLevel('yes').fontSize(14).fontColor('#285F45')
         if (!this.loggedIn) {
           TextInput({ text: this.username, placeholder: '已有平台用户名' }).onChange((v: string) => { this.username = v; })
           TextInput({ text: this.password, placeholder: '密码（不保存）' }).type(InputType.Password).onChange((v: string) => { this.password = v; })
           Button('登录并恢复草稿').enabled(!this.busy && this.username.length > 0 && this.password.length > 0).onClick(() => { this.login(); })
         } else {
+          Button('查看今日AI额度').enabled(!this.busy).onClick(() => { this.loadBudget(); })
+          if (this.budgetNotice.length > 0) { Text(this.budgetNotice).fontSize(13).accessibilityLevel('yes') }
           Text('会话 #' + this.session.id + ' · 版本 ' + this.session.revision).fontSize(13)
           Row({ space: 10 }) {
             Button('重新加载').enabled(!this.busy).onClick(() => { this.reload(); })
             Button('退出登录').enabled(!this.busy).onClick(() => {
               if (this.dirty || this.messageInput.trim().length > 0) { this.notice = '请先保存输入，或使用放弃输入的退出按钮。'; return; }
-              this.api.clear(); this.loggedIn = false; this.accept(emptySession()); this.sessions = []; this.notice = '';
+              this.api.clear(); this.loggedIn = false; this.budgetNotice = ''; this.accept(emptySession()); this.sessions = []; this.notice = '';
             })
           }
           if (this.dirty || this.messageInput.trim().length > 0) {
             Button('放弃未保存输入并重新加载')
               .enabled(!this.busy).onClick(() => { this.reload(true); })
             Button('退出并放弃未保存输入').enabled(!this.busy).onClick(() => {
-              this.api.clear(); this.loggedIn = false; this.accept(emptySession());
+              this.api.clear(); this.loggedIn = false; this.budgetNotice = ''; this.accept(emptySession());
               this.sessions = []; this.messageInput = ''; this.routeInput = ''; this.notice = '';
             })
           }

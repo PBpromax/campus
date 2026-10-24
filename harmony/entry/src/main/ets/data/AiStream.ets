@@ -2,6 +2,7 @@ import { util } from '@kit.ArkTS';
 
 export interface AiEvent { kind: string; data: string; }
 export interface AiText { text: string; }
+export interface AiBudget { day: string; timezone: string; currency: string; calls: number; reservedTokens: number; reservedUsd: number; callLimit: number; tokenLimit: number; estimateLimitUsd: number; }
 export interface AiNotice { message: string; }
 export class AiStreamDecoder {
   private decoder: util.TextDecoder = new util.TextDecoder('utf-8', { fatal: true });

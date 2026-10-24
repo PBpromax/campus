@@ -31,6 +31,7 @@ demo:
 deepseek:
   api-key: ${DEEPSEEK_API_KEY:}
   model: ${DEEPSEEK_MODEL:deepseek-flash}
+  deadline-ms: ${MODEL_DEADLINE_MS:45000}
 
 model-gateway:
   max-concurrent: ${MODEL_MAX_CONCURRENT:4}
@@ -39,3 +40,18 @@ task-preview:
   binary: ${TASK_PREVIEW_BINARY:}
   runtime: ${TASK_PREVIEW_RUNTIME:}
   timeout-ms: ${TASK_PREVIEW_TIMEOUT_MS:3000}
+
+model-controls:
+  failure-threshold: ${MODEL_FAILURE_THRESHOLD:3}
+  circuit-open-ms: ${MODEL_CIRCUIT_OPEN_MS:30000}
+  user-calls-per-day: ${MODEL_USER_CALLS_PER_DAY:20}
+  global-calls-per-day: ${MODEL_GLOBAL_CALLS_PER_DAY:100}
+  user-tokens-per-day: ${MODEL_USER_TOKENS_PER_DAY:2000000}
+  global-tokens-per-day: ${MODEL_GLOBAL_TOKENS_PER_DAY:10000000}
+  user-usd-per-day: ${MODEL_USER_USD_PER_DAY:0.50}
+  global-usd-per-day: ${MODEL_GLOBAL_USD_PER_DAY:2.00}
+  input-hit-usd-per-million: ${MODEL_INPUT_HIT_USD_PER_MILLION:0.006}
+  input-miss-usd-per-million: ${MODEL_INPUT_MISS_USD_PER_MILLION:0.30}
+  output-usd-per-million: ${MODEL_OUTPUT_USD_PER_MILLION:1.20}
+  priced-model: ${MODEL_PRICED_MODEL:deepseek-flash}
+  price-version: ${MODEL_PRICE_VERSION:deepseek-flash-20261024-peak-usd}

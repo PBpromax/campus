@@ -13,10 +13,14 @@ import static org.mockito.ArgumentMatchers.*;
 
 class ModelGatewayTest {
     DeepSeekClient client=mock(DeepSeekClient.class);
+    ModelBudgets budgets=mock(ModelBudgets.class);
+    ModelControls controls=new ModelControls();
     ModelObservations observations=new ModelObservations(new ObjectMapper().findAndRegisterModules());
     @BeforeEach void setup() {when(client.configured()).thenReturn(true);when(client.model()).thenReturn("fixture-model");}
+    ModelGateway gateway(int capacity) {return new ModelGateway(client,observations,new ModelCircuit(controls),budgets,new PromptContext(new ObjectMapper()),capacity);}
+    DeepSeekClient.Reply call(ModelGateway gateway,java.util.List<java.util.Map<String,Object>> messages,DeepSeekClient.Cancellation cancellation) throws Exception {try(var lease=gateway.acquire(1L)) {return gateway.stream(lease,messages,Map.of(),x->{},cancellation);}}
     @Test void perUserAndGlobalAdmissionReleaseExactlyOnce() {
-        var gateway=new ModelGateway(client,observations,2);
+        var gateway=gateway(2);
         var one=gateway.acquire(1L);var two=gateway.acquire(2L);
         assertEquals(429,assertThrows(BusinessException.class,()->gateway.acquire(1L)).getCode());
         assertEquals(429,assertThrows(BusinessException.class,()->gateway.acquire(3L)).getCode());
@@ -26,16 +30,16 @@ class ModelGatewayTest {
         assertEquals(3,observations.snapshot().rejected());
     }
     @Test void missingProviderConfigNeverOccupiesCapacity() {
-        var gateway=new ModelGateway(client,observations,1);when(client.configured()).thenReturn(false);
+        var gateway=gateway(1);when(client.configured()).thenReturn(false);
         assertEquals(503,assertThrows(BusinessException.class,()->gateway.acquire(1L)).getCode());
         when(client.configured()).thenReturn(true);try(var next=gateway.acquire(1L)) {assertNotNull(next);}
     }
     @Test void recordsKnownUsageFirstTextAndTraceWithoutMessages() throws Exception {
-        var gateway=new ModelGateway(client,observations,1);String id=UUID.randomUUID().toString();
+        var gateway=gateway(1);String id=UUID.randomUUID().toString();
         doAnswer(inv->{Consumer<String> emit=inv.getArgument(2);emit.accept("private-content");return new DeepSeekClient.Reply("private-content","","",new DeepSeekClient.Usage(10,2,12,8L,2L));})
             .when(client).stream(anyList(),anyMap(),any(),any());
         try(var scope=RequestTrace.use(Map.of("traceId",id,"requestId",id))) {
-            gateway.stream(List.of(Map.of("content","private-input")),Map.of(),x->{},new DeepSeekClient.Cancellation());
+            call(gateway,List.of(Map.of("content","private-input")),new DeepSeekClient.Cancellation());
         }
         var view=observations.snapshot();assertEquals(1,view.succeeded());assertEquals(10,view.knownPromptTokens());assertEquals(2,view.knownCompletionTokens());
         assertEquals(0,view.usageUnknown());assertNotNull(view.recent().getFirst().firstTextMs());assertEquals(id,view.recent().getFirst().traceId());
@@ -43,13 +47,14 @@ class ModelGatewayTest {
         assertFalse(output.contains("private-content"));assertFalse(output.contains("private-input"));
     }
     @Test void failureAndCancellationHaveUnknownUsageAndNoAutomaticRetry() throws Exception {
-        var gateway=new ModelGateway(client,observations,1);
-        when(client.stream(anyList(),anyMap(),any(),any())).thenThrow(new IOException("private upstream body"));
+        var gateway=gateway(1);
+        when(budgets.reserve(anyLong(),anyString())).thenReturn("fixture-invocation");
+        when(client.stream(anyList(),anyMap(),any(),any())).thenThrow(new ModelFailure(ModelFailure.Kind.NETWORK));
         var cancellation=new DeepSeekClient.Cancellation();
-        assertThrows(IOException.class,()->gateway.stream(List.of(),Map.of(),x->{},cancellation));
-        cancellation.cancel();assertThrows(IOException.class,()->gateway.stream(List.of(),Map.of(),x->{},cancellation));
-        assertEquals(1,observations.snapshot().failed());assertEquals(1,observations.snapshot().cancelled());assertEquals(2,observations.snapshot().usageUnknown());
-        verify(client,times(2)).stream(anyList(),anyMap(),any(),any());
+        assertThrows(IOException.class,()->call(gateway,List.of(),cancellation));
+        cancellation.cancel();assertThrows(IOException.class,()->call(gateway,List.of(),cancellation));
+        assertEquals(1,observations.snapshot().failed());assertEquals(0,observations.snapshot().cancelled());assertEquals(1,observations.snapshot().usageUnknown());
+        verify(client,times(1)).stream(anyList(),anyMap(),any(),any());
         assertFalse(observations.snapshot().toString().contains("private upstream body"));
     }
     @Test void retentionIsBoundedButCountersCoverProcessLifetime() {

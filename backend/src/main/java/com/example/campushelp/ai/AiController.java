@@ -22,17 +22,27 @@ public class AiController {
     private final NeedRules rules;
     private final DeepSeekClient client;
     private final ModelGateway gateway;
+    private final ModelBudgets budgets;
     private final AiProposalService proposals;
     private final ObjectMapper json;
     private final com.example.campushelp.tools.ToolActionHints actionHints;
+    private record Active(long sessionId,DeepSeekClient.Cancellation cancellation,SseEmitter emitter) {}
+    private final ConcurrentMap<Long,Active> active=new ConcurrentHashMap<>();
     private final ExecutorService workers=Executors.newFixedThreadPool(4);
     @PreDestroy void close() { workers.shutdownNow(); }
     @GetMapping("/ai-status") public ApiResponse<Map<String,Object>> status() {
         return ApiResponse.success(Map.of("configured",client.configured(),"provider","DeepSeek"));
     }
+    @GetMapping("/ai-budget") public ApiResponse<ModelBudgets.View> budget() {return ApiResponse.success(budgets.own(SecurityUtils.getCurrentUserId()));}
     @PostMapping("/{id}/ai-proposals/{token}/apply")
     public ApiResponse<Session> apply(@PathVariable long id,@PathVariable String token,@Valid @RequestBody Version version) {
         return ApiResponse.success(proposals.apply(SecurityUtils.getCurrentUserId(),id,token,version));
+    }
+    @PostMapping("/{id}/ai-cancel") public ApiResponse<Map<String,Boolean>> cancel(@PathVariable long id) {
+        Long owner=SecurityUtils.getCurrentUserId();needs.get(owner,id);var run=active.get(owner);
+        boolean cancelled=run!=null && run.sessionId()==id;
+        if(cancelled) {run.cancellation().cancel();run.emitter().complete();}
+        return ApiResponse.success(Map.of("cancelled",cancelled));
     }
     @PostMapping(value="/{id}/ai-stream",produces="text/event-stream")
     public SseEmitter stream(@PathVariable long id,@Valid @RequestBody Message request) {
@@ -42,13 +52,14 @@ public class AiController {
         try { var before=needs.get(owner,id);s=before.activeCategory()==null || before.routePending()?needs.intake(owner,id,request):needs.message(owner,id,request); }
         catch(RuntimeException e) {lease.close();throw e;}
         var emitter=new SseEmitter(60000L);var cancellation=new DeepSeekClient.Cancellation();
+        var run=new Active(id,cancellation,emitter);active.put(owner,run);
         emitter.onCompletion(cancellation::cancel);emitter.onError(e->cancellation.cancel());
         emitter.onTimeout(()->{cancellation.cancel();emitter.complete();});
         var trace=org.slf4j.MDC.getCopyOfContextMap();
         try { workers.execute(()->{
             try(var scope=com.example.campushelp.observability.RequestTrace.use(trace)) {
                 send(emitter,"session",s);
-                var reply=gateway.stream(prompt(s),tool(s),part->{
+                var reply=gateway.stream(lease,prompt(s),tool(s),part->{
                     if(cancellation.cancelled()) throw new IllegalStateException("Disconnected");
                     try {send(emitter,"text_delta",Map.of("text",part));}catch(IOException e){cancellation.cancel();throw new IllegalStateException("Disconnected");}
                 },cancellation);
@@ -66,12 +77,15 @@ public class AiController {
                 }
                 send(emitter,"done",Map.of("complete",true));emitter.complete();
             } catch(Exception e) {
-                if(!cancellation.cancelled()) {
-                    try {send(emitter,"failure",Map.of("message","回复未完成或草稿已更新。请重新加载核对；可以使用完整表单，不会自动重试。"));}catch(IOException ignored){}
-                    emitter.complete();
+                if(!cancellation.cancelled() || cancellation.timedOut()) {
+                    String message=e instanceof com.example.campushelp.exception.BusinessException business?business.getMessage():
+                        e instanceof ModelFailure failure && failure.kind()==ModelFailure.Kind.TIMEOUT?"模型回复超过全程时限，已停止；已保存的上下文保留，可使用完整表单，不会自动重试。":
+                        "回复未完成或草稿已更新。请重新加载核对；可以使用完整表单，不会自动重试。";
+                    try {send(emitter,"failure",Map.of("message",message,"kind",e instanceof ModelFailure failure?failure.kind().name():"POLICY_OR_CONTEXT"));}catch(IOException ignored){}
                 }
-            } finally {cancellation.cancel();lease.close();}
-        }); } catch(RejectedExecutionException stopped) {cancellation.cancel();lease.close();throw new BusinessException(503,"模型服务正在停止，请使用完整表单");}
+                emitter.complete();
+            } finally {cancellation.cancel();active.remove(owner,run);lease.close();}
+        }); } catch(RejectedExecutionException stopped) {cancellation.cancel();active.remove(owner,run);lease.close();throw new BusinessException(503,"模型服务正在停止，请使用完整表单");}
         return emitter;
     }
     private void send(SseEmitter emitter,String event,Object data) throws IOException {
@@ -86,7 +100,7 @@ public class AiController {
             +"先用自然语言回复/澄清，再在有把握时最多调用一次propose_draft或suggest_action。仅在用户明确要求发布、接单、取消时用suggest_action提出动作，不执行；禁止猜任务编号。不调用也是允许的。"
             +"日期字段用YYYY-MM-DDTHH:mm，无法确定具体日期则追问。未选择业务或routePending=true时fields必须为空，仅可给候选。"
             +"授权字段consent、deliveryConsent不允许通过模型填写；只可由用户表单声明。工具不执行任务，建议须由用户采纳。"
-            +"字段定义="+json.writeValueAsString(rules.catalog())+"；当前草稿="+json.writeValueAsString(Map.of("activeCategory",s.activeCategory()==null?"UNSELECTED":s.activeCategory(),"routePending",s.routePending(),"drafts",s.drafts().stream().filter(d->d.category()==s.activeCategory()).toList()))));
+            +"字段定义="+json.writeValueAsString(rules.catalog().stream().filter(c->s.activeCategory()==null || c.category()==s.activeCategory()).toList())+"；当前草稿="+json.writeValueAsString(Map.of("activeCategory",s.activeCategory()==null?"UNSELECTED":s.activeCategory(),"routePending",s.routePending(),"drafts",s.drafts().stream().filter(d->d.category()==s.activeCategory()).map(d->Map.of("fields",d.fields().entrySet().stream().filter(e->!Set.of("consent","deliveryConsent").contains(e.getKey())).collect(java.util.stream.Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue)),"contexts",d.contexts())).toList()))));
         var relevant=s.messages().stream().filter(m->m.category()==null || m.category()==s.activeCategory()).toList();
         for(var m:relevant.subList(Math.max(0,relevant.size()-20),relevant.size())) list.add(Map.of("role",m.role().equals("ASSISTANT")?"assistant":"user","content",m.text()));
         return list;

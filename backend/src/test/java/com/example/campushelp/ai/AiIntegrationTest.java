@@ -35,7 +35,7 @@ class AiIntegrationTest {
     @Autowired JwtUtil jwt;
     @MockBean DeepSeekClient client;
     @BeforeEach void setup() {
-        messages.deleteAll();drafts.deleteAll();sessions.deleteAll();when(client.configured()).thenReturn(true);
+        messages.deleteAll();drafts.deleteAll();sessions.deleteAll();when(client.configured()).thenReturn(true);when(client.model()).thenReturn("deepseek-flash");
     }
     @ParameterizedTest @EnumSource(NeedCategory.class)
     void streamsPersistsAndOnlyAdoptsFieldsAfterUserAction(NeedCategory category) throws Exception {
@@ -117,4 +117,19 @@ class AiIntegrationTest {
         assertTrue(edited.drafts().getFirst().assessment().ready());
         verify(client,times(1)).stream(anyList(),anyMap(),any(),any());
     }
+    @Test void explicitCancellationIsOwnerScopedAndReleasesTheRunningModel() throws Exception {
+        var s=needs.create(8101L);s=needs.select(8101L,s.id(),new Select(s.revision(),NeedCategory.STUDY));
+        var reached=new java.util.concurrent.CountDownLatch(1);
+        doAnswer(inv->{DeepSeekClient.Cancellation cancel=inv.getArgument(3);reached.countDown();
+            long until=System.nanoTime()+2_000_000_000L;while(!cancel.cancelled() && System.nanoTime()<until) Thread.sleep(5);
+            throw new ModelFailure(ModelFailure.Kind.CLIENT_CANCELLED);}).when(client).stream(anyList(),anyMap(),any(),any());
+        var stream=mvc.perform(post("/api/need-sessions/"+s.id()+"/ai-stream").header("Authorization","Bearer "+jwt.generateToken(8101L))
+            .contentType("application/json").content(json.writeValueAsString(new Message(s.revision(),"fixture cancel")))).andReturn();
+        assertTrue(reached.await(1,java.util.concurrent.TimeUnit.SECONDS));
+        assertEquals(404,mvc.perform(post("/api/need-sessions/"+s.id()+"/ai-cancel").header("Authorization","Bearer "+jwt.generateToken(8102L))).andReturn().getResponse().getStatus());
+        var response=mvc.perform(post("/api/need-sessions/"+s.id()+"/ai-cancel").header("Authorization","Bearer "+jwt.generateToken(8101L))).andReturn().getResponse();
+        assertEquals(200,response.getStatus());assertTrue(json.readTree(response.getContentAsByteArray()).at("/data/cancelled").asBoolean());
+        stream.getAsyncResult(3000);assertEquals(1,needs.get(8101L,s.id()).messages().size());
+    }
+
 }

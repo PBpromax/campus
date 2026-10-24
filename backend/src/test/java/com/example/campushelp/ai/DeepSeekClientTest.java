@@ -40,7 +40,7 @@ class DeepSeekClientTest {
     @Test void upstreamErrorsNeverExposeProviderBodyOrKey() {
         body="fake-private-key";status=401;
         var e=assertThrows(Exception.class,()->client().stream(List.of(),Map.of(),x->{},new DeepSeekClient.Cancellation()));
-        assertFalse(e.getMessage().contains("fake-private-key"));assertTrue(e.getMessage().contains("401"));
+        assertFalse(e.getMessage().contains("fake-private-key"));assertEquals(ModelFailure.Kind.UPSTREAM_AUTH,((ModelFailure)e).kind());
     }
     @Test void missingKeyMakesNoRequest() {
         var c=new DeepSeekClient(json,"","unused","http://127.0.0.1:"+server.getAddress().getPort());

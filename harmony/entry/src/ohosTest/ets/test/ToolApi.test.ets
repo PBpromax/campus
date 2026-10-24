@@ -1,3 +1,4 @@
+import { AiBudget } from '../../../main/ets/data/AiStream';
 import { TransitionPreview, TransitionRequest, TaskEventKind, TaskEvent, projectTransition } from '../../../main/ets/domain/TaskTransitions';
 import { describe, it, expect } from '@ohos/hypium';
 import { http } from '@kit.NetworkKit';
@@ -15,6 +16,8 @@ export default function toolApiTest(): void {
       let session: NeedSession = emptySession(); let taskId = 0;
       try {
         await api.login(credentials.username,credentials.password);
+        const budget = await api.send<AiBudget>('/need-sessions/ai-budget');
+        expect(budget.calls).assertEqual(0); expect(budget.timezone).assertEqual('Asia/Shanghai'); expect(budget.currency).assertEqual('USD');
         session = await api.send<NeedSession>('/need-sessions',http.RequestMethod.POST);
         const category: CategoryRequest = { revision: session.revision, category: NeedCategory.STUDY };
         session = await api.send<NeedSession>('/need-sessions/' + session.id + '/category',http.RequestMethod.PUT,JSON.stringify(category));

@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-24T21:55:16.973810+08:00",
+  "database": "campus_m2_dev",
+  "migration": "005_model_budgets.sql",
+  "runs": 2,
+  "backup": "/tmp/campus-m3-before-005.sql (private, mode 600)",
+  "before": {
+    "users": 10,
+    "tasks": 11,
+    "sessions": 13,
+    "toolAudits": 94
+  },
+  "after": {
+    "users": 10,
+    "tasks": 11,
+    "sessions": 13,
+    "toolAudits": 94
+  },
+  "oldDataCountsUnchanged": true
+}

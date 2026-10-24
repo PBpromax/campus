@@ -62,3 +62,8 @@ M1独立原型：`cd docs/M1/prototype` 后执行 `npm ci`、`npm test`、`npm r
 ## M3仓颉只读组件
 
 本机Mac ARM64已使用独立Cangjie 1.2.0 SDK；在仓库根目录运行`python3 scripts/build-task-preview.py`与`python3 scripts/verify-task-preview.py`。构建后开发启动器自动检测默认路径，启用只读状态预览；生产默认不启用，需明确配置TASK_PREVIEW_BINARY和TASK_PREVIEW_RUNTIME。SDK/二进制不进入Git，子进程不接收DB/JWT/模型密钥。详见[组件说明](./cangjie/task-preview/README.md)及[M3第二步](./docs/M3/03-双语言任务模型与仓颉组件.md)。
+
+
+## M3模型可靠性与日额度
+
+后端需要005增量迁移。默认模型HTTP全程45秒，连续3次故障冷却30秒；上海自然日按本人/全局次数、Token和估算USD额度持久化预留。客户端可查看本人额度和停止后台回复；原有确认执行不依赖模型额度。默认报价、控制变量、有限出域检查及真实账单边界见[第三步说明](./docs/M3/05-模型网关可靠性与额度.md)。本地模型替身脚本只用于隔离开发库，联调后恢复正常启动器与私有Key配置。

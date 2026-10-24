@@ -13,9 +13,10 @@ export class NeedApi {
   currentTraceId(): string { return this.trace; }
   currentUserId(): number { return this.userId; }
 
+  private streamPath: string = '';
   private streaming: http.HttpRequest | undefined = undefined;
   private cancelCurrent: (() => void) | undefined = undefined;
-  cancelStream(): void { if (this.cancelCurrent !== undefined) { this.cancelCurrent(); this.cancelCurrent = undefined; } if (this.streaming !== undefined) { this.streaming.destroy(); this.streaming = undefined; } }
+  cancelStream(): void { const path = this.streamPath; this.streamPath = ''; if (path.endsWith('/ai-stream') && this.token.length > 0) { this.send<string>(path.replace('/ai-stream','/ai-cancel'),http.RequestMethod.POST).catch((_error: BusinessError) => {}); } if (this.cancelCurrent !== undefined) { this.cancelCurrent(); this.cancelCurrent = undefined; } if (this.streaming !== undefined) { this.streaming.destroy(); this.streaming = undefined; } }
   clear(): void { this.cancelStream(); this.token = ''; this.userId = 0; this.trace = util.generateRandomUUID(true); }
 
   async login(username: string, password: string): Promise<void> {
@@ -26,11 +27,12 @@ export class NeedApi {
   }
 
   async stream(path: string, body: string, emit: (event: AiEvent) => void): Promise<void> {
-    const request = http.createHttp(); this.streaming = request;
+    const request = http.createHttp(); this.streaming = request; this.streamPath = path;
     const decoder = new AiStreamDecoder();
     try {
       await new Promise<void>((resolve, reject) => {
         let ended = false; let status = 0; let settled = false;
+        let errorText = ''; let errorBytes = 0; const errorDecoder = new util.TextDecoder('utf-8');
         const timer = setTimeout(() => { fail('回复超时，请重新加载核对；未自动重试'); }, 70000);
         const fail = (message: string): void => {
           if (settled) { return; } settled = true; clearTimeout(timer); request.destroy(); reject(new Error(message));
@@ -38,12 +40,17 @@ export class NeedApi {
         this.cancelCurrent = (): void => { fail('已停止接收回复，请重新加载核对已保存消息'); };
         const finish = (): void => {
           if (!ended || status === 0 || settled) { return; }
-          if (status !== 200) { fail('对话请求失败（HTTP ' + status + '），请检查登录和模型配置'); return; }
+          if (status !== 200) {
+            let message = '对话请求失败（HTTP ' + status + '），可以继续使用完整表单';
+            try { const error = JSON.parse(errorText) as ApiEnvelope<string>; if (error.code === status && error.message.length <= 500) { message = error.message; } } catch (_error) { }
+            fail(message); return;
+          }
           try { decoder.finish(); settled = true; clearTimeout(timer); resolve(); }
           catch (error) { fail((error as BusinessError).message); }
         };
         request.on('dataReceive', (bytes: ArrayBuffer) => {
           if (settled) { return; }
+          if (errorBytes + bytes.byteLength <= 8192) { errorText += errorDecoder.decodeToString(new Uint8Array(bytes),{ stream: true }); errorBytes += bytes.byteLength; }
           try { decoder.feed(bytes, emit); } catch (error) { fail((error as BusinessError).message); }
         });
         request.on('dataEnd', () => { ended = true; finish(); });
@@ -52,7 +59,7 @@ export class NeedApi {
           .then((code: number) => { status = code; if (code === 401) { this.token = ''; this.userId = 0; } finish(); })
           .catch((_error: BusinessError) => { fail('连接中断或已停止，请重新加载核对；输入保留'); });
       });
-    } finally { if (this.streaming === request) { this.streaming = undefined; this.cancelCurrent = undefined; } request.destroy(); }
+    } finally { if (this.streaming === request) { this.streaming = undefined; this.cancelCurrent = undefined; this.streamPath = ''; } request.destroy(); }
   }
 
   async send<T>(path: string, method: http.RequestMethod = http.RequestMethod.GET, body: string = ''): Promise<T> {

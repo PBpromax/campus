@@ -1,0 +1,80 @@
+{
+  "recordedAt": "2026-10-24T22:28:31.492986+08:00",
+  "baselineCommit": "63adb91",
+  "branch": "feature/m3-agent-reliability",
+  "scope": "M3 step 3: bounded model gateway, durable conservative daily budgets, finite egress checks and native controls",
+  "backend": {
+    "tests": 281,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suites": 45,
+    "summary": "03-backend-test-summary.json",
+    "log": "03-backend-tests.txt"
+  },
+  "native": {
+    "tests": 33,
+    "pass": 33,
+    "failure": 0,
+    "error": 0,
+    "log": "03-device-tests.txt",
+    "initialRun": {
+      "pass": 31,
+      "error": 2,
+      "reason": "Backend restart overlapped tests; stable-service full rerun passed",
+      "log": "03-device-initial-interrupted.txt"
+    }
+  },
+  "builds": {
+    "main": "03-harmony-build.txt",
+    "test": "03-test-build.txt",
+    "result": "BUILD SUCCESSFUL",
+    "boundary": "Local emulator debug packages; no release signing claim"
+  },
+  "faultDrills": {
+    "report": "03-local-faults.json",
+    "localFixtureRequests": 7,
+    "paidModelCallsThisStep": 0,
+    "tasksUnchanged": true,
+    "restartQuotaPreserved": true,
+    "normalConfigurationRestored": {
+      "configured": true,
+      "callLimit": 20,
+      "previousReservationsRetained": 6,
+      "fixturePricesRemainMarkedOnHistoricalRows": true
+    }
+  },
+  "migration": {
+    "report": "03-mysql-migration.json",
+    "runs": 2,
+    "oldDataCountsUnchanged": true
+  },
+  "defaults": {
+    "modelDeadlineMs": 45000,
+    "globalConcurrency": 4,
+    "perUserConcurrency": 1,
+    "circuitFailureThreshold": 3,
+    "circuitOpenMs": 30000,
+    "userCallsPerDay": 20,
+    "globalCallsPerDay": 100,
+    "reservedTokensPerAttempt": 67136,
+    "reservedUsdPerAttempt": "0.02158080",
+    "timezone": "Asia/Shanghai",
+    "priceVersion": "deepseek-flash-20261024-peak-usd",
+    "automaticRetry": false,
+    "automaticRefund": false
+  },
+  "screenshots": [
+    "03-native-budget.png",
+    "03-native-quota-blocked.png",
+    "03-native-egress-blocked.png",
+    "03-native-restored.png"
+  ],
+  "limitations": [
+    "Local integration only; no cloud or multi-node deployment validation",
+    "No real supplier bill reconciliation or paid cost samples in this step",
+    "Reserved quota is a conservative platform estimate, not an absolute supplier charge ceiling",
+    "Finite sensitive-pattern checks can miss private data and produce false positives",
+    "Overall capacity, streaming heartbeat and end-to-end SLO remain future work"
+  ]
+}
