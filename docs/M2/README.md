@@ -18,3 +18,5 @@
 最新证据：[第二步汇总](./evidence/04-step2-summary.json)、[后端测试](./evidence/04-backend-tests.txt)、[设备端测试](./evidence/04-device-tests.txt)、[MySQL重启恢复](./evidence/04-mysql-smoke.json)。测试账号及密钥只保存在被Git忽略的本地配置，不在交付物中公开。
 
 第三步最新证据：[17项设备测试与构建汇总](./evidence/05-step3-summary.json)。
+
+第四步接入准备：[DeepSeek本地配置与检查](./04-DeepSeek配置与接入准备.md)。当前待用户在本地填写API Key，尚未进行真实模型调用或完成流式接入。

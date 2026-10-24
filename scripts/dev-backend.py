@@ -6,6 +6,7 @@ import re
 import shutil
 import subprocess
 import sys
+from private_env import read_env, DEEPSEEK_KEYS
 
 
 def main():
@@ -17,19 +18,14 @@ def main():
         raise SystemExit(f'Private configuration missing: {config}')
 
     env = os.environ.copy()
-    for number, line in enumerate(config.read_text().splitlines(), 1):
-        line = line.strip()
-        if not line or line.startswith('#'):
-            continue
-        key, separator, value = line.partition('=')
-        key = key.strip()
-        if not separator or not re.fullmatch(r'[A-Z][A-Z0-9_]*', key):
-            raise SystemExit(f'Invalid configuration at line {number}; use KEY=VALUE.')
-        value = value.strip()
-        if len(value) >= 2 and value[0] == value[-1] and value[0] in ('"', "'"):
-            value = value[1:-1]
-        # Values are literal data: no shell evaluation or variable expansion.
-        env[key] = value
+    try:
+        env.update(read_env(config))
+        deepseek = root / '.env.deepseek.local'
+        if deepseek.is_file():
+            # Only model credentials/settings may be overridden by this separate file.
+            env.update(read_env(deepseek, DEEPSEEK_KEYS))
+    except (OSError, ValueError) as error:
+        raise SystemExit(str(error)) from None
     for key in ('DB_URL', 'DB_USERNAME', 'DB_PASSWORD', 'JWT_SECRET'):
         if not env.get(key):
             raise SystemExit(f'Missing configuration: {key}')
