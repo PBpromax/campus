@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-24T18:35:08.156034+08:00",
+  "milestone": "M3",
+  "step": 1,
+  "status": "local architecture and observability foundation verified",
+  "baseCommit": "bd474b7",
+  "branch": "feature/m3-agent-reliability",
+  "backend": {
+    "tests": 254,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "harmony": {
+    "mainBuild": "passed",
+    "testBuild": "passed",
+    "device": "Campus_M2_Phone / API26",
+    "tests": 29,
+    "passed": 29,
+    "failed": 0,
+    "includes": "real HTTP tool prepare/execute/replay/cancel audits match native trace; logout rotates ID"
+  },
+  "mysqlMigration": "01-mysql-migration.json",
+  "realHttp": "01-local-http-smoke.json",
+  "liveHttpObservations": 41,
+  "paidModelCallsThisStep": 0,
+  "modelUsageEvidence": "local HTTP provider fixture in DeepSeekClientTest; no real provider usage sampled this step",
+  "notCompleted": [
+    "Cangjie component and language comparison",
+    "full stream deadline/circuit breaker/per-account cost quota",
+    "cloud backend deployment and release signing",
+    "load tests, measured SLO and full M3 failure-injection suite",
+    "persistent token accounting and supplier invoice reconciliation"
+  ]
+}

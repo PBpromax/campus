@@ -21,6 +21,7 @@ public class DeepSeekClient {
         @Value("${deepseek.base-url:https://api.deepseek.com}") String base) {
         this.json=json;this.key=key;this.model=model;this.base=base;
     }
+    public String model() { return model; }
     public boolean configured() { return !key.isBlank(); }
     public static class Cancellation {
         private volatile boolean cancelled;
@@ -31,14 +32,27 @@ public class DeepSeekClient {
         public synchronized void cancel() { cancelled=true;try { if(input!=null) input.close(); } catch(IOException ignored) {} }
         public boolean cancelled() { return cancelled; }
     }
-    public record Reply(String text,String arguments,String toolName) {
-        public Reply(String text,String arguments) {this(text,arguments,arguments.isBlank()?"":"propose_draft");}
+    public record Usage(long promptTokens,long completionTokens,long totalTokens,Long cacheHitTokens,Long cacheMissTokens) {}
+    public record Reply(String text,String arguments,String toolName,Usage usage) {
+        public Reply(String text,String arguments,String toolName) {this(text,arguments,toolName,null);}
+        public Reply(String text,String arguments) {this(text,arguments,arguments.isBlank()?"":"propose_draft",null);}
     }
+    private Usage usage(JsonNode node) {
+        if(!node.isObject()) return null;
+        Long prompt=nonNegative(node.get("prompt_tokens")),completion=nonNegative(node.get("completion_tokens")),total=nonNegative(node.get("total_tokens"));
+        if(prompt==null || completion==null || total==null || prompt>Long.MAX_VALUE-completion || prompt+completion!=total) return null;
+        Long hit=nonNegative(node.get("prompt_cache_hit_tokens")),miss=nonNegative(node.get("prompt_cache_miss_tokens"));
+        if(hit!=null && hit>prompt) hit=null;
+        if(miss!=null && miss>prompt) miss=null;
+        if(hit!=null && miss!=null && hit!=prompt-miss) {hit=null;miss=null;}
+        return new Usage(prompt,completion,total,hit,miss);
+    }
+    private Long nonNegative(JsonNode node) { return node!=null && node.isIntegralNumber() && node.canConvertToLong() && node.longValue()>=0?node.longValue():null; }
     public Reply stream(List<Map<String,Object>> messages,Map<String,Object> tool, Consumer<String> delta, Cancellation cancellation) throws Exception {
         if(cancellation.cancelled()) throw new IOException("请求已中断");
         if(!configured()) throw new IOException("模型密钥未配置");
         var payload=Map.of("model",model,"messages",messages,"stream",true,"thinking",Map.of("type","disabled"),
-            "max_tokens",1600,"tools",List.of(Map.of("type","function","function",tool),Map.of("type","function","function",actionTool())));
+            "stream_options",Map.of("include_usage",true),"max_tokens",1600,"tools",List.of(Map.of("type","function","function",tool),Map.of("type","function","function",actionTool())));
         var request=HttpRequest.newBuilder(URI.create(base+"/chat/completions")).timeout(Duration.ofSeconds(45))
             .header("Authorization","Bearer "+key).header("Content-Type","application/json")
             .POST(HttpRequest.BodyPublishers.ofString(json.writeValueAsString(payload))).build();
@@ -47,7 +61,7 @@ public class DeepSeekClient {
         try(var reader=new BufferedReader(new InputStreamReader(response.body(),StandardCharsets.UTF_8))) {
             if(response.statusCode()!=200) throw new IOException("模型服务暂不可用（HTTP "+response.statusCode()+"）");
             StringBuilder text=new StringBuilder(),args=new StringBuilder(),name=new StringBuilder();
-            int size=0;boolean done=false;String finish="";
+            int size=0;boolean done=false;String finish="";Usage usage=null;
             for(String line;(line=reader.readLine())!=null;) {
                 if(cancellation.cancelled()) throw new IOException("请求已中断");
                 size+=line.length();if(size>200000) throw new IOException("模型响应超限");
@@ -57,6 +71,7 @@ public class DeepSeekClient {
                 if(data.isEmpty()) continue;
                 JsonNode chunk=json.readTree(data);
                 if(chunk.has("error")) throw new IOException("模型服务返回错误");
+                if(chunk.hasNonNull("usage")) usage=usage(chunk.get("usage"));
                 for(JsonNode choice:chunk.path("choices")) {
                     if(!choice.path("finish_reason").isNull() && choice.has("finish_reason")) finish=choice.path("finish_reason").asText();
                     var d=choice.path("delta");
@@ -76,7 +91,7 @@ public class DeepSeekClient {
             if(!name.isEmpty() && !Set.of("propose_draft","suggest_action").contains(name.toString())) throw new IOException("拒绝未知模型操作");
             if(name.isEmpty() && !args.isEmpty()) throw new IOException("模型建议格式无效");
             if(text.isEmpty() && args.isEmpty()) throw new IOException("模型未返回有效内容");
-            return new Reply(text.toString(),args.toString(),name.toString());
+            return new Reply(text.toString(),args.toString(),name.toString(),usage);
         }
     }
     private Map<String,Object> actionTool() {

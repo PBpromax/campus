@@ -52,4 +52,18 @@ class DeepSeekClientTest {
         var cancelled=new DeepSeekClient.Cancellation();cancelled.cancel();
         assertThrows(Exception.class,()->client().stream(List.of(),Map.of(),x->{},cancelled));
     }
+    @Test void readsUsageFromFinalChunkAndRequestsUsageExplicitly() throws Exception {
+        body=chunk(Map.of("content","ok"),"")+"data: "+json.writeValueAsString(Map.of("choices",List.of(Map.of("delta",Map.of(),"finish_reason","stop")),
+            "usage",Map.of("prompt_tokens",20,"completion_tokens",3,"total_tokens",23,"prompt_cache_hit_tokens",15,"prompt_cache_miss_tokens",5)))+"\n\ndata: [DONE]\n\n";
+        var reply=client().stream(List.of(),Map.of(),x->{},new DeepSeekClient.Cancellation());
+        assertEquals(new DeepSeekClient.Usage(20,3,23,15L,5L),reply.usage());
+        assertTrue(json.readTree(requestBody).at("/stream_options/include_usage").asBoolean());
+    }
+    @Test void missingOrInvalidUsageIsUnknownRatherThanFree() throws Exception {
+        for(var usage:List.of(Map.of(),Map.of("prompt_tokens",10,"completion_tokens",2,"total_tokens",1),Map.of("prompt_tokens",-1,"completion_tokens",2,"total_tokens",1))) {
+            body="data: "+json.writeValueAsString(Map.of("choices",List.of(Map.of("delta",Map.of("content","ok"),"finish_reason","stop")),"usage",usage))+"\n\ndata: [DONE]\n\n";
+            assertNull(client().stream(List.of(),Map.of(),x->{},new DeepSeekClient.Cancellation()).usage());
+        }
+    }
+
 }

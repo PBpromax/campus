@@ -1,4 +1,5 @@
 import { AiStreamDecoder, AiEvent } from './AiStream';
+import { util } from '@kit.ArkTS';
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { ApiEnvelope, LoginRequest, LoginResult } from '../domain/NeedModels';
@@ -8,12 +9,14 @@ export class NeedApi {
   private readonly baseUrl: string = 'http://127.0.0.1:8081/api';
   private token: string = '';
   private userId: number = 0;
+  private trace: string = util.generateRandomUUID(true);
+  currentTraceId(): string { return this.trace; }
   currentUserId(): number { return this.userId; }
 
   private streaming: http.HttpRequest | undefined = undefined;
   private cancelCurrent: (() => void) | undefined = undefined;
   cancelStream(): void { if (this.cancelCurrent !== undefined) { this.cancelCurrent(); this.cancelCurrent = undefined; } if (this.streaming !== undefined) { this.streaming.destroy(); this.streaming = undefined; } }
-  clear(): void { this.cancelStream(); this.token = ''; this.userId = 0; }
+  clear(): void { this.cancelStream(); this.token = ''; this.userId = 0; this.trace = util.generateRandomUUID(true); }
 
   async login(username: string, password: string): Promise<void> {
     const body: LoginRequest = { username: username, password: password };
@@ -44,7 +47,7 @@ export class NeedApi {
           try { decoder.feed(bytes, emit); } catch (error) { fail((error as BusinessError).message); }
         });
         request.on('dataEnd', () => { ended = true; finish(); });
-        const headers: Record<string,string> = { 'Content-Type': 'application/json', 'Accept': 'text/event-stream', 'Authorization': 'Bearer ' + this.token };
+        const headers: Record<string,string> = { 'Content-Type': 'application/json', 'X-Campus-Trace-Id': this.trace, 'Accept': 'text/event-stream', 'Authorization': 'Bearer ' + this.token };
         request.requestInStream(this.baseUrl + path, { method: http.RequestMethod.POST, header: headers, extraData: body, connectTimeout: 5000, readTimeout: 65000 })
           .then((code: number) => { status = code; if (code === 401) { this.token = ''; this.userId = 0; } finish(); })
           .catch((_error: BusinessError) => { fail('连接中断或已停止，请重新加载核对；输入保留'); });
@@ -54,7 +57,7 @@ export class NeedApi {
 
   async send<T>(path: string, method: http.RequestMethod = http.RequestMethod.GET, body: string = ''): Promise<T> {
     const request = http.createHttp();
-    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    const headers: Record<string, string> = { 'Content-Type': 'application/json', 'X-Campus-Trace-Id': this.trace };
     if (this.token.length > 0) { headers['Authorization'] = 'Bearer ' + this.token; }
     try {
       const options: http.HttpRequestOptions = {

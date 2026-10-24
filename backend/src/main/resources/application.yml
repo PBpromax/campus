@@ -31,3 +31,6 @@ demo:
 deepseek:
   api-key: ${DEEPSEEK_API_KEY:}
   model: ${DEEPSEEK_MODEL:deepseek-flash}
+
+model-gateway:
+  max-concurrent: ${MODEL_MAX_CONCURRENT:4}

@@ -21,12 +21,11 @@ public class AiController {
     private final NeedService needs;
     private final NeedRules rules;
     private final DeepSeekClient client;
+    private final ModelGateway gateway;
     private final AiProposalService proposals;
     private final ObjectMapper json;
     private final com.example.campushelp.tools.ToolActionHints actionHints;
     private final ExecutorService workers=Executors.newFixedThreadPool(4);
-    private final Semaphore slots=new Semaphore(4);
-    private final Set<Long> running=ConcurrentHashMap.newKeySet();
     @PreDestroy void close() { workers.shutdownNow(); }
     @GetMapping("/ai-status") public ApiResponse<Map<String,Object>> status() {
         return ApiResponse.success(Map.of("configured",client.configured(),"provider","DeepSeek"));
@@ -38,19 +37,18 @@ public class AiController {
     @PostMapping(value="/{id}/ai-stream",produces="text/event-stream")
     public SseEmitter stream(@PathVariable long id,@Valid @RequestBody Message request) {
         Long owner=SecurityUtils.getCurrentUserId();needs.get(owner,id);
-        if(!client.configured()) throw new BusinessException(503,"模型密钥未配置，可以继续使用完整表单");
-        if(!running.add(owner)) throw new BusinessException(429,"请等待当前回复完成");
-        if(!slots.tryAcquire()) {running.remove(owner);throw new BusinessException(429,"模型服务繁忙，请稍后再试");}
+        var lease=gateway.acquire(owner);
         Session s;
         try { var before=needs.get(owner,id);s=before.activeCategory()==null || before.routePending()?needs.intake(owner,id,request):needs.message(owner,id,request); }
-        catch(RuntimeException e) {running.remove(owner);slots.release();throw e;}
+        catch(RuntimeException e) {lease.close();throw e;}
         var emitter=new SseEmitter(60000L);var cancellation=new DeepSeekClient.Cancellation();
         emitter.onCompletion(cancellation::cancel);emitter.onError(e->cancellation.cancel());
         emitter.onTimeout(()->{cancellation.cancel();emitter.complete();});
-        workers.execute(()->{
-            try {
+        var trace=org.slf4j.MDC.getCopyOfContextMap();
+        try { workers.execute(()->{
+            try(var scope=com.example.campushelp.observability.RequestTrace.use(trace)) {
                 send(emitter,"session",s);
-                var reply=client.stream(prompt(s),tool(s),part->{
+                var reply=gateway.stream(prompt(s),tool(s),part->{
                     if(cancellation.cancelled()) throw new IllegalStateException("Disconnected");
                     try {send(emitter,"text_delta",Map.of("text",part));}catch(IOException e){cancellation.cancel();throw new IllegalStateException("Disconnected");}
                 },cancellation);
@@ -72,8 +70,8 @@ public class AiController {
                     try {send(emitter,"failure",Map.of("message","回复未完成或草稿已更新。请重新加载核对；可以使用完整表单，不会自动重试。"));}catch(IOException ignored){}
                     emitter.complete();
                 }
-            } finally {cancellation.cancel();running.remove(owner);slots.release();}
-        });
+            } finally {cancellation.cancel();lease.close();}
+        }); } catch(RejectedExecutionException stopped) {cancellation.cancel();lease.close();throw new BusinessException(503,"模型服务正在停止，请使用完整表单");}
         return emitter;
     }
     private void send(SseEmitter emitter,String event,Object data) throws IOException {

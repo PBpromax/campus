@@ -11,7 +11,8 @@ export default function humanHelpTest(): void {
       task.acceptorId = null; expect(partner(task,10) === null).assertTrue();
     });
     it('logoutClearsTheMemoryOnlyParticipantIdentity',0,() => {
-      const api = new NeedApi(); api.clear(); expect(api.currentUserId()).assertEqual(0);
+      const api = new NeedApi(); const trace = api.currentTraceId(); api.clear(); expect(api.currentUserId()).assertEqual(0);
+      expect(trace.length).assertEqual(36); expect(api.currentTraceId() !== trace).assertTrue();
     });
   });
 }

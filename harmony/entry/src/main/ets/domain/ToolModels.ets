@@ -8,7 +8,7 @@ export interface TaskResult { id: number; title: string; status: string; }
 export interface TaskSummary { id: number; title: string; category: string; status: string; reward: number; location: string; publisherId: number; acceptorId: number | null; }
 export interface ToolPreview { action: string; title: string; description: string; category: string; location: string; reward: number; expectedTime: string; demandId: number | null; beforeStatus: string | null; consequences: string[]; }
 export interface ToolReceipt { id: string; action: string; state: string; expiresAt: string; preview: ToolPreview; result: TaskResult | null; errorCode: number | null; errorMessage: string | null; sourceSessionId: number | null; sourceRevision: number | null; }
-export interface ToolAudit { id: number; intentId: string | null; action: string; outcome: string; message: string; createdAt: string; }
+export interface ToolAudit { traceId?: string | null; requestId?: string | null; id: number; intentId: string | null; action: string; outcome: string; message: string; createdAt: string; }
 
 export function actionName(action: string): string {
   return action === 'PUBLISH' ? '发布任务' : action === 'ACCEPT' ? '接单' : action === 'CANCEL' ? '取消任务' : '未知操作';

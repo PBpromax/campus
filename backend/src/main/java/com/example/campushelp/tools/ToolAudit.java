@@ -13,5 +13,7 @@ public class ToolAudit {
     @Column(nullable=false,length=16) private String action;
     @Column(nullable=false,length=20) private String outcome;
     @Column(nullable=false,length=500) private String message;
+    @Column(length=36) private String traceId;
+    @Column(length=36) private String requestId;
     @Column(nullable=false) private LocalDateTime createdAt=LocalDateTime.now();
 }

@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-24T18:33:00.558096+08:00",
+  "database": "campus_m2_dev",
+  "paidModelCalls": 0,
+  "traceId": "28976e70-a9db-4d87-81d5-6a8f641d0ba5",
+  "loginRequestId": "f8387cf3-ba15-426c-823d-05fd9951d46b",
+  "ordinaryUserMetricsStatus": 403,
+  "rejectedToolAudit": {
+    "action": "EXECUTE",
+    "outcome": "REJECTED",
+    "traceId": "28976e70-a9db-4d87-81d5-6a8f641d0ba5",
+    "requestId": "b98e3045-901c-4adb-982b-9f62dd8f577a"
+  },
+  "normalModelConfigurationRestored": true
+}

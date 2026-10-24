@@ -11,3 +11,5 @@
 
 
 `003_trusted_tools.sql`在前两项之后执行：为users/demands补充乐观行版本，增加tool_intents/tool_audits。当前本机campus_m2_dev已重复执行两次验证；不删除用户、任务或旧对话。唯一索引保护同一用户请求键和成功发布的草稿版本；同名旧表结构不一致仍需人工审查。内部事务失败回滚，外部支付补偿未实现。
+
+`004_tool_observation_ids.sql`在003之后给工具审计增加可空trace_id/request_id，不补造历史编号。本机campus_m2_dev已备份并重复应用两次，前后用户/任务/审计行数一致；见docs/M3/evidence/01-mysql-migration.json。

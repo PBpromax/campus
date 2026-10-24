@@ -184,4 +184,11 @@ class ToolIntegrationTest {
             assertEquals(1,notifications.findAll().stream().filter(n->"ACCEPT".equals(n.getType())).count());
         } finally {pool.shutdownNow();}
     }
+    @Test void confirmedPublicationAuditsKeepTheCallingTrace() {
+        String trace=UUID.randomUUID().toString(),span=UUID.randomUUID().toString();
+        try(var scope=com.example.campushelp.observability.RequestTrace.use(Map.of("traceId",trace,"requestId",span))) {published();}
+        var succeeded=audits.findAll().stream().filter(a->a.getOutcome().equals("SUCCEEDED")).findFirst().orElseThrow();
+        assertEquals(trace,succeeded.getTraceId());assertEquals(span,succeeded.getRequestId());
+    }
+
 }

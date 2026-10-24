@@ -181,7 +181,8 @@ public class ToolTransactions {
             Map.entry("mobility","行动或搬运受限"),Map.entry("quiet","静默通知"),Map.entry("newcomer","不熟悉地点"),Map.entry("dropoff","指定点放置"),Map.entry("diagnosis","设备情况不清"),Map.entry("team","多人协助意向"),Map.entry("window","短时窗口"),Map.entry("scope","协助范围待明确")).getOrDefault(key,"待协商情境");
     }
     void audit(Long actor,String id,String action,String outcome,String message) {
-        var a=new ToolAudit();a.setActorId(actor);a.setIntentId(id);a.setAction(action);a.setOutcome(outcome);a.setMessage(message);audits.saveAndFlush(a);
+        var a=new ToolAudit();a.setActorId(actor);a.setIntentId(id);a.setAction(action);a.setOutcome(outcome);a.setMessage(message);
+        a.setTraceId(com.example.campushelp.observability.RequestTrace.traceId());a.setRequestId(com.example.campushelp.observability.RequestTrace.requestId());audits.saveAndFlush(a);
     }
     Receipt view(ToolIntent intent) {return new Receipt(intent.getId(),intent.getAction(),intent.getState(),intent.getExpiresAt(),read(intent.getPreviewJson(),Preview.class),intent.getResultJson()==null?null:read(intent.getResultJson(),DemandResponse.class),intent.getErrorCode(),intent.getErrorMessage(),intent.getSourceSessionId(),intent.getSourceRevision());}
     private String write(Object value) {try{return json.writeValueAsString(value);}catch(Exception e){throw new IllegalStateException("Tool serialization failed",e);}}

@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-24T18:30:37.075075+08:00",
+  "database": "campus_m2_dev",
+  "migration": "004_tool_observation_ids.sql",
+  "runs": 2,
+  "backup": "/tmp/campus-m3-before-004.sql (private, mode 600)",
+  "countsBefore": {
+    "users": 8,
+    "demands": 10,
+    "audits": 79
+  },
+  "countsAfter": {
+    "users": 8,
+    "demands": 10,
+    "audits": 79
+  },
+  "columns": [
+    "request_id",
+    "trace_id"
+  ],
+  "rowCountsUnchanged": true,
+  "initialBackupFailure": "RELOAD/FLUSH_TABLES not granted; corrected dump options set-gtid-purged=OFF, no grant changes"
+}

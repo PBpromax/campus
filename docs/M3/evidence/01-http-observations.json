@@ -1,0 +1,371 @@
+[
+  {
+    "kind": "http",
+    "traceId": "28976e70-a9db-4d87-81d5-6a8f641d0ba5",
+    "requestId": "f8387cf3-ba15-426c-823d-05fd9951d46b",
+    "method": "POST",
+    "route": "/api/users/login",
+    "status": 200,
+    "durationMs": 126
+  },
+  {
+    "kind": "http",
+    "traceId": "28976e70-a9db-4d87-81d5-6a8f641d0ba5",
+    "requestId": "fbf473d4-cfca-4738-92a8-84815a13e318",
+    "method": "GET",
+    "route": "/api/ops/model-observations",
+    "status": 403,
+    "durationMs": 12
+  },
+  {
+    "kind": "http",
+    "traceId": "28976e70-a9db-4d87-81d5-6a8f641d0ba5",
+    "requestId": "b98e3045-901c-4adb-982b-9f62dd8f577a",
+    "method": "POST",
+    "route": "/api/trusted-tools/{id}/execute",
+    "status": 422,
+    "durationMs": 35
+  },
+  {
+    "kind": "http",
+    "traceId": "28976e70-a9db-4d87-81d5-6a8f641d0ba5",
+    "requestId": "3238ca2a-5ff9-4972-a439-0c347ac93784",
+    "method": "GET",
+    "route": "/api/trusted-tools/audits",
+    "status": 200,
+    "durationMs": 5
+  },
+  {
+    "kind": "http",
+    "traceId": "28976e70-a9db-4d87-81d5-6a8f641d0ba5",
+    "requestId": "cc79398c-a625-437e-aea6-d16093f86009",
+    "method": "GET",
+    "route": "/api/need-sessions/ai-status",
+    "status": 200,
+    "durationMs": 1
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "45bf067b-0af3-4298-aeb6-9a65750860bc",
+    "method": "POST",
+    "route": "/api/users/register",
+    "status": 200,
+    "durationMs": 82
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "d1af122a-6700-49e5-b846-937dec8b0a3c",
+    "method": "POST",
+    "route": "/api/users/login",
+    "status": 200,
+    "durationMs": 70
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "49c9fcc1-3586-4be4-9de9-225890d78672",
+    "method": "POST",
+    "route": "/api/need-sessions",
+    "status": 200,
+    "durationMs": 9
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "832faba9-97cb-4d5d-a446-8a57c5821f81",
+    "method": "GET",
+    "route": "/api/need-sessions/catalog",
+    "status": 200,
+    "durationMs": 2
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "3f090c2b-baf7-4a17-a3f7-f9d7a6ef50da",
+    "method": "PUT",
+    "route": "/api/need-sessions/{id}/category",
+    "status": 200,
+    "durationMs": 17
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "27806f40-1a8f-4d43-8594-3b52ac05bf78",
+    "method": "PUT",
+    "route": "/api/need-sessions/{id}/draft",
+    "status": 200,
+    "durationMs": 12
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "4e35d476-ddf8-43f5-96c4-a06e17812f63",
+    "method": "PUT",
+    "route": "/api/need-sessions/{id}/category",
+    "status": 200,
+    "durationMs": 8
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "957111f5-b8b4-43f4-a484-bc0af0189a67",
+    "method": "PUT",
+    "route": "/api/need-sessions/{id}/draft",
+    "status": 200,
+    "durationMs": 7
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "394114fa-d6f1-4a41-b0e5-6fc27c92db3f",
+    "method": "PUT",
+    "route": "/api/need-sessions/{id}/category",
+    "status": 200,
+    "durationMs": 13
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "8c186062-d03a-42f3-836f-a401d9f050c4",
+    "method": "PUT",
+    "route": "/api/need-sessions/{id}/draft",
+    "status": 200,
+    "durationMs": 7
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "0ff2082e-a011-4719-ba66-119e821b381e",
+    "method": "PUT",
+    "route": "/api/need-sessions/{id}/category",
+    "status": 200,
+    "durationMs": 9
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "28b0ba2b-2adc-4a81-af65-e98f1a3ec710",
+    "method": "PUT",
+    "route": "/api/need-sessions/{id}/draft",
+    "status": 200,
+    "durationMs": 11
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "38944564-36e4-48b6-84b4-7f2ea7c9a8bb",
+    "method": "GET",
+    "route": "/api/need-sessions/{id}",
+    "status": 200,
+    "durationMs": 7
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "eefc1904-1dfc-4e48-aaec-6882aa5461a2",
+    "method": "PUT",
+    "route": "/api/need-sessions/{id}/category",
+    "status": 200,
+    "durationMs": 10
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "d0e7e42c-86c6-4343-8a0f-921fc223dc54",
+    "method": "POST",
+    "route": "/api/need-sessions/{id}/confirm",
+    "status": 200,
+    "durationMs": 8
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "69ce4ff5-48d9-4905-9025-f6ac1e0bcd7a",
+    "method": "POST",
+    "route": "/api/need-sessions/{id}/messages",
+    "status": 200,
+    "durationMs": 12
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "acbaed63-290b-4799-93f4-adedf0282af1",
+    "method": "GET",
+    "route": "/api/need-sessions/{id}",
+    "status": 200,
+    "durationMs": 3
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "4d4742fe-99a3-45f6-babd-e6c375e31fc1",
+    "method": "DELETE",
+    "route": "/api/need-sessions/{id}",
+    "status": 200,
+    "durationMs": 10
+  },
+  {
+    "kind": "http",
+    "traceId": "bc2c8af3-4920-414f-9dee-0419922414b0",
+    "requestId": "2783fc15-2ab0-4fdd-8eb0-cb62af8d7f67",
+    "method": "DELETE",
+    "route": "/api/users/{id}",
+    "status": 200,
+    "durationMs": 7
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "68de92c4-36fa-4223-b1f8-927c6ff0e2e2",
+    "method": "POST",
+    "route": "/api/users/register",
+    "status": 200,
+    "durationMs": 69
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "46615d78-8daa-4e18-836a-3b82fd7af07e",
+    "method": "POST",
+    "route": "/api/users/login",
+    "status": 200,
+    "durationMs": 67
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "cc963332-b8ed-4995-9f9d-1608a72b77d4",
+    "method": "POST",
+    "route": "/api/need-sessions",
+    "status": 200,
+    "durationMs": 3
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "cb0f1dd1-46ef-441b-bef5-17477b20773e",
+    "method": "PUT",
+    "route": "/api/need-sessions/{id}/category",
+    "status": 200,
+    "durationMs": 5
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "19572b59-c465-42e5-b528-6e656a630776",
+    "method": "PUT",
+    "route": "/api/need-sessions/{id}/draft",
+    "status": 200,
+    "durationMs": 4
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "b5ec601c-c8ac-4e18-9c65-2b2a141367ac",
+    "method": "POST",
+    "route": "/api/need-sessions/{id}/confirm",
+    "status": 200,
+    "durationMs": 5
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "718e142f-178f-4c0f-b2e2-60559e75cbbc",
+    "method": "POST",
+    "route": "/api/trusted-tools/prepare",
+    "status": 200,
+    "durationMs": 25
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "b65c4be5-6fca-4210-b0fb-d040c0dd13c3",
+    "method": "POST",
+    "route": "/api/trusted-tools/{id}/execute",
+    "status": 200,
+    "durationMs": 14
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "ecc2dc4c-4d1c-4c63-8949-4e3791810904",
+    "method": "POST",
+    "route": "/api/trusted-tools/{id}/execute",
+    "status": 200,
+    "durationMs": 3
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "79753837-9376-4c3b-b983-3898f94dd653",
+    "method": "POST",
+    "route": "/api/trusted-tools/prepare",
+    "status": 403,
+    "durationMs": 5
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "73f472b3-ff58-4a06-ac1e-2a07103c60d4",
+    "method": "GET",
+    "route": "/api/trusted-tools/{id}",
+    "status": 200,
+    "durationMs": 3
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "cb855e54-3b70-462d-aea1-473ca1a70d3a",
+    "method": "POST",
+    "route": "/api/trusted-tools/prepare",
+    "status": 200,
+    "durationMs": 5
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "e60698ec-9052-49ac-a8f6-2d1578a9b330",
+    "method": "POST",
+    "route": "/api/trusted-tools/{id}/execute",
+    "status": 200,
+    "durationMs": 6
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "03e92622-57ad-45a4-90f3-11228d002a83",
+    "method": "GET",
+    "route": "/api/trusted-tools/audits",
+    "status": 200,
+    "durationMs": 2
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "90f89d61-bca3-46a4-a30b-795528774e82",
+    "method": "DELETE",
+    "route": "/api/demands/{id}",
+    "status": 200,
+    "durationMs": 2
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "74dbb10c-d3d1-4990-98c1-adb4554c763c",
+    "method": "DELETE",
+    "route": "/api/need-sessions/{id}",
+    "status": 200,
+    "durationMs": 3
+  },
+  {
+    "kind": "http",
+    "traceId": "3a30b3d1-5b40-4559-8c07-7efabd151fdc",
+    "requestId": "b192b78f-c9fb-4630-b675-9e98a0c2762d",
+    "method": "DELETE",
+    "route": "/api/users/{id}",
+    "status": 200,
+    "durationMs": 2
+  }
+]

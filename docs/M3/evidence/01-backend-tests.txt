@@ -1,0 +1,14 @@
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 254, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jacoco:0.8.11:report (report) @ campus-help ---
+[INFO] Loading execution data file /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend/target/jacoco.exec
+[INFO] Analyzed bundle 'campus-help' with 75 classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  13.433 s
+[INFO] Finished at: 2026-10-24T18:29:50+08:00
+[INFO] ------------------------------------------------------------------------

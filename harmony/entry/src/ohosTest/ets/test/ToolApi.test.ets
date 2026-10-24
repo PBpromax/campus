@@ -48,6 +48,8 @@ export default function toolApiTest(): void {
         expect(cancelled.result?.status).assertEqual('CANCELLED');
         const audits = await api.send<ToolAudit[]>('/trusted-tools/audits');
         expect(audits.filter((a: ToolAudit) => a.outcome === 'SUCCEEDED').length).assertEqual(2);
+        expect(audits.every((a: ToolAudit) => a.traceId === api.currentTraceId())).assertTrue();
+        expect(audits.every((a: ToolAudit) => (a.requestId || '').length === 36)).assertTrue();
       } finally {
         // Delete only this disposable fixture. Historical tool receipts/audits remain for inspection.
         if (taskId > 0) { await api.send<string>('/demands/' + taskId,http.RequestMethod.DELETE); }
