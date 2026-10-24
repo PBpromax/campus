@@ -94,3 +94,14 @@ export function draftStatus(draft: NeedDraft): string {
   if (draft.confirmedRevision === draft.revision) { return '草稿已确认（未发布）'; }
   return draft.assessment.ready ? '可核对草稿' : '继续澄清';
 }
+
+export interface AiProposal {
+  token: string;
+  sessionId: number;
+  revision: number;
+  category: NeedCategory | null;
+  fields: Record<string,string>;
+  candidates: NeedCategory[];
+  assessment: Assessment;
+  warnings: string[];
+}

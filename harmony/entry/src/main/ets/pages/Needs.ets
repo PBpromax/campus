@@ -1,3 +1,5 @@
+import { AiEvent, AiText, AiNotice } from '../data/AiStream';
+import { AiProposal } from '../domain/NeedModels';
 import { CardSchema, CardNode, emptySchema, buildCards, decodeCards, allowsAction } from '../ui/CardProtocol';
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -11,6 +13,9 @@ struct Needs {
   @State private cardSchema: CardSchema = emptySchema();
   @State private cardError: string = '';
   @State private fixedForm: boolean = false;
+  @State private aiText: string = '';
+  @State private aiRunning: boolean = false;
+  @State private aiProposal: AiProposal | undefined = undefined;
   private api: NeedApi = new NeedApi();
   private categories: NeedCategory[] = [NeedCategory.RUNNING, NeedCategory.STUDY, NeedCategory.BORROW, NeedCategory.OTHER];
   @State private username: string = '';
@@ -28,7 +33,9 @@ struct Needs {
   @State private routeInput: string = '';
 
   private accept(session: NeedSession): void {
+    if (this.session.id !== session.id || this.session.activeCategory !== session.activeCategory) { this.aiText = ''; }
     this.session = session;
+    this.aiProposal = undefined;
     const draft = activeDraft(session);
     this.edits = draft === undefined ? {} : copyFields(draft.fields);
     this.contexts = draft === undefined ? [] : draft.contexts.slice();
@@ -47,7 +54,7 @@ struct Needs {
       if (this.sessions.length > 0) { this.accept(this.sessions[0]); }
       else { this.accept(await this.api.send<NeedSession>('/need-sessions', http.RequestMethod.POST)); }
       this.loggedIn = true;
-      this.notice = '服务端草稿已加载。分类候选来自有限规则，尚未接入模型。';
+      this.notice = '服务端草稿已加载。可以与DeepSeek对话；字段建议需你核对后采用。';
     } catch (error) { this.notice = (error as BusinessError).message; }
     finally { this.busy = false; }
   }
@@ -82,9 +89,42 @@ struct Needs {
       if (intake) { this.routeInput = ''; } else { this.messageInput = ''; }
     }
   }
+  private async askAi(intake: boolean): Promise<void> {
+    if (this.busy || this.dirty) { this.notice = '请先保存字段修改再对话。'; return; }
+    const text = intake ? this.routeInput : this.messageInput;
+    if (text.trim().length === 0) { return; }
+    const body: MessageRequest = { revision: this.session.revision, text: text };
+    this.busy = true; this.aiRunning = true; this.aiText = ''; this.aiProposal = undefined;
+    this.notice = '正在连接DeepSeek；AI回复不代表任务已经执行。';
+    try {
+      await this.api.stream('/need-sessions/' + this.session.id + '/ai-stream', JSON.stringify(body), (event: AiEvent) => {
+        if (event.kind === 'session') {
+          const remote = JSON.parse(event.data) as NeedSession;
+          this.accept(remote);
+          if (intake) { this.routeInput = ''; } else { this.messageInput = ''; }
+        } else if (event.kind === 'text_delta') { this.aiText += (JSON.parse(event.data) as AiText).text; }
+        else if (event.kind === 'proposal') {
+          const proposal = JSON.parse(event.data) as AiProposal;
+          if (proposal.sessionId === this.session.id && proposal.revision === this.session.revision) { this.aiProposal = proposal; }
+        } else if (event.kind === 'notice' || event.kind === 'failure') {
+          this.notice = (JSON.parse(event.data) as AiNotice).message;
+        } else if (event.kind === 'done') { this.aiText = ''; this.notice = '回复完成，可继续追问；如有字段建议，请核对后选择采用。'; }
+      });
+    } catch (error) { this.aiProposal = undefined; this.notice = (error as BusinessError).message + '；已有草稿保留，请重新加载核对。'; }
+    finally { this.busy = false; this.aiRunning = false; }
+  }
+  private async adoptProposal(proposal: AiProposal): Promise<void> {
+    if (this.busy || this.dirty || this.messageInput.trim().length > 0 || proposal.sessionId !== this.session.id || proposal.revision !== this.session.revision) {
+      this.notice = '建议已过期或仍有未保存修改，请重新对话核对。'; return;
+    }
+    const body: VersionRequest = { revision: proposal.revision };
+    await this.perform('/ai-proposals/' + proposal.token + '/apply', http.RequestMethod.POST, JSON.stringify(body));
+  }
+  aboutToDisappear(): void { this.api.cancelStream(); }
+
   private async reload(discard: boolean = false): Promise<void> {
     if ((this.dirty || this.messageInput.trim().length > 0) && !discard) { this.notice = '当前有未保存修改，请先保存；切勿直接丢弃输入。'; return; }
-    if (await this.perform('', http.RequestMethod.GET, '') && discard) { this.messageInput = ''; }
+    if (await this.perform('', http.RequestMethod.GET, '')) { this.aiText = ''; if (discard) { this.messageInput = ''; } }
   }
   private definitions(): NeedField[] {
     const entry = this.catalog.find((c: DomainCatalog) => c.category === this.session.activeCategory);
@@ -154,10 +194,11 @@ struct Needs {
         Text('可以先发送当前知识点或卡住的步骤；普通交流不要求报酬、地点或完成时间。').fontSize(14)
       }
       ForEach(this.session.messages.filter((m: NeedMessage) => m.category === draft.category), (m: NeedMessage) => {
-        Text(m.text).width('100%').padding(10).backgroundColor('#EEF3FA')
+        Text((m.role === 'ASSISTANT' ? 'AI · ' : '你 · ') + m.text).width('100%').padding(10).backgroundColor('#EEF3FA')
       }, (m: NeedMessage) => m.id.toString())
-      TextInput({ text: this.messageInput, placeholder: '继续补充当前问题或约束' }).enabled(!this.busy).onChange((v: string) => { this.messageInput = v; })
-      Button('保存这条上下文').enabled(!this.busy).onClick(() => { this.message(false); })
+      TextInput({ text: this.messageInput, placeholder: '继续补充当前问题或约束' }).maxLength(4000).enabled(!this.busy).onChange((v: string) => { this.messageInput = v; })
+      Button(this.aiRunning ? '回复中…' : '发送给DeepSeek').enabled(!this.busy && !this.dirty).onClick(() => { this.askAi(false); })
+      Button('仅保存上下文，不调用AI').enabled(!this.busy).onClick(() => { this.message(false); })
       Text('当前情境（可多选）').fontWeight(FontWeight.Medium)
       ForEach(contextOptions(draft.category), (option: ContextOption) => {
         Row() {
@@ -202,7 +243,7 @@ struct Needs {
     Scroll() {
       Column({ space: 16 }) {
         Text('Campus · 四业务需求草稿').fontSize(26).fontWeight(FontWeight.Bold)
-        Text('按需补充信息并保存草稿 · 卡片由规则生成，尚未接入模型或发布工具。').fontSize(13)
+        Text('DeepSeek对话 → 核对字段建议 → 采用并更新卡片；真实发布工具尚未接入。').fontSize(13)
         if (!this.loggedIn) {
           TextInput({ text: this.username, placeholder: '已有平台用户名' }).onChange((v: string) => { this.username = v; })
           TextInput({ text: this.password, placeholder: '密码（不保存）' }).type(InputType.Password).onChange((v: string) => { this.password = v; })
@@ -211,7 +252,7 @@ struct Needs {
           Text('会话 #' + this.session.id + ' · 版本 ' + this.session.revision).fontSize(13)
           Row({ space: 10 }) {
             Button('重新加载').enabled(!this.busy).onClick(() => { this.reload(); })
-            Button('退出登录').onClick(() => {
+            Button('退出登录').enabled(!this.busy).onClick(() => {
               if (this.dirty || this.messageInput.trim().length > 0) { this.notice = '请先保存输入，或使用放弃输入的退出按钮。'; return; }
               this.api.clear(); this.loggedIn = false; this.accept(emptySession()); this.sessions = []; this.notice = '';
             })
@@ -238,8 +279,9 @@ struct Needs {
               finally { this.busy = false; }
             })
           }, (s: NeedSession) => s.id.toString())
-          TextInput({ text: this.routeInput, placeholder: '先说想完成什么，例如想借相机并代取快递' }).enabled(!this.busy).onChange((v: string) => { this.routeInput = v; })
-          Button('保存目标并提出分类候选（规则）').enabled(!this.busy).onClick(() => { this.message(true); })
+          TextInput({ text: this.routeInput, placeholder: '先说想完成什么，例如想借相机并代取快递' }).maxLength(4000).enabled(!this.busy).onChange((v: string) => { this.routeInput = v; })
+          Button('与DeepSeek澄清目标').enabled(!this.busy && !this.dirty).onClick(() => { this.askAi(true); })
+          Button('仅保存目标并提出规则候选').enabled(!this.busy).onClick(() => { this.message(true); })
           if (this.session.routePending) {
             Text(this.session.candidates.length === 0 ? '类别未知：请补充目标或手动选择；不会自动归入其他。' : '规则候选：' + this.session.candidates.map((c: NeedCategory) => domainName(c)).join('、') + '。请明确选择一项。')
           }
@@ -247,8 +289,27 @@ struct Needs {
             Button(domainName(category) + (this.session.drafts.some((d: NeedDraft) => d.category === category) ? ' · 选择 / 恢复草稿' : ' · 选择'))
               .enabled(!this.busy).onClick(() => { this.select(category); })
           }, (category: NeedCategory) => category)
-          ForEach(this.session.messages.filter((m: NeedMessage) => m.category === null), (m: NeedMessage) => { Text('原始目标：' + m.text).fontSize(13); }, (m: NeedMessage) => m.id.toString())
+          ForEach(this.session.messages.filter((m: NeedMessage) => m.category === null), (m: NeedMessage) => { Text((m.role === 'ASSISTANT' ? 'AI · ' : '原始目标：') + m.text).fontSize(13); }, (m: NeedMessage) => m.id.toString())
           ForEach(this.session.drafts.filter((draft: NeedDraft) => draft.category === this.session.activeCategory), (draft: NeedDraft) => { this.draftPanel(draft); }, (draft: NeedDraft) => draft.id.toString() + ':' + draft.revision.toString())
+        }
+        if (this.aiRunning) { Button('停止接收回复').onClick(() => { this.api.cancelStream(); }) }
+        if (this.aiText.length > 0) { Text('AI回复（仅供核对，不代表执行结果）').fontWeight(FontWeight.Bold); Text(this.aiText).width('100%') }
+        if (this.aiProposal !== undefined) {
+          Column({ space: 8 }) {
+            Text('待核对的字段建议（5分钟内有效）').fontWeight(FontWeight.Bold)
+            ForEach(this.aiProposal.warnings, (warning: string) => { Text(warning).fontColor('#875500'); })
+            ForEach(Object.keys(this.aiProposal.fields), (key: string) => {
+              Text(this.fieldLabel(key) + '：' + (this.aiProposal?.fields[key] || '')).width('100%')
+            }, (key: string) => key)
+            ForEach(this.aiProposal.candidates, (category: NeedCategory) => {
+              Button('选择业务：' + domainName(category)).enabled(!this.busy && !this.dirty)
+                .onClick(() => { this.select(category); })
+            }, (category: NeedCategory) => category)
+            Button('采用字段建议（不确认、不发布）')
+              .enabled(!this.busy && !this.dirty && this.messageInput.trim().length === 0 && Object.keys(this.aiProposal.fields).length > 0)
+              .onClick(() => { if (this.aiProposal !== undefined) { this.adoptProposal(this.aiProposal); } })
+            Button('忽略建议').enabled(!this.busy).onClick(() => { this.aiProposal = undefined; })
+          }.width('100%').padding(12).backgroundColor('#EEF3FA')
         }
         Text(this.notice).fontSize(14).fontColor('#285F45')
       }.width('100%').padding(20).alignItems(HorizontalAlign.Start)

@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-10-24T12:44:32.803807+08:00",
+  "step": 4,
+  "provider": "DeepSeek",
+  "model": "deepseek-flash",
+  "liveInitialProbeHttp": 200,
+  "backendTests": {
+    "tests": 207,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "regularDeviceTests": {
+    "passed": 22,
+    "errors": 0,
+    "failures": 0
+  },
+  "realDeviceSmokeTests": {
+    "initialPassed": 1,
+    "finalPassed": 1
+  },
+  "realCallsThisTurn": {
+    "connectivityProbe": 1,
+    "fourDomainAndFollowUp": 5,
+    "deviceSmoke": 2,
+    "total": 8,
+    "automaticRetries": 0
+  },
+  "fourDomainsProposedAndAdopted": true,
+  "studyFollowUpPersisted": true,
+  "observedModelIssue": "OTHER guessed helperCount without an explicit people count; evidence filter and 2 regression tests added. Initial live evidence preserved as pre-fix.",
+  "mainBuild": "SUCCESS",
+  "testBuild": "SUCCESS",
+  "device": "127.0.0.1:5555",
+  "signed": false,
+  "backendHttp": 200,
+  "demandCount": 0,
+  "taskPublicationImplemented": false,
+  "messageRoleMigration": "002 applied to campus_m2_dev",
+  "mainHapSha256": "ad2d9d17e7013cfe6389123a45d15050168c050683b00209817baee1373249d4",
+  "limitations": [
+    "No token-offset stream replay or automatic retry",
+    "In-memory proposals expire after 5 minutes or backend restart",
+    "Model suggestions can still be wrong; user review required",
+    "Complete visual/button-flow testing and release signing pending",
+    "No trusted task execution yet"
+  ]
+}

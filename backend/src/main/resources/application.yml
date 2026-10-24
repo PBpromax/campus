@@ -27,3 +27,7 @@ sms:
     template-code: ${SMS_TEMPLATE_CODE:}
 demo:
   seed-enabled: ${DEMO_SEED_ENABLED:false}
+
+deepseek:
+  api-key: ${DEEPSEEK_API_KEY:}
+  model: ${DEEPSEEK_MODEL:deepseek-flash}

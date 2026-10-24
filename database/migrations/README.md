@@ -5,3 +5,6 @@
 先确认连接和目标数据库并备份，再用MySQL客户端执行该脚本。它不删除旧表，也不更改`users`/`demands`。`CREATE TABLE IF NOT EXISTS`仅避免重复创建，不会自动修复结构不一致的同名旧表；有差异时先审查结构，不要清库重来。
 
 当前开发配置继续由Hibernate执行自动结构更新；生产环境的版本化迁移、回滚与MySQL8验证仍需另行完成。不要使用项目早期建库/清库脚本代替增量升级。
+
+
+`002_ai_message_roles.sql`在001之后执行，为消息补充USER/ASSISTANT角色。先检查列，重复执行不删除数据；旧消息保持USER。本机campus_m2_dev已应用。

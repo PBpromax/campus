@@ -76,6 +76,11 @@ public class NeedService {
         d.setRevision(d.getRevision()+1);d.setConfirmedRevision(null);drafts.saveAndFlush(d);
         append(s,d.getCategory(),request.text());changed(s);return view(s);
     }
+    public Session assistant(Long user,long id,long revision,String text) {
+        if(text.isBlank() || text.length()>4000) throw new BusinessException(422,"回复长度无效");
+        var s=lock(user,id,revision);
+        append(s,s.getActiveCategory(),text,"ASSISTANT");changed(s);return view(s);
+    }
     public Session confirm(Long user,long id,Version request) {
         var s=lock(user,id,request.revision());var d=active(s);
         if(s.isRoutePending()) throw new BusinessException(409,"请先选择本次处理的业务");
@@ -89,8 +94,11 @@ public class NeedService {
         lock(user,id,request.revision());messages.deleteBySessionId(id);drafts.deleteBySessionId(id);sessions.deleteById(id);
     }
     private void append(NeedSession s,NeedCategory category,String text) {
+        append(s,category,text,"USER");
+    }
+    private void append(NeedSession s,NeedCategory category,String text,String role) {
         if(messages.countBySessionId(s.getId())>=200) throw new BusinessException(422,"单个会话最多200条消息，请新建会话");
-        var m=new NeedMessage();m.setSessionId(s.getId());m.setCategory(category);m.setText(text);messages.saveAndFlush(m);
+        var m=new NeedMessage();m.setSessionId(s.getId());m.setCategory(category);m.setText(text);m.setRole(role);messages.saveAndFlush(m);
     }
     private NeedSession lock(Long user,long id,long revision) {
         var s=sessions.lockOwned(id,user).orElseThrow(()->new BusinessException(404,"会话不存在"));
@@ -112,7 +120,7 @@ public class NeedService {
             values.forEach((key,value)->provenance.put(key,value.isBlank()?"UNKNOWN":"USER_DECLARED"));
             return new Draft(d.getId(),d.getCategory(),d.getRevision(),d.getConfirmedRevision(),values,provenance,contexts,rules.assess(d.getCategory(),values,contexts));
         }).toList();
-        var history=messages.findBySessionIdOrderById(s.getId()).stream().map(m->new Conversation(m.getId(),m.getCategory(),"USER",m.getText(),m.getCreatedAt())).toList();
+        var history=messages.findBySessionIdOrderById(s.getId()).stream().map(m->new Conversation(m.getId(),m.getCategory(),m.getRole()==null?"USER":m.getRole(),m.getText(),m.getCreatedAt())).toList();
         return new Session(s.getId(),s.getRevision(),s.getActiveCategory(),s.isRoutePending(),s.getIntakeText(),rules.suggest(s.getIntakeText()),views,history,s.getUpdatedAt());
     }
 }

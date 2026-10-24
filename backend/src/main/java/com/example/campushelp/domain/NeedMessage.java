@@ -10,6 +10,7 @@ public class NeedMessage {
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY) private Long id;
     @Column(name="session_id",nullable=false) private Long sessionId;
     @Enumerated(EnumType.STRING) @Column(length=16) private NeedCategory category;
+    @Column(nullable=false,columnDefinition="varchar(16) default 'USER'") private String role = "USER";
     @Column(nullable=false,length=4000) private String text;
     @Column(nullable=false) private LocalDateTime createdAt = LocalDateTime.now();
 }
