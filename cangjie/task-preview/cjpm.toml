@@ -1,0 +1,8 @@
+[package]
+  cjc-version = "1.2.0"
+  name = "campus_task_preview"
+  version = "0.1.0"
+  output-type = "executable"
+  src-dir = "src"
+  target-dir = "build"
+  description = "Read-only task transition projection with bounded concurrency"

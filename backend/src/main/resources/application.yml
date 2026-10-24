@@ -34,3 +34,8 @@ deepseek:
 
 model-gateway:
   max-concurrent: ${MODEL_MAX_CONCURRENT:4}
+
+task-preview:
+  binary: ${TASK_PREVIEW_BINARY:}
+  runtime: ${TASK_PREVIEW_RUNTIME:}
+  timeout-ms: ${TASK_PREVIEW_TIMEOUT_MS:3000}

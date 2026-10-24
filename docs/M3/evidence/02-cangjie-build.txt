@@ -1,0 +1,3 @@
+Cangjie Compiler: 1.2.0 (cjnative)
+Target: aarch64-apple-darwin
+Built /Users/pbpromax/Desktop/campus/sec-ii-2026 2/cangjie/task-preview/build/task-preview

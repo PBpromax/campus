@@ -1,0 +1,111 @@
+{
+  "at": "2026-10-24T18:53:44.445553+08:00",
+  "traceId": "2800bebe-4338-4cbb-8df5-2c0d23b3225e",
+  "fixtureTaskId": 17,
+  "fixtureSetup": "Legacy task-create API, explicitly test data; not an AI publication flow",
+  "sourceDatabase": {
+    "status": "PENDING",
+    "rowVersion": 0,
+    "acceptorId": 0
+  },
+  "projections": [
+    {
+      "event": "ACCEPT",
+      "role": "OTHER",
+      "requestId": "8ef32ffa-c645-44e2-8e85-9f763ad07e02",
+      "result": {
+        "engine": "Cangjie 1.2.0 / transition-v1",
+        "source": {
+          "id": 17,
+          "category": "STUDY",
+          "status": "PENDING",
+          "version": 0
+        },
+        "participant": "OTHER",
+        "event": "ACCEPT",
+        "decision": {
+          "outcome": "APPLIED",
+          "status": "IN_PROGRESS",
+          "version": 1
+        },
+        "notice": "只预览状态变化，尚未执行；不代表已通过信用、取消时限或其他业务检查。真实操作仍须准备确认卡并明确执行，执行时重新核对。"
+      },
+      "databaseUnchanged": true
+    },
+    {
+      "event": "CANCEL",
+      "role": "PUBLISHER",
+      "requestId": "eab74785-3c5d-4f80-968c-81c358e23ef0",
+      "result": {
+        "engine": "Cangjie 1.2.0 / transition-v1",
+        "source": {
+          "id": 17,
+          "category": "STUDY",
+          "status": "PENDING",
+          "version": 0
+        },
+        "participant": "PUBLISHER",
+        "event": "CANCEL",
+        "decision": {
+          "outcome": "APPLIED",
+          "status": "CANCELLED",
+          "version": 1
+        },
+        "notice": "只预览状态变化，尚未执行；不代表已通过信用、取消时限或其他业务检查。真实操作仍须准备确认卡并明确执行，执行时重新核对。"
+      },
+      "databaseUnchanged": true
+    },
+    {
+      "event": "ACCEPT",
+      "role": "PUBLISHER",
+      "requestId": "17fe2bbc-8ffa-49a3-9a3d-74b9cc0bec3c",
+      "result": {
+        "engine": "Cangjie 1.2.0 / transition-v1",
+        "source": {
+          "id": 17,
+          "category": "STUDY",
+          "status": "PENDING",
+          "version": 0
+        },
+        "participant": "PUBLISHER",
+        "event": "ACCEPT",
+        "decision": {
+          "outcome": "STATE_OR_ROLE_REJECTED",
+          "status": "PENDING",
+          "version": 0
+        },
+        "notice": "只预览状态变化，尚未执行；不代表已通过信用、取消时限或其他业务检查。真实操作仍须准备确认卡并明确执行，执行时重新核对。"
+      },
+      "databaseUnchanged": true
+    }
+  ],
+  "paidModelCalls": 0,
+  "componentOutage": {
+    "previewStatus": 503,
+    "normalToolPrepare": "PREPARED",
+    "revoke": "REVOKED",
+    "databaseTaskUnchanged": true
+  },
+  "componentRestored": true,
+  "afterUiPreview": {
+    "status": "PENDING",
+    "rowVersion": 0,
+    "acceptorId": 0
+  },
+  "uiReviewedAt": "2026-10-24T18:54:46.090845+08:00",
+  "cleanup": {
+    "method": "separate explicitly confirmed trusted CANCEL, after preview checks",
+    "database": {
+      "status": "CANCELLED",
+      "rowVersion": 1,
+      "acceptorId": 0
+    }
+  },
+  "postRebuildProbe": {
+    "requestId": "dda62dae-3962-4fa7-a199-4d96ca61910c",
+    "sourceStatus": "CANCELLED",
+    "outcome": "STATE_OR_ROLE_REJECTED",
+    "componentAvailable": true,
+    "modelConfigurationAvailable": true
+  }
+}

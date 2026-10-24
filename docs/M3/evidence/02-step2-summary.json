@@ -1,0 +1,68 @@
+{
+  "at": "2026-10-24T19:03:38.962691+08:00",
+  "milestone": "M3",
+  "step": 2,
+  "status": "local dual-language model and callable read-only Cangjie component verified",
+  "baseCommit": "13af9df",
+  "branch": "feature/m3-agent-reliability",
+  "toolchain": "02-toolchain.json",
+  "builds": {
+    "cjc": "passed",
+    "cjpm": "passed",
+    "harmonyMain": "passed",
+    "harmonyTest": "passed"
+  },
+  "backend": {
+    "tests": 262,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "harmony": {
+    "device": "API26 Campus_M2_Phone",
+    "tests": 33,
+    "pass": 33,
+    "failure": 0,
+    "error": 0,
+    "sharedGoldenCasesInsideOneTest": 240
+  },
+  "sharedFixtureSha256": "2bdca7362a6df4d696f08ca753bef174b5477648ea531dd8d20e038d34efc9c5",
+  "cangjie": {
+    "goldenCases": 240,
+    "invalidProtocolsRejected": 10,
+    "sameEventConcurrency": {
+      "events": 128,
+      "applied": 1,
+      "replay": 127
+    },
+    "contention": {
+      "SERIAL": {
+        "rounds": 12,
+        "p50ProcessMs": 18.793,
+        "minProcessMs": 16.229,
+        "maxProcessMs": 19.149
+      },
+      "PARALLEL": {
+        "rounds": 12,
+        "p50ProcessMs": 18.558,
+        "minProcessMs": 15.783,
+        "maxProcessMs": 19.56
+      }
+    }
+  },
+  "pythonConfigurationTests": 7,
+  "realHttpEvidence": "02-live-preview.json",
+  "nativeScreenshot": "02-native-transition-preview.png",
+  "paidModelCallsThisStep": 0,
+  "remaining": [
+    "model end-to-end stream deadline/circuit breaker/quota/cost budget",
+    "target-platform deployment and runtime packaging",
+    "system load/SLO/failure-injection review"
+  ],
+  "limitations": [
+    "Mac arm64 component only",
+    "in-memory projection is not persistent business idempotency",
+    "state projection does not decide credit, deadline, consent or actual business execution",
+    "local process timings do not prove parallel speedup"
+  ]
+}

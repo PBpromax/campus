@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-24T19:03:38.960115+08:00",
+  "source": "https://cangjie-lang.cn/download/1.2.0",
+  "archive": "sdk.tar.gz",
+  "archiveBytes": 163787681,
+  "sha256": "de88d6ba2185c94979e0ab2fe8ac1d81535dfdff3fcb51fbba71e4b99d851f97",
+  "officialSha256Matched": true,
+  "installedOutsideRepository": true,
+  "shellStartupFilesChanged": false,
+  "compiler": "Cangjie Compiler: 1.2.0 (cjnative), aarch64-apple-darwin",
+  "binarySha256": "8880bc8ac7702d6be4632ea8043929ac8466d4e3485b1ad8abba4583c90f85f0"
+}

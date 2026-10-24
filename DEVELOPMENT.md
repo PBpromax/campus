@@ -57,3 +57,8 @@ mvn -version
 其他电脑配置自己的JDK21路径即可，不要求相同缓存目录。
 
 M1独立原型：`cd docs/M1/prototype` 后执行 `npm ci`、`npm test`、`npm run build`、`npm run preview`，地址 http://127.0.0.1:5187 。Node需20.19+或22.12+；无需数据库和密钥。[完整交付](./docs/M1/README.md)。
+
+
+## M3仓颉只读组件
+
+本机Mac ARM64已使用独立Cangjie 1.2.0 SDK；在仓库根目录运行`python3 scripts/build-task-preview.py`与`python3 scripts/verify-task-preview.py`。构建后开发启动器自动检测默认路径，启用只读状态预览；生产默认不启用，需明确配置TASK_PREVIEW_BINARY和TASK_PREVIEW_RUNTIME。SDK/二进制不进入Git，子进程不接收DB/JWT/模型密钥。详见[组件说明](./cangjie/task-preview/README.md)及[M3第二步](./docs/M3/03-双语言任务模型与仓颉组件.md)。

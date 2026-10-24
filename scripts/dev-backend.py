@@ -48,6 +48,12 @@ def main():
             break
     else:
         raise SystemExit('Java 21 required. Set JAVA_HOME to your JDK 21 installation.')
+    # Optional, read-only Cangjie component built from this checkout. No secret is passed to it.
+    component = root / 'cangjie/task-preview/build/task-preview'
+    component_runtime = Path.home() / '.cache/campus-toolchains/cangjie-1.2.0/cangjie/runtime/lib/darwin_aarch64_cjnative'
+    if component.is_file() and component_runtime.is_dir():
+        env.setdefault('TASK_PREVIEW_BINARY', str(component))
+        env.setdefault('TASK_PREVIEW_RUNTIME', str(component_runtime))
     mvn = shutil.which('mvn', path=env['PATH'])
     if not mvn:
         raise SystemExit('Maven is missing from PATH.')

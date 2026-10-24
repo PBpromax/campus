@@ -1,8 +1,9 @@
+import { TransitionPreview, TransitionRequest, TaskEventKind, TaskEvent, projectTransition } from '../../../main/ets/domain/TaskTransitions';
 import { describe, it, expect } from '@ohos/hypium';
 import { http } from '@kit.NetworkKit';
 import { NeedApi } from '../../../main/ets/data/NeedApi';
 import { LoginRequest, LoginResult, NeedSession, CategoryRequest, EditRequest, VersionRequest, NeedCategory, emptySession } from '../../../main/ets/domain/NeedModels';
-import { ToolReceipt, ToolPrepare, ToolConfirm, ToolAudit } from '../../../main/ets/domain/ToolModels';
+import { ToolReceipt, ToolPrepare, ToolConfirm, ToolAudit, TaskSummary } from '../../../main/ets/domain/ToolModels';
 
 export default function toolApiTest(): void {
   describe('ToolApiTest', () => {
@@ -33,6 +34,13 @@ export default function toolApiTest(): void {
         expect(receipt.state).assertEqual('SUCCEEDED');
         if (receipt.result !== null) { taskId = receipt.result.id; }
         expect(taskId > 0).assertTrue();
+        const prediction: TransitionRequest = { demandId: taskId, event: TaskEventKind.CANCEL };
+        const projected = await api.send<TransitionPreview>('/task-transition-preview',http.RequestMethod.POST,JSON.stringify(prediction));
+        expect(projected.engine).assertEqual('Cangjie 1.2.0 / transition-v1');expect(projected.source.status).assertEqual('PENDING');expect(projected.decision.status).assertEqual('CANCELLED');
+        const predictionEvent: TaskEvent = { taskId: projected.source.id, id: 'preview', expectedVersion: projected.source.version, kind: projected.event, participant: projected.participant };
+        expect(projectTransition(projected.source,predictionEvent).outcome).assertEqual(projected.decision.outcome);
+        const current = await api.send<TaskSummary[]>('/trusted-tools/tasks?scope=mine');
+        expect(current.filter((task: TaskSummary) => task.id === taskId)[0].status).assertEqual('PENDING');
         const replay = await api.send<ToolReceipt>('/trusted-tools/' + prepared.id + '/execute',http.RequestMethod.POST,JSON.stringify(confirm));
         expect(replay.result?.id).assertEqual(taskId);
         const forbidden: ToolPrepare = { action: 'ACCEPT', requestKey: 'own_' + stamp, demandId: taskId };

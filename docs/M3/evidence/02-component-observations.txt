@@ -1,0 +1,6 @@
+traceId=2c835fd0-83bf-4e27-a600-2e69f8d718bc requestId=c514d66c-4cf2-4a37-aa7c-68a440a659d3 outcome=APPLIED durationMs=22
+traceId=2800bebe-4338-4cbb-8df5-2c0d23b3225e requestId=8ef32ffa-c645-44e2-8e85-9f763ad07e02 outcome=APPLIED durationMs=20
+traceId=2800bebe-4338-4cbb-8df5-2c0d23b3225e requestId=eab74785-3c5d-4f80-968c-81c358e23ef0 outcome=APPLIED durationMs=20
+traceId=2800bebe-4338-4cbb-8df5-2c0d23b3225e requestId=17fe2bbc-8ffa-49a3-9a3d-74b9cc0bec3c outcome=STATE_OR_ROLE_REJECTED durationMs=21
+traceId=2800bebe-4338-4cbb-8df5-2c0d23b3225e requestId=e719a680-6254-4d7d-a06e-bf7fe9f0dedd outcome=APPLIED durationMs=57
+traceId=7de3a7f0-67c2-4951-9d47-321fe5106749 requestId=cbcfe9ae-b0ed-4204-92ba-82fcc784565e outcome=APPLIED durationMs=26

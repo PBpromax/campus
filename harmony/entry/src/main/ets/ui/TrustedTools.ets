@@ -1,3 +1,4 @@
+import { TransitionRequest, TransitionPreview, TaskEventKind, TaskEvent, projectTransition } from '../domain/TaskTransitions';
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { NeedApi } from '../data/NeedApi';
@@ -21,6 +22,7 @@ export struct TrustedTools {
   @State private target: string = '';
   @State private reason: string = '';
   @State private notice: string = '';
+  @State private transitionNotice: string = '';
   @State private receipt: ToolReceipt | undefined = undefined;
   @State private receipts: ToolReceipt[] = [];
   @State private audits: ToolAudit[] = [];
@@ -28,7 +30,7 @@ export struct TrustedTools {
   private requestKey: string = '';
   private requestSource: string = '';
 
-  private changed(): void { this.requestKey = ''; this.requestSource = ''; this.receipt = undefined; }
+  private changed(): void { this.transitionNotice = ''; this.requestKey = ''; this.requestSource = ''; this.receipt = undefined; }
   private setWorking(value: boolean): void { this.working = value; this.onWorking(value); }
   private async prepare(): Promise<void> {
     if (this.blocked || this.working) { return; }
@@ -53,6 +55,24 @@ export struct TrustedTools {
     this.setWorking(true);
     try { this.receipt = await this.api.send<ToolReceipt>('/trusted-tools/prepare',http.RequestMethod.POST,JSON.stringify(body)); this.notice = '已生成确认卡，尚未执行。请核对以下服务端内容。'; }
     catch (error) { this.notice = (error as BusinessError).message + '。未自动重试；保留同一请求编号。'; }
+    finally { this.setWorking(false); }
+  }
+  private async previewTransition(): Promise<void> {
+    if (this.blocked || this.working) { return; }
+    if (!/^\d+$/.test(this.target) || !Number.isSafeInteger(Number(this.target)) || Number(this.target) <= 0) {
+      this.transitionNotice = '请先选择准确的任务编号。'; return;
+    }
+    this.setWorking(true);
+    try {
+      const body: TransitionRequest = { demandId: Number(this.target), event: this.action === 'ACCEPT' ? TaskEventKind.ACCEPT : TaskEventKind.CANCEL };
+      const result = await this.api.send<TransitionPreview>('/task-transition-preview',http.RequestMethod.POST,JSON.stringify(body));
+      const event: TaskEvent = { taskId: result.source.id, id: 'preview', expectedVersion: result.source.version, kind: result.event, participant: result.participant };
+      const local = projectTransition(result.source,event);
+      if (local.outcome !== result.decision.outcome || local.status !== result.decision.status || local.version !== result.decision.version) {
+        throw new Error('两种语言的预览结果不一致，请重新加载核对');
+      }
+      this.transitionNotice = '状态预览（未执行）：' + result.source.status + ' → ' + result.decision.status + ' · ' + (result.decision.outcome === 'APPLIED' ? '状态规则匹配' : '状态规则未匹配：' + result.decision.outcome) + '\n' + result.notice;
+    } catch (error) { this.transitionNotice = (error as BusinessError).message + '。预览不影响原有确认流程。'; }
     finally { this.setWorking(false); }
   }
   private async execute(receipt: ToolReceipt): Promise<void> {
@@ -141,6 +161,10 @@ export struct TrustedTools {
         if (this.action === 'CANCEL') {
           TextInput({ text: this.reason, placeholder: '取消原因（接单方必须填写，信用将扣5分）' }).maxLength(500).enabled(!this.working && !this.blocked).onChange((v: string) => { this.changed(); this.reason = v; })
         }
+      }
+      if (this.action !== 'PUBLISH') {
+        Button('预览状态变化（不执行）').enabled(!this.working && !this.blocked).onClick(() => { this.previewTransition(); })
+        if (this.transitionNotice.length > 0) { Text(this.transitionNotice).fontSize(14).accessibilityLevel('yes') }
       }
       Button('准备执行确认卡（尚不执行）').enabled(!this.working && !this.blocked).onClick(() => { this.prepare(); })
       // Plain DTOs passed to @Builder are value parameters. Recreate the card on
