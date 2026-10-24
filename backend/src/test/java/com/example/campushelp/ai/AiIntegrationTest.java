@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrint;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
@@ -20,7 +21,9 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-@SpringBootTest @AutoConfigureMockMvc @ActiveProfiles("test")
+// The failure printer iterates MockHttpServletResponse headers while the SSE
+// worker may still be writing them. Inspect the completed async response instead.
+@SpringBootTest @AutoConfigureMockMvc(print=MockMvcPrint.NONE) @ActiveProfiles("test")
 class AiIntegrationTest {
     @Autowired NeedService needs;
     @Autowired AiProposalService proposals;
@@ -93,7 +96,25 @@ class AiIntegrationTest {
         assertEquals(403,mvc.perform(post("/api/need-sessions/"+s.id()+"/ai-stream").contentType("application/json").content("{\"revision\":0,\"text\":\"x\"}")).andReturn().getResponse().getStatus());
         when(client.configured()).thenReturn(false);
         var result=mvc.perform(post("/api/need-sessions/"+s.id()+"/ai-stream").header("Authorization","Bearer "+jwt.generateToken(8101L))
+            .accept(org.springframework.http.MediaType.TEXT_EVENT_STREAM)
             .contentType("application/json").content("{\"revision\":0,\"text\":\"x\"}")).andReturn();
-        assertEquals(503,result.getResponse().getStatus());assertEquals(0,needs.get(8101L,s.id()).messages().size());
+        assertEquals(503,result.getResponse().getStatus());
+        assertTrue(result.getResponse().getContentType().startsWith("application/json"));
+        assertEquals(503,json.readTree(result.getResponse().getContentAsByteArray()).get("code").asInt());
+        assertEquals(0,needs.get(8101L,s.id()).messages().size());
+    }
+    @Test void upstreamFailurePreservesSavedUserContextAndAllowsManualEdit() throws Exception {
+        var s=needs.create(8101L);s=needs.select(8101L,s.id(),new Select(s.revision(),NeedCategory.STUDY));
+        doAnswer(inv->{Consumer<String> emit=inv.getArgument(2);emit.accept("未完整回复");throw new java.io.IOException("fixture upstream unavailable");})
+            .when(client).stream(anyList(),anyMap(),any(),any());
+        var result=mvc.perform(post("/api/need-sessions/"+s.id()+"/ai-stream").header("Authorization","Bearer "+jwt.generateToken(8101L))
+            .contentType("application/json").content(json.writeValueAsString(new Message(s.revision(),"这一步为什么取负号？")))).andReturn();
+        result.getAsyncResult(5000);
+        var body=mvc.perform(asyncDispatch(result)).andReturn().getResponse().getContentAsString(java.nio.charset.StandardCharsets.UTF_8);
+        assertTrue(body.contains("event:failure"));assertFalse(body.contains("event:done"));
+        var remote=needs.get(8101L,s.id());assertEquals(1,remote.messages().size());assertEquals("USER",remote.messages().getFirst().role());
+        var edited=needs.edit(8101L,s.id(),new Edit(remote.revision(),Map.of("context","用户手动补充的表达式"),List.of()));
+        assertTrue(edited.drafts().getFirst().assessment().ready());
+        verify(client,times(1)).stream(anyList(),anyMap(),any(),any());
     }
 }

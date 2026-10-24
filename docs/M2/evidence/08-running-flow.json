@@ -1,0 +1,31 @@
+{
+  "recordedAt": "2026-10-24T17:20:06.908485+08:00",
+  "fixture": "disposable local test; real MySQL writes; no actual campus service or payment",
+  "case": {
+    "sessionId": 26,
+    "category": "RUNNING",
+    "startedAt": "2026-10-24T17:19:15.437770+08:00",
+    "stage": "published",
+    "input": "这是课程本地演示，不是真实委托。请按我的具体情境澄清和整理。已明确的条件：代办类型=代取快递；物品=书籍；数量=1；取件位置=菜鸟驿站A区；送达位置=一号宿舍楼门口；取件开始=2026-10-31T09:00；最晚送达=2026-10-31T10:00；交接方式=指定点放置；具体放置点=一号宿舍楼值班室A架；通知方式=静默消息；完成确认方式=放置照片与通知。请为我已明确的条件提出草稿字段建议；不要发布，不要猜授权。",
+    "reply": "已按你明确给出的条件整理，仅建议草稿字段，不发布。",
+    "adoptedFields": [
+      "taskKind",
+      "item",
+      "quantity",
+      "pickupPlace",
+      "destination",
+      "earliestPickup",
+      "latestDelivery",
+      "handoff",
+      "dropPlace",
+      "notice",
+      "completionProof"
+    ],
+    "confirmedRevision": 5,
+    "receiptId": "e97a2119-656b-446f-b74c-b96c693ea5c9",
+    "taskId": 11,
+    "finishedAt": "2026-10-24T17:20:06.908485+08:00"
+  },
+  "paidCallsForCase": 1,
+  "automaticRetries": 0
+}

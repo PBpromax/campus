@@ -304,4 +304,31 @@ class MessageServiceImplTest {
         assertEquals("发出去的信息项", totalConversations.get(1).getContent());
         verify(messageRepository, times(1)).findBySenderIdOrReceiverIdOrderByCreatedAtDesc(userId, userId);
     }
+    @Test
+    void participantCannotMessageUnrelatedReceiver() {
+        var demand=new Demand();demand.setPublisherId(1L);demand.setAcceptorId(2L);
+        when(demandRepository.findById(100L)).thenReturn(Optional.of(demand));
+        when(userRepository.findById(1L)).thenReturn(Optional.of(new User()));
+        var request=new MessageRequest();request.setDemandId(100L);request.setReceiverId(99L);request.setContent("private");
+        assertThrows(BusinessException.class,()->messageService.sendMessage(1L,request));
+        verify(messageRepository,never()).save(any());
+    }
+    @Test
+    void unacceptedTaskHasNoHumanRecipient() {
+        var demand=new Demand();demand.setPublisherId(1L);
+        when(demandRepository.findById(100L)).thenReturn(Optional.of(demand));
+        when(userRepository.findById(1L)).thenReturn(Optional.of(new User()));
+        var request=new MessageRequest();request.setDemandId(100L);request.setReceiverId(2L);request.setContent("private");
+        assertThrows(BusinessException.class,()->messageService.sendMessage(1L,request));
+        verify(messageRepository,never()).save(any());
+    }
+    @Test
+    void oversizedHumanMessageDoesNotReachDatabase() {
+        var demand=new Demand();demand.setPublisherId(1L);demand.setAcceptorId(2L);
+        when(demandRepository.findById(100L)).thenReturn(Optional.of(demand));
+        when(userRepository.findById(1L)).thenReturn(Optional.of(new User()));
+        var request=new MessageRequest();request.setDemandId(100L);request.setReceiverId(2L);request.setContent("x".repeat(501));
+        assertThrows(BusinessException.class,()->messageService.sendMessage(1L,request));
+        verify(messageRepository,never()).save(any());
+    }
 }

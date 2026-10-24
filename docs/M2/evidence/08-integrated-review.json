@@ -1,0 +1,128 @@
+{
+  "setupAt": "2026-10-24T17:17:57.788584+08:00",
+  "finishedAt": "2026-10-24T17:44:56.307989+08:00",
+  "paidCalls": 4,
+  "collaboration": {
+    "taskId": 11,
+    "acceptReceiptId": "9e729618-c042-4e94-8a22-a06e7d833166",
+    "uiAccepted": true,
+    "messages": [
+      {
+        "sender": "helper",
+        "content": "我已接单，请确认是否仍放在值班室A架。"
+      },
+      {
+        "sender": "publisher",
+        "content": "是的，请放在A架后用静默消息通知。"
+      }
+    ],
+    "uiCancelled": true,
+    "helperFinalCredit": 95
+  },
+  "fault": {
+    "sessionId": 30,
+    "offlineInput": "断网时保留的上下文：只问负号这一步。",
+    "offlineInputPreserved": true,
+    "networkRecoverySavedSameInput": true,
+    "model503PreservedUnsentInput": true,
+    "noUserMessageWrittenBefore503": true,
+    "manualFormWorksWithModelOff": true,
+    "paidCallsForFaults": 0,
+    "humanMessageWorksWithModelOff": true,
+    "concurrentSourceEditRejectsOldConfirmation": true,
+    "staleConfirmationNoTaskWrite": true
+  },
+  "cases": {
+    "STUDY": {
+      "sessionId": 25,
+      "category": "STUDY",
+      "startedAt": "2026-10-24T17:18:09.792234+08:00",
+      "stage": "published",
+      "adoptedFields": [
+        "context",
+        "topic",
+        "depth",
+        "communication"
+      ],
+      "confirmedRevision": 5,
+      "receiptId": "d9d663e2-102d-4d73-81b0-01a41d553356",
+      "taskId": 10,
+      "finishedAt": "2026-10-24T17:18:51.194496+08:00"
+    },
+    "RUNNING": {
+      "sessionId": 26,
+      "category": "RUNNING",
+      "startedAt": "2026-10-24T17:19:15.437770+08:00",
+      "stage": "published",
+      "adoptedFields": [
+        "taskKind",
+        "item",
+        "quantity",
+        "pickupPlace",
+        "destination",
+        "earliestPickup",
+        "latestDelivery",
+        "handoff",
+        "dropPlace",
+        "notice",
+        "completionProof"
+      ],
+      "confirmedRevision": 5,
+      "receiptId": "e97a2119-656b-446f-b74c-b96c693ea5c9",
+      "taskId": 11,
+      "finishedAt": "2026-10-24T17:20:06.908485+08:00"
+    },
+    "BORROW": {
+      "sessionId": 27,
+      "category": "BORROW",
+      "startedAt": "2026-10-24T17:20:39.225039+08:00",
+      "stage": "published",
+      "adoptedFields": [
+        "item",
+        "purpose",
+        "spec",
+        "quantity",
+        "needBy",
+        "useStart",
+        "useEnd",
+        "returnAt",
+        "pickupPlace",
+        "returnPlace",
+        "handoff",
+        "support",
+        "accessories"
+      ],
+      "confirmedRevision": 5,
+      "receiptId": "693803ec-d4d1-4af0-98ad-92d890e91743",
+      "taskId": 12,
+      "finishedAt": "2026-10-24T17:21:39.613307+08:00"
+    },
+    "OTHER": {
+      "sessionId": 28,
+      "category": "OTHER",
+      "startedAt": "2026-10-24T17:22:46.037214+08:00",
+      "stage": "published",
+      "adoptedFields": [
+        "serviceType",
+        "serviceGoal",
+        "resourceRequirements",
+        "serviceStart",
+        "serviceEnd",
+        "servicePlace",
+        "communication",
+        "completionCriteria",
+        "helperCount",
+        "splitMode"
+      ],
+      "confirmedRevision": 6,
+      "receiptId": "cffd800b-07da-4bda-93c6-7ea127a68ed0",
+      "taskId": 13,
+      "finishedAt": "2026-10-24T17:23:41.632313+08:00"
+    }
+  },
+  "automaticRetries": 0,
+  "normalModelConfigurationRestored": true,
+  "allFourFixtureTasksCancelled": true,
+  "credentials": "Only in mode600 /tmp state, not in evidence",
+  "scope": "Local emulator + MySQL; no real users or payments"
+}

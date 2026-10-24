@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-10-24T17:23:41.632313+08:00",
+  "fixture": "disposable local test; real MySQL writes; no actual campus service or payment",
+  "case": {
+    "sessionId": 28,
+    "category": "OTHER",
+    "startedAt": "2026-10-24T17:22:46.037214+08:00",
+    "stage": "published",
+    "input": "这是课程本地演示，不是真实委托。请按我的具体情境澄清和整理。已明确的条件：协助类型=活动布置；协助目标=布置社团展台；必要资源 / 条件=自带胶带；协助开始=2026-10-31T09:00；协助结束=2026-10-31T10:00；协助位置 / 联系渠道=学生活动中心101；沟通方式=线下协助；完成标准=摆放两张桌子并张贴三张海报；所需协助人数=2；多人组织方式=希望由一人协调。确实需要2位同学，希望由一人协调，不是创建两个任务。。请为我已明确的条件提出草稿字段建议；不要发布，不要猜授权。",
+    "reply": "已记录你的情境（OTHER / 活动布置），不发布、不填授权字段。草稿建议如下：\n\n- 协助类型：活动布置\n- 协助目标：布置社团展台\n- 必要资源 / 条件：自带胶带\n- 协助开始：2026-10-31T09:00\n- 协助结束：2026-10-31T10:00\n- 协助位置 / 联系渠道：学生活动中心101\n- 沟通方式：线下协助\n- 完成标准：摆放两张桌子并张贴三张海报\n- 所需协助人数：2\n- 多人组织方式：希望由一人协调（单条任务，不拆分为两条）\n\n待你补充（我不猜测）：授权条件（consent）需由你在表单中自行声明。",
+    "adoptedFields": [
+      "serviceType",
+      "serviceGoal",
+      "resourceRequirements",
+      "serviceStart",
+      "serviceEnd",
+      "servicePlace",
+      "communication",
+      "completionCriteria",
+      "helperCount",
+      "splitMode"
+    ],
+    "confirmedRevision": 6,
+    "receiptId": "cffd800b-07da-4bda-93c6-7ea127a68ed0",
+    "taskId": 13,
+    "finishedAt": "2026-10-24T17:23:41.632313+08:00"
+  },
+  "paidCallsForCase": 1,
+  "automaticRetries": 0
+}

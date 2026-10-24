@@ -6,13 +6,13 @@ GitHub 保留先前项目历史；当前代码已替换为老师项目快照，�
 
 ## 当前业务和技术
 
-分类：跑腿代办 RUNNING、学习辅导 STUDY、物品借用 BORROW、其他 OTHER。后端 Java 21 / Spring Boot 3.2 / JPA / MySQL，前端 Vue 3 / Vite / Element Plus。
+分类：跑腿代办 RUNNING、学习辅导 STUDY、物品借用 BORROW、其他 OTHER。后端 Java 21 / Spring Boot 3.2 / JPA / MySQL，原Web前端 Vue 3 / Vite / Element Plus；M2新增HarmonyOS ArkTS / ArkUI客户端。
 
 存在注册登录、需求发布与接单、交付和完成确认、取消、通知、任务双方聊天、评价信用及申诉实现。支付状态字段不代表已接入真实支付。
 
 M1 覆盖物品借用、学习辅导、跑腿代办与其他互助的个性化需求、本体和对话卡片原型；M2 再落实鸿蒙客户端与真实 AI 工具执行。
 
-[M2开发进度](docs/M2/README.md)：共用环境、四业务草稿持久化与规则动态卡片已完成本机部署；已接DeepSeek真实流式对话与字段建议，并接通确认后的发布、接单和取消；四业务综合演示及完整界面评审继续按步骤推进。
+[M2开发进度](docs/M2/README.md)：共用环境、四业务草稿持久化与规则动态卡片已完成本机部署；已接DeepSeek真实流式对话与字段建议，并接通确认后的发布、接单和取消；已补四业务主路径、双账号和故障回退的本机综合演示证据；真机、云部署与真人评审仍需后续验证。
 
 - [运行与配置](./DEVELOPMENT.md)
 - [接管记录](./docs/接管记录.md)

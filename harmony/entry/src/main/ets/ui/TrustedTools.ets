@@ -154,6 +154,7 @@ export struct TrustedTools {
           .enabled(!this.working && !this.blocked).onClick(() => { this.query(receipt.id); })
       },(receipt: ToolReceipt) => receipt.id + ':' + receipt.state)
       ForEach(this.audits,(audit: ToolAudit) => { Text(audit.createdAt + ' ' + actionName(audit.action) + ' ' + audit.outcome + '：' + audit.message).fontSize(12); },(audit: ToolAudit) => audit.id.toString())
+      if (this.working) { Text('正在校验操作与处理回执，请稍候…').accessibilityLevel('yes') }
       Text(this.notice).fontSize(14).fontColor('#285F45')
     }.alignItems(HorizontalAlign.Start).width('100%').padding(14).backgroundColor('#F1F5F2')
   }

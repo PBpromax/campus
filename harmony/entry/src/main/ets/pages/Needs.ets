@@ -1,3 +1,4 @@
+import { HumanHelp } from '../ui/HumanHelp';
 import { TrustedTools } from '../ui/TrustedTools';
 import { ToolHint, validHint } from '../domain/ToolModels';
 import { AiEvent, AiText, AiNotice } from '../data/AiStream';
@@ -182,14 +183,14 @@ struct Needs {
       Text(field.label).fontSize(15).fontWeight(FontWeight.Medium)
       if (field.type === 'select') {
         Select(field.options.map((s: string): SelectOption => { return { value: s }; }))
-          .enabled(!this.busy)
+          .enabled(!this.busy).id('draft-' + field.key).accessibilityText(field.label)
           .value(this.edits[field.key] || '尚未填写')
           .onSelect((_index: number, value: string) => {
             if ((this.edits[field.key] || '') !== value) { this.edits[field.key] = value; this.dirty = true; }
           })
       } else {
         TextInput({ text: this.edits[field.key] || '', placeholder: field.type === 'datetime-local' ? 'YYYY-MM-DDTHH:mm' : '未知可留空，系统会继续澄清' })
-          .enabled(!this.busy).maxLength(6000)
+          .enabled(!this.busy).maxLength(6000).id('draft-' + field.key).accessibilityText(field.label)
           .onChange((value: string) => {
             if ((this.edits[field.key] || '') !== value) { this.edits[field.key] = value; this.dirty = true; }
           })
@@ -214,7 +215,7 @@ struct Needs {
       Text('当前情境（可多选）').fontWeight(FontWeight.Medium)
       ForEach(contextOptions(draft.category), (option: ContextOption) => {
         Row() {
-          Checkbox({ name: option.key }).enabled(!this.busy).select(this.contexts.includes(option.key))
+          Checkbox({ name: option.key }).accessibilityText(option.label).enabled(!this.busy).select(this.contexts.includes(option.key))
             .onChange((selected: boolean) => {
               // Initial selection/rebinding is not a user edit.
               if (this.contexts.includes(option.key) === selected) { return; }
@@ -258,6 +259,7 @@ struct Needs {
       Column({ space: 16 }) {
         Text('Campus · 四业务需求草稿').fontSize(26).fontWeight(FontWeight.Bold)
         Text('DeepSeek对话 → 核对字段建议 → 采用并更新卡片；发布、接单和取消需独立确认；支付仅为状态记录。').fontSize(13)
+        Text(this.notice).accessibilityLevel('yes').fontSize(14).fontColor('#285F45')
         if (!this.loggedIn) {
           TextInput({ text: this.username, placeholder: '已有平台用户名' }).onChange((v: string) => { this.username = v; })
           TextInput({ text: this.password, placeholder: '密码（不保存）' }).type(InputType.Password).onChange((v: string) => { this.password = v; })
@@ -330,8 +332,10 @@ struct Needs {
             blocked: this.busy || this.dirty || this.messageInput.trim().length > 0 || this.routeInput.trim().length > 0,
             hint: this.toolHint, onWorking: (working: boolean): void => { this.toolBusy = working; } })
         }
-        Text(this.notice).fontSize(14).fontColor('#285F45')
-      }.width('100%').padding(20).alignItems(HorizontalAlign.Start)
+        if (this.loggedIn) {
+          HumanHelp({ api: this.api, blocked: this.busy, onWorking: (working: boolean): void => { this.toolBusy = working; } })
+        }
+      }.width('100%').constraintSize({ maxWidth: 860 }).padding(20).alignItems(HorizontalAlign.Start)
     }.width('100%').height('100%').enabled(!this.toolBusy)
   }
 }

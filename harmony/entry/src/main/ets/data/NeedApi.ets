@@ -7,16 +7,19 @@ export class NeedApi {
   // Development emulator only; hdc rport routes device localhost to the Mac backend.
   private readonly baseUrl: string = 'http://127.0.0.1:8081/api';
   private token: string = '';
+  private userId: number = 0;
+  currentUserId(): number { return this.userId; }
 
   private streaming: http.HttpRequest | undefined = undefined;
   private cancelCurrent: (() => void) | undefined = undefined;
   cancelStream(): void { if (this.cancelCurrent !== undefined) { this.cancelCurrent(); this.cancelCurrent = undefined; } if (this.streaming !== undefined) { this.streaming.destroy(); this.streaming = undefined; } }
-  clear(): void { this.cancelStream(); this.token = ''; }
+  clear(): void { this.cancelStream(); this.token = ''; this.userId = 0; }
 
   async login(username: string, password: string): Promise<void> {
     const body: LoginRequest = { username: username, password: password };
     const result = await this.send<LoginResult>('/users/login', http.RequestMethod.POST, JSON.stringify(body));
     this.token = result.token; // Memory only. Password and JWT are never saved to preferences or logs.
+    this.userId = result.user.id;
   }
 
   async stream(path: string, body: string, emit: (event: AiEvent) => void): Promise<void> {
@@ -43,7 +46,7 @@ export class NeedApi {
         request.on('dataEnd', () => { ended = true; finish(); });
         const headers: Record<string,string> = { 'Content-Type': 'application/json', 'Accept': 'text/event-stream', 'Authorization': 'Bearer ' + this.token };
         request.requestInStream(this.baseUrl + path, { method: http.RequestMethod.POST, header: headers, extraData: body, connectTimeout: 5000, readTimeout: 65000 })
-          .then((code: number) => { status = code; if (code === 401 || code === 403) { this.token = ''; } finish(); })
+          .then((code: number) => { status = code; if (code === 401) { this.token = ''; this.userId = 0; } finish(); })
           .catch((_error: BusinessError) => { fail('连接中断或已停止，请重新加载核对；输入保留'); });
       });
     } finally { if (this.streaming === request) { this.streaming = undefined; this.cancelCurrent = undefined; } request.destroy(); }

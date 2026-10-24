@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-24T17:21:39.613307+08:00",
+  "fixture": "disposable local test; real MySQL writes; no actual campus service or payment",
+  "case": {
+    "sessionId": 27,
+    "category": "BORROW",
+    "startedAt": "2026-10-24T17:20:39.225039+08:00",
+    "stage": "published",
+    "input": "这是课程本地演示，不是真实委托。请按我的具体情境澄清和整理。已明确的条件：物品=相机；用途=拍校园活动；规格 / 兼容要求=索尼E卡口；数量=1；最晚拿到=2026-10-31T09:00；开始使用=2026-10-31T10:00；结束使用=2026-10-31T12:00；归还时间=2026-10-31T13:00；取件 / 接收位置=图书馆东门；归还位置=图书馆东门；交接方式=当面交接；使用说明=需要简短说明；必要配件=电池和充电器。请为我已明确的条件提出草稿字段建议；不要发布，不要猜授权。",
+    "reply": "按你给出的信息，我已整理成借用草稿字段建议（仅建议，不会发布，也未填写任何授权字段）。",
+    "adoptedFields": [
+      "item",
+      "purpose",
+      "spec",
+      "quantity",
+      "needBy",
+      "useStart",
+      "useEnd",
+      "returnAt",
+      "pickupPlace",
+      "returnPlace",
+      "handoff",
+      "support",
+      "accessories"
+    ],
+    "confirmedRevision": 5,
+    "receiptId": "693803ec-d4d1-4af0-98ad-92d890e91743",
+    "taskId": 12,
+    "finishedAt": "2026-10-24T17:21:39.613307+08:00"
+  },
+  "paidCallsForCase": 1,
+  "automaticRetries": 0
+}

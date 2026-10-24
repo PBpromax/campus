@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-10-24T17:18:51.194496+08:00",
+  "fixture": "disposable local test; real MySQL writes; no actual campus service or payment",
+  "case": {
+    "sessionId": 25,
+    "category": "STUDY",
+    "startedAt": "2026-10-24T17:18:09.792234+08:00",
+    "stage": "published",
+    "input": "这是课程本地演示，不是真实委托。我只想弄懂一个小知识点，请先简短解释。已明确的条件：问题上下文=y=-x的导数为什么是-1？只解释负号这一步。；知识点=导数与负号；讲解起点=只看当前一步；沟通方式=短消息。请为我已明确的条件提出草稿字段建议；不要发布，不要猜授权。",
+    "reply": "这一步只看负号：y=-x 可以写成 y=(-1)·x，常数倍数求导时系数保留，所以 (-1)·x 的导数就是 (-1)·1 = -1。负号来自“x 前面的系数是 -1”，不是从 x 的导数来的。\n\n已按你明确的条件拟字段建议，不发布、不填授权。",
+    "adoptedFields": [
+      "context",
+      "topic",
+      "depth",
+      "communication"
+    ],
+    "confirmedRevision": 5,
+    "receiptId": "d9d663e2-102d-4d73-81b0-01a41d553356",
+    "taskId": 10,
+    "finishedAt": "2026-10-24T17:18:51.194496+08:00"
+  },
+  "paidCallsForCase": 1,
+  "automaticRetries": 0
+}

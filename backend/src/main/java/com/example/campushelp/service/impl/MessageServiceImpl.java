@@ -39,10 +39,16 @@ public class MessageServiceImpl implements MessageService {
         User sender = userRepository.findById(senderId)
                 .orElseThrow(() -> new BusinessException("用户不存在"));
 
+        Long counterpart = senderId.equals(demand.getPublisherId()) ? demand.getAcceptorId() : demand.getPublisherId();
+        if (counterpart == null) throw new BusinessException("任务尚未接单，请先自行联系同学协商或等待接单");
+        if (!counterpart.equals(request.getReceiverId())) throw new BusinessException("只能向当前任务的另一位参与者发送消息");
+        if (request.getContent() == null || request.getContent().isBlank() || request.getContent().length() > 500)
+            throw new BusinessException("消息需要1—500字");
+
         Message message = new Message();
         message.setDemandId(request.getDemandId());
         message.setSenderId(senderId);
-        message.setSenderName(sender.getName());
+        message.setSenderName(sender.getName() == null || sender.getName().isBlank() ? sender.getUsername() : sender.getName());
         message.setReceiverId(request.getReceiverId());
         message.setContent(request.getContent());
 

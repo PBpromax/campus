@@ -1,3 +1,4 @@
+import humanHelpTest from './HumanHelp.test';
 import toolApiTest from './ToolApi.test';
 import trustedToolsTest from './TrustedTools.test';
 import aiStreamTest from './AiStream.test';
@@ -10,4 +11,5 @@ export default function testsuite() {
   aiStreamTest();
   trustedToolsTest();
   toolApiTest();
+  humanHelpTest();
 }

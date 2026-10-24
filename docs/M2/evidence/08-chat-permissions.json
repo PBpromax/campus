@@ -1,0 +1,7 @@
+{
+  "recordedAt": "2026-10-24T17:44:58.024035+08:00",
+  "outsiderReadRejected": true,
+  "wrongReceiverRejected": true,
+  "noMessageWrittenByRejectedRequests": true,
+  "legacyApiHttpNote": "Legacy business errors use JSON envelope codes, not necessarily non-200 HTTP"
+}

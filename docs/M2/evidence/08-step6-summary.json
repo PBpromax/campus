@@ -1,0 +1,57 @@
+{
+  "timestamp": "2026-10-24T17:49:50.955611+08:00",
+  "stage": "M2 local integrated review",
+  "backend": {
+    "tests": 242,
+    "failures": 0,
+    "errors": 0
+  },
+  "regularDevice": {
+    "tests": 29,
+    "passed": 29,
+    "failures": 0,
+    "errors": 0
+  },
+  "independentLayoutReview": {
+    "tests": 1,
+    "passed": 1,
+    "method": "Actual Window orientation and route; official uitest screenshot; returns to portrait"
+  },
+  "paidDeepSeekRequestsThisStep": 4,
+  "automaticPaidRetries": 0,
+  "faultProviderRequests": 0,
+  "fourUiFlows": [
+    "STUDY",
+    "RUNNING",
+    "BORROW",
+    "OTHER"
+  ],
+  "pipeline": "UI new session/category -> real model request -> user adoption -> form review -> draft confirmation -> tool preparation -> explicit execute -> MySQL receipt",
+  "twoAccountUiAccept": true,
+  "twoAccountHumanMessages": true,
+  "helperUiCancelCreditMinus5": true,
+  "modelOffManualAndHumanFallback": true,
+  "networkInputPreservedAndRecovered": true,
+  "staleSourceConfirmationRejected409": true,
+  "normalModelConfigurationRestored": true,
+  "allFourFixtureTasksCancelled": true,
+  "evidence": [
+    "08-integrated-review.json",
+    "08-chat-permissions.json",
+    "08-backend-test-summary.json",
+    "08-device-tests.txt",
+    "08-layout-test.txt"
+  ],
+  "mainHapSha256": "792c800083d6cd1f28d3f4c46a2f93142c7ab87b6eb73a311b9316c8e0103014",
+  "remainingLimits": [
+    "Local emulator only; no signed release/real device/cloud deployment",
+    "Phone portrait and landscape checked; tablet/foldable/large font/screen-reader user study pending",
+    "Model fields -> deterministic card Schema, not free-form model layouts",
+    "No token-offset stream replay; tools use REST progress/results",
+    "No real payment or external payment compensation",
+    "No professional support queue; human fallback is existing task participants or user own contacts",
+    "Legacy APIs not all migrated into trusted-tool confirmation/audit gateway",
+    "Unified task expected completion time is not comprehensively cross-validated against all domain-specific time windows"
+  ],
+  "secretHandling": "Private environment and fixture state remain local; actual sensitive-value scan performed before commit"
+}
