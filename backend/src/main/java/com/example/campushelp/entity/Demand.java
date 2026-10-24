@@ -18,6 +18,9 @@ public class Demand {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Version
+    private Long rowVersion;
+
     @Column(nullable = false, length = 100)
     private String title;
     

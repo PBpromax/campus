@@ -22,7 +22,7 @@ export class AiStreamDecoder {
         else if (line.startsWith('data:')) { data.push(line.substring(5).trimStart()); }
       });
       if (kind.length > 0) {
-        if (this.completed || !['session','text_delta','proposal','notice','failure','done'].includes(kind)) { throw new Error('对话事件无效'); }
+        if (this.completed || !['session','text_delta','proposal','action_hint','notice','failure','done'].includes(kind)) { throw new Error('对话事件无效'); }
         const payload = data.join('\n'); JSON.parse(payload) as Object;
         if (kind === 'done') { this.completed = true; }
         emit({ kind: kind, data: payload });

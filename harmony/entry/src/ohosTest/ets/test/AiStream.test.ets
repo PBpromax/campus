@@ -33,6 +33,13 @@ export default function aiStreamTest(): void {
         expect(rejected).assertTrue();
       });
     });
+    it('actionSuggestionIsAnEventAndStillNeedsDone', 0, () => {
+      const decoder = new AiStreamDecoder(); const kinds: string[] = [];
+      decoder.feed(bytes('event:action_hint\ndata:{"action":"PUBLISH","demandId":null}\n\n'), (e: AiEvent) => { kinds.push(e.kind); });
+      expect(decoder.completed).assertFalse();
+      decoder.feed(bytes('event:done\ndata:{}\n\n'), (e: AiEvent) => { kinds.push(e.kind); });
+      decoder.finish(); expect(kinds.join(',')).assertEqual('action_hint,done');
+    });
     it('eventsAfterDoneAreRejected', 0, () => {
       let rejected = false;
       try { new AiStreamDecoder().feed(bytes('event:done\ndata:{}\n\nevent:text_delta\ndata:{"text":"x"}\n\n'), (_e: AiEvent) => {}); }

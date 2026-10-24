@@ -60,7 +60,9 @@ export class NeedApi {
       };
       if (body.length > 0) { options.extraData = body; }
       const response = await request.request(this.baseUrl + path, options);
-      if (response.responseCode === 401 || response.responseCode === 403) {
+      // A trusted action can legitimately return 403 (own task / credit restriction).
+      // Such a business rejection must not silently discard a still-valid login.
+      if (response.responseCode === 401) {
         this.clear();
         throw new Error('登录失效，请退出并重新登录');
       }

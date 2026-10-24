@@ -8,3 +8,6 @@
 
 
 `002_ai_message_roles.sql`在001之后执行，为消息补充USER/ASSISTANT角色。先检查列，重复执行不删除数据；旧消息保持USER。本机campus_m2_dev已应用。
+
+
+`003_trusted_tools.sql`在前两项之后执行：为users/demands补充乐观行版本，增加tool_intents/tool_audits。当前本机campus_m2_dev已重复执行两次验证；不删除用户、任务或旧对话。唯一索引保护同一用户请求键和成功发布的草稿版本；同名旧表结构不一致仍需人工审查。内部事务失败回滚，外部支付补偿未实现。

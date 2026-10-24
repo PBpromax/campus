@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-10-24T17:02:24.697609+08:00",
+  "step": 5,
+  "backendTests": {
+    "tests": 237,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "deviceTests": {
+    "tests": 27,
+    "passed": 27,
+    "failures": 0,
+    "errors": 0
+  },
+  "mainBuild": "SUCCESS",
+  "testBuild": "SUCCESS",
+  "mainHapSha256": "cd6f84688271c7ae379d01cbd5740443611827dec4560bc1d28d762cef93f300",
+  "device": "127.0.0.1:5555",
+  "database": "campus_m2_dev",
+  "migration": "003 applied twice without clearing data",
+  "paidDeepSeekCallsThisStep": 1,
+  "automaticRetries": 0,
+  "realTaskExecution": [
+    "PUBLISH",
+    "ACCEPT",
+    "CANCEL"
+  ],
+  "backendRestartPreservesReceipts": true,
+  "concurrentAcceptSingleWinner": true,
+  "internalFailureRollbackTest": "H2 integration: injected notification failure rolls back task/notification; separate failure audit persists",
+  "mysqlEvidence": "07-mysql-and-ai-smoke.json",
+  "uiEvidence": "07-ui-flow.json",
+  "screenshots": [
+    "07-ui-prepared.png",
+    "07-ui-published.png",
+    "07-ui-cancelled.png",
+    "07-ui-restored-publish.png"
+  ],
+  "visualScope": "STUDY UI prepare/publish/query/cancel and saved-context regression; not full four-domain visual review",
+  "limitations": [
+    "Payment is state fields only",
+    "Legacy routes retain compatibility and are not all migrated to confirmation/audit gateway",
+    "No external distributed compensation",
+    "Real device/release signing/cloud deployment pending",
+    "Integrated four-domain review and two-account UI accept demonstration pending"
+  ],
+  "secretCheck": "Private configs ignored/untracked; actual sensitive values absent from staged content and unpacked HAP"
+}

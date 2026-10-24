@@ -2,12 +2,18 @@ package com.example.campushelp.repository;
 
 import com.example.campushelp.entity.Demand;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
+import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface DemandRepository extends JpaRepository<Demand, Long> {
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @org.springframework.data.jpa.repository.Query("select e from Demand e where e.id=:id")
+    java.util.Optional<Demand> lockById(@org.springframework.data.repository.query.Param("id") Long id);
+
     List<Demand> findByStatus(String status);
     List<Demand> findByPublisherId(Long publisherId);
     List<Demand> findByAcceptorId(Long acceptorId);

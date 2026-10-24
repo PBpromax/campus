@@ -31,12 +31,14 @@ public class DeepSeekClient {
         public synchronized void cancel() { cancelled=true;try { if(input!=null) input.close(); } catch(IOException ignored) {} }
         public boolean cancelled() { return cancelled; }
     }
-    public record Reply(String text,String arguments) { }
+    public record Reply(String text,String arguments,String toolName) {
+        public Reply(String text,String arguments) {this(text,arguments,arguments.isBlank()?"":"propose_draft");}
+    }
     public Reply stream(List<Map<String,Object>> messages,Map<String,Object> tool, Consumer<String> delta, Cancellation cancellation) throws Exception {
         if(cancellation.cancelled()) throw new IOException("请求已中断");
         if(!configured()) throw new IOException("模型密钥未配置");
         var payload=Map.of("model",model,"messages",messages,"stream",true,"thinking",Map.of("type","disabled"),
-            "max_tokens",1600,"tools",List.of(Map.of("type","function","function",tool)));
+            "max_tokens",1600,"tools",List.of(Map.of("type","function","function",tool),Map.of("type","function","function",actionTool())));
         var request=HttpRequest.newBuilder(URI.create(base+"/chat/completions")).timeout(Duration.ofSeconds(45))
             .header("Authorization","Bearer "+key).header("Content-Type","application/json")
             .POST(HttpRequest.BodyPublishers.ofString(json.writeValueAsString(payload))).build();
@@ -71,10 +73,16 @@ public class DeepSeekClient {
                 }
             }
             if(!done || !Set.of("stop","tool_calls").contains(finish)) throw new IOException("模型回复未完整结束，请重新核对后重试");
-            if(!name.isEmpty() && !name.toString().equals("propose_draft")) throw new IOException("拒绝未知模型操作");
+            if(!name.isEmpty() && !Set.of("propose_draft","suggest_action").contains(name.toString())) throw new IOException("拒绝未知模型操作");
             if(name.isEmpty() && !args.isEmpty()) throw new IOException("模型建议格式无效");
             if(text.isEmpty() && args.isEmpty()) throw new IOException("模型未返回有效内容");
-            return new Reply(text.toString(),args.toString());
+            return new Reply(text.toString(),args.toString(),name.toString());
         }
     }
+    private Map<String,Object> actionTool() {
+        return Map.of("name","suggest_action","description","只在用户明确要求发布/接单/取消时提出操作建议，绝不执行。任务ID必须出现在用户原话中，否则填null。",
+            "parameters",Map.of("type","object","properties",Map.of("action",Map.of("type","string","enum",List.of("PUBLISH","ACCEPT","CANCEL")),
+                "demandId",Map.of("type",List.of("integer","null"))),"required",List.of("action","demandId"),"additionalProperties",false));
+    }
+
 }

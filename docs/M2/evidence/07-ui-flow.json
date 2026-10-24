@@ -1,0 +1,25 @@
+{
+  "recordedAt": "2026-10-24T16:59:24.791056+08:00",
+  "device": "127.0.0.1:5555",
+  "method": "official on-device uitest dumpLayout/uiInput/screenCap CLI; observed bounds; disposable account",
+  "sourceSetup": "Study context seeded and confirmed by HTTP before UI login; live model suggestion separately verified once in 07-mysql-and-ai-smoke.json",
+  "savedContextNoFalseDirty": true,
+  "prepareWithoutTaskWrite": true,
+  "explicitPublishClickCreatedTask": true,
+  "successCardReplacedOldPreparedView": true,
+  "queryReceiptDoesNotReexecute": true,
+  "successCardRemovesExecuteButton": true,
+  "explicitCancelClickUpdatedCardAndDatabase": true,
+  "ownedAuditVerified": true,
+  "taskId": 8,
+  "receiptId": "a7f6cab4-e44d-4801-87d9-954eb1ddd7f2",
+  "screenshots": [
+    "07-ui-prepared.png",
+    "07-ui-published.png",
+    "07-ui-cancelled.png",
+    "07-ui-restored-publish.png"
+  ],
+  "fixtures": "Two UI test tasks cancelled; initial four-domain smoke retained four cancelled/completed tasks. No real user task or money used.",
+  "remaining": "Four-domain full visual flow and two-account UI accept sequence remain for integrated review.",
+  "finalHapRestoresReceiptFromHistory": true
+}

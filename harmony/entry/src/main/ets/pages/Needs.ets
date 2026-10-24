@@ -1,3 +1,5 @@
+import { TrustedTools } from '../ui/TrustedTools';
+import { ToolHint, validHint } from '../domain/ToolModels';
 import { AiEvent, AiText, AiNotice } from '../data/AiStream';
 import { AiProposal } from '../domain/NeedModels';
 import { CardSchema, CardNode, emptySchema, buildCards, decodeCards, allowsAction } from '../ui/CardProtocol';
@@ -16,6 +18,9 @@ struct Needs {
   @State private aiText: string = '';
   @State private aiRunning: boolean = false;
   @State private aiProposal: AiProposal | undefined = undefined;
+  @State private toolBusy: boolean = false;
+  @State private toolHint: ToolHint | undefined = undefined;
+  private aiNotice: string = '';
   private api: NeedApi = new NeedApi();
   private categories: NeedCategory[] = [NeedCategory.RUNNING, NeedCategory.STUDY, NeedCategory.BORROW, NeedCategory.OTHER];
   @State private username: string = '';
@@ -35,7 +40,7 @@ struct Needs {
   private accept(session: NeedSession): void {
     if (this.session.id !== session.id || this.session.activeCategory !== session.activeCategory) { this.aiText = ''; }
     this.session = session;
-    this.aiProposal = undefined;
+    this.aiProposal = undefined; this.toolHint = undefined;
     const draft = activeDraft(session);
     this.edits = draft === undefined ? {} : copyFields(draft.fields);
     this.contexts = draft === undefined ? [] : draft.contexts.slice();
@@ -94,7 +99,7 @@ struct Needs {
     const text = intake ? this.routeInput : this.messageInput;
     if (text.trim().length === 0) { return; }
     const body: MessageRequest = { revision: this.session.revision, text: text };
-    this.busy = true; this.aiRunning = true; this.aiText = ''; this.aiProposal = undefined;
+    this.busy = true; this.aiRunning = true; this.aiText = ''; this.aiProposal = undefined; this.toolHint = undefined; this.aiNotice = '';
     this.notice = '正在连接DeepSeek；AI回复不代表任务已经执行。';
     try {
       await this.api.stream('/need-sessions/' + this.session.id + '/ai-stream', JSON.stringify(body), (event: AiEvent) => {
@@ -106,11 +111,14 @@ struct Needs {
         else if (event.kind === 'proposal') {
           const proposal = JSON.parse(event.data) as AiProposal;
           if (proposal.sessionId === this.session.id && proposal.revision === this.session.revision) { this.aiProposal = proposal; }
+        } else if (event.kind === 'action_hint') {
+          const hint = JSON.parse(event.data) as ToolHint;
+          if (validHint(hint)) { this.toolHint = hint; }
         } else if (event.kind === 'notice' || event.kind === 'failure') {
-          this.notice = (JSON.parse(event.data) as AiNotice).message;
-        } else if (event.kind === 'done') { this.aiText = ''; this.notice = '回复完成，可继续追问；如有字段建议，请核对后选择采用。'; }
+          this.aiNotice = (JSON.parse(event.data) as AiNotice).message; this.notice = this.aiNotice;
+        } else if (event.kind === 'done') { this.aiText = ''; this.notice = this.aiNotice || '回复完成；字段建议需核对后采用，操作建议需另行确认执行。'; }
       });
-    } catch (error) { this.aiProposal = undefined; this.notice = (error as BusinessError).message + '；已有草稿保留，请重新加载核对。'; }
+    } catch (error) { this.aiProposal = undefined; this.toolHint = undefined; this.notice = (error as BusinessError).message + '；已有草稿保留，请重新加载核对。'; }
     finally { this.busy = false; this.aiRunning = false; }
   }
   private async adoptProposal(proposal: AiProposal): Promise<void> {
@@ -176,11 +184,15 @@ struct Needs {
         Select(field.options.map((s: string): SelectOption => { return { value: s }; }))
           .enabled(!this.busy)
           .value(this.edits[field.key] || '尚未填写')
-          .onSelect((_index: number, value: string) => { this.edits[field.key] = value; this.dirty = true; })
+          .onSelect((_index: number, value: string) => {
+            if ((this.edits[field.key] || '') !== value) { this.edits[field.key] = value; this.dirty = true; }
+          })
       } else {
         TextInput({ text: this.edits[field.key] || '', placeholder: field.type === 'datetime-local' ? 'YYYY-MM-DDTHH:mm' : '未知可留空，系统会继续澄清' })
           .enabled(!this.busy).maxLength(6000)
-          .onChange((value: string) => { this.edits[field.key] = value; this.dirty = true; })
+          .onChange((value: string) => {
+            if ((this.edits[field.key] || '') !== value) { this.edits[field.key] = value; this.dirty = true; }
+          })
       }
       Text('信息性质：用户声明；未知、资源可用性及对方授权不能由系统猜测').fontSize(11).fontColor('#66756C')
     }.alignItems(HorizontalAlign.Start).width('100%').padding(10).backgroundColor('#F2F6F3').borderRadius(10)
@@ -204,6 +216,8 @@ struct Needs {
         Row() {
           Checkbox({ name: option.key }).enabled(!this.busy).select(this.contexts.includes(option.key))
             .onChange((selected: boolean) => {
+              // Initial selection/rebinding is not a user edit.
+              if (this.contexts.includes(option.key) === selected) { return; }
               this.contexts = selected ? this.contexts.concat([option.key]) : this.contexts.filter((key: string) => key !== option.key);
               this.dirty = true;
             })
@@ -243,7 +257,7 @@ struct Needs {
     Scroll() {
       Column({ space: 16 }) {
         Text('Campus · 四业务需求草稿').fontSize(26).fontWeight(FontWeight.Bold)
-        Text('DeepSeek对话 → 核对字段建议 → 采用并更新卡片；真实发布工具尚未接入。').fontSize(13)
+        Text('DeepSeek对话 → 核对字段建议 → 采用并更新卡片；发布、接单和取消需独立确认；支付仅为状态记录。').fontSize(13)
         if (!this.loggedIn) {
           TextInput({ text: this.username, placeholder: '已有平台用户名' }).onChange((v: string) => { this.username = v; })
           TextInput({ text: this.password, placeholder: '密码（不保存）' }).type(InputType.Password).onChange((v: string) => { this.password = v; })
@@ -311,8 +325,13 @@ struct Needs {
             Button('忽略建议').enabled(!this.busy).onClick(() => { this.aiProposal = undefined; })
           }.width('100%').padding(12).backgroundColor('#EEF3FA')
         }
+        if (this.loggedIn) {
+          TrustedTools({ api: this.api, session: this.session,
+            blocked: this.busy || this.dirty || this.messageInput.trim().length > 0 || this.routeInput.trim().length > 0,
+            hint: this.toolHint, onWorking: (working: boolean): void => { this.toolBusy = working; } })
+        }
         Text(this.notice).fontSize(14).fontColor('#285F45')
       }.width('100%').padding(20).alignItems(HorizontalAlign.Start)
-    }.width('100%').height('100%')
+    }.width('100%').height('100%').enabled(!this.toolBusy)
   }
 }

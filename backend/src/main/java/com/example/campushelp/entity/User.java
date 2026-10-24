@@ -17,6 +17,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Version
+    private Long rowVersion;
+
     @Column(unique = true, nullable = false, length = 50)
     private String username;
 
