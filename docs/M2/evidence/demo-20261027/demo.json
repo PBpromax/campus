@@ -1,0 +1,78 @@
+{
+  "at": "2026-10-27T09:11:24.167406+08:00",
+  "purpose": "User-requested M2 live demo; synthetic task and accounts; no payment",
+  "paidModelCalls": 2,
+  "automaticRetries": 0,
+  "runtime": {
+    "backendPort": 8081,
+    "databasePort": 3308,
+    "database": "campus_m2_dev",
+    "reason": "Original native database moved to free port for this run; existing Docker 3307 service retained",
+    "originalPrivateConfigEdited": false
+  },
+  "cases": {
+    "RUNNING": {
+      "category": "RUNNING",
+      "sessionId": 53,
+      "stage": "published",
+      "input": "这是本地课程演示测试，不是真实委托。请整理跑腿需求并建议字段，不要发布。代取一本书，件数1件，在菜鸟驿站A区取，送到一号宿舍楼。交接方式是指定点放置，具体放在一号楼值班室A架，静默消息通知，以放置照片与通知确认。时间还没确定，请保留待确认。",
+      "reply": "我已整理如下跑腿草稿字段建议（仅建议，不会发布）：\n\n- 代办类型：代取快递\n- 物品：一本书\n- 数量：1\n- 取件位置：菜鸟驿站A区\n- 送达位置：一号宿舍楼\n- 交接方式：指定点放置\n- 具体放置点：一号楼值班室A架\n- 通知方式：静默消息\n- 完成确认方式：放置照片与通知\n- 取件开始 / 最晚送达：待确认（时间未定）\n\n还需你补充：取件开始时间与最晚送达时间（具体到日期和时刻），以及确认语言（中文/英文/中英双语）、搬运限制或等待约定（如无要求可写“无”）。这些确认后再考虑发布。",
+      "adoptedFields": [
+        "taskKind",
+        "item",
+        "quantity",
+        "pickupPlace",
+        "destination",
+        "handoff",
+        "dropPlace",
+        "notice",
+        "completionProof"
+      ],
+      "receiptId": "12891391-a676-491c-8164-c086a4085690",
+      "taskId": 19
+    },
+    "STUDY": {
+      "sessionId": 54,
+      "input": "我只是不懂一个小步骤：y=-x为什么求导是-1？请用80字以内说明负号从哪来，不需要找同学，也不要发布任务。",
+      "stage": "reply-saved-no-publication",
+      "reply": "导数按定义看：y=-x 的自变量每增加1，函数值就减少1，变化率是常数。\n\n求导：dy/dx = lim(h→0)[(-(x+h))-(-x)]/h = lim(h→0)(-h)/h = -1。\n\n负号来自函数里的“-”把增量方向翻转：x 增大时 -x 变小，所以斜率是负的。\n\n不发布任务，也不找同学。"
+    }
+  },
+  "collaboration": {
+    "taskId": 19,
+    "acceptReceiptId": "17f13cae-7d80-44d7-8d71-16e24e494262",
+    "uiAccepted": true,
+    "messages": [
+      {
+        "sender": "helper",
+        "content": "我已接单，请确认是否仍放在值班室A架。"
+      },
+      {
+        "sender": "publisher",
+        "content": "是的，请放在A架后用静默消息通知。"
+      }
+    ],
+    "uiCancelled": true,
+    "helperCreditBefore": 95,
+    "helperFinalCredit": 90
+  },
+  "finalTaskStatus": "CANCELLED",
+  "participantMessagesSaved": 2,
+  "studyHasNoPublicationReceipt": true,
+  "screenshots": [
+    "01-current-screen.png",
+    "02-four-businesses.png",
+    "03-real-ai-proposal.png",
+    "04-dynamic-cards.png",
+    "05-before-confirmation.png",
+    "06-published.png",
+    "08-helper-accept-confirmation.png",
+    "08-helper-accepted.png",
+    "08-helper-cancel-confirmation.png",
+    "08-helper-cancelled.png",
+    "08-helper-human-message.png",
+    "08-publisher-human-reply.png",
+    "09-study-fragment.png"
+  ],
+  "observedLimitation": "Study answer did not strictly follow requested 80-character limit; raw output preserved."
+}

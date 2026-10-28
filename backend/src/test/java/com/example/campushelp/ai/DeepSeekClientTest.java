@@ -29,6 +29,13 @@ class DeepSeekClientTest {
         assertEquals("你好",r.text());assertEquals(List.of("你好"),deltas);assertEquals(0,json.readTree(r.arguments()).get("fields").size());
         assertFalse(requestBody.contains("fake-private-key"));assertEquals("disabled",json.readTree(requestBody).at("/thinking/type").asText());
     }
+    @Test void reasoningChannelsAndTagsNeverReachSseOrReply() throws Exception {
+        body=chunk(Map.of("reasoning_content","hidden provider reasoning","content","<thi"),"")
+            +chunk(Map.of("content","nk>hidden tagged reasoning</think>只差取件时间。"),"stop")+"data: [DONE]\n\n";
+        var deltas=new ArrayList<String>();var reply=client().stream(List.of(),Map.of(),deltas::add,new DeepSeekClient.Cancellation());
+        assertEquals("只差取件时间。",reply.text());assertEquals(reply.text(),String.join("",deltas));
+        assertFalse(String.join("",deltas).contains("hidden"));
+    }
     @Test void truncatedStreamNeverProducesCompleteReply() throws Exception {
         body=chunk(Map.of("content","一部分"),"");
         assertThrows(Exception.class,()->client().stream(List.of(),Map.of(),x->{},new DeepSeekClient.Cancellation()));

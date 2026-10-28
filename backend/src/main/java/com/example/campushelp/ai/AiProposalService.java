@@ -19,7 +19,7 @@ public class AiProposalService {
         List<NeedCategory> candidates,Assessment assessment,List<String> warnings) { }
     private record Stored(Long owner,Instant expires,Proposal proposal) { }
     private final Map<String,Stored> pending=new ConcurrentHashMap<>();
-    public Proposal offer(Long owner,Session s,String arguments) throws Exception {
+    public Proposal inspect(Session s,String arguments) throws Exception {
         var node=json.readTree(arguments);
         if(!node.isObject() || node.size()!=2 || !node.path("fields").isObject() || !node.path("candidates").isArray())
             throw new BusinessException(422,"模型建议格式无效");
@@ -65,9 +65,14 @@ public class AiProposalService {
             var merged=new LinkedHashMap<>(d.fields());merged.putAll(fields);
             assessment=rules.assess(s.activeCategory(),merged,d.contexts());
         }
+        return new Proposal("",s.id(),s.revision(),s.activeCategory(),Collections.unmodifiableMap(fields),List.copyOf(candidates),assessment,List.copyOf(warnings));
+    }
+    public Proposal offer(Long owner,Session s,String arguments) throws Exception { return remember(owner,s,inspect(s,arguments)); }
+    Proposal remember(Long owner,Session s,Proposal inspected) {
+        if(inspected.sessionId()!=s.id() || inspected.category()!=s.activeCategory()) throw new BusinessException(409,"需求已更新，请重新核对");
         pending.entrySet().removeIf(entry->entry.getValue().expires().isBefore(Instant.now()));
         if(pending.size()>=256) throw new BusinessException(429,"待核对建议过多，请稍后再试");
-        var proposal=new Proposal(UUID.randomUUID().toString(),s.id(),s.revision(),s.activeCategory(),Collections.unmodifiableMap(fields),List.copyOf(candidates),assessment,List.copyOf(warnings));
+        var proposal=new Proposal(UUID.randomUUID().toString(),s.id(),s.revision(),s.activeCategory(),inspected.fields(),inspected.candidates(),inspected.assessment(),inspected.warnings());
         pending.put(proposal.token(),new Stored(owner,Instant.now().plusSeconds(300),proposal));return proposal;
     }
     public synchronized Session apply(Long owner,long sessionId,String token,Version request) {

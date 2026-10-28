@@ -59,6 +59,19 @@ class AiIntegrationTest {
         assertEquals("测试内容",adopted.drafts().getFirst().fields().get(field));assertNull(adopted.drafts().getFirst().confirmedRevision());
         assertThrows(RuntimeException.class,()->proposals.apply(8101L,adopted.id(),proposal.get("token").asText(),new Version(adopted.revision())));
     }
+    @Test void taskRepliesExposeValidatedOutcomeNotModelPlanningOrFalseSaveClaims() throws Exception {
+        var s=needs.create(8101L);s=needs.select(8101L,s.id(),new Select(s.revision(),NeedCategory.RUNNING));
+        doAnswer(inv->{Consumer<String> emit=inv.getArgument(2);emit.accept("内部计划：先分析字段，我已保存草稿。");
+            return new DeepSeekClient.Reply("内部计划：先分析字段，我已保存草稿。","{\"fields\":{\"item\":\"书籍\"},\"candidates\":[]}");})
+            .when(client).stream(anyList(),anyMap(),any(),any());
+        var started=mvc.perform(post("/api/need-sessions/"+s.id()+"/ai-stream").header("Authorization","Bearer "+jwt.generateToken(8101L))
+            .contentType("application/json").content(json.writeValueAsString(new Message(s.revision(),"代取一本书")))).andReturn();
+        started.getAsyncResult(5000);var body=mvc.perform(asyncDispatch(started)).andReturn().getResponse().getContentAsString(java.nio.charset.StandardCharsets.UTF_8);
+        assertTrue(body.contains("event:proposal"));assertTrue(body.contains("event:done"));assertTrue(body.contains("还需要补充"));
+        assertFalse(body.contains("内部计划"));assertFalse(body.contains("我已保存"));
+        var after=needs.get(8101L,s.id());assertTrue(after.drafts().getFirst().fields().isEmpty());
+        assertFalse(after.messages().getLast().text().contains("内部计划"));
+    }
     @Test void proposalsRejectForeignFieldsAndAuthorization() throws Exception {
         var s=needs.create(8101L);s=needs.select(8101L,s.id(),new Select(s.revision(),NeedCategory.STUDY));final var selected=s;
         for(String field:List.of("item","consent","deliveryConsent")) {

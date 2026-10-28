@@ -1,3 +1,4 @@
+import presentationTest from './Presentation.test';
 import taskTransitionsTest from './TaskTransitions.test';
 import humanHelpTest from './HumanHelp.test';
 import toolApiTest from './ToolApi.test';
@@ -7,6 +8,7 @@ import cardProtocolTest from './CardProtocol.test';
 import needModelTest from './NeedModel.test';
 
 export default function testsuite() {
+  presentationTest();
   taskTransitionsTest();
   needModelTest();
   cardProtocolTest();

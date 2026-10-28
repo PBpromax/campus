@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 /** Single provider; fail-fast capacity, persistent conservative dispatch budgets and no automatic retry. */
 @Service
 public class ModelGateway {
-    public static final String PROMPT_VERSION="campus-needs-v2";
+    public static final String PROMPT_VERSION="campus-needs-v3-user";
     private final DeepSeekClient client;private final ModelObservations observations;
     private final ModelCircuit circuit;private final ModelBudgets budgets;private final PromptContext context;
     private final Semaphore slots;

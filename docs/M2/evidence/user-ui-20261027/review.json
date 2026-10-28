@@ -1,0 +1,95 @@
+{
+  "at": "2026-10-27T10:26:46.310667+08:00",
+  "scope": "User-facing Harmony UI and assistant answer presentation; isolated local fixtures",
+  "backendTests": {
+    "tests": 289,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "nativeTests": {
+    "run": 36,
+    "failure": 0,
+    "error": 0,
+    "pass": 36
+  },
+  "promptVersion": "campus-needs-v3-user",
+  "paidModelCalls": 3,
+  "automaticPaidRetries": 0,
+  "study": {
+    "sessionId": 55,
+    "input": "y=-x求导为什么是-1？我只想弄懂负号这一步，请用两句话解释。",
+    "reply": "导数刻画的是一小段里 y 随 x 的变化率：x 每增加一点点，-x 就在同样幅度上减少一点点，所以变化量是负的。因此 y=-x 的导数是 -1，负号来自这个“减少”的方向；-x 的斜率是常数 -1，所以导数处处为 -1。"
+  },
+  "preSummaryGuardCase": {
+    "sessionId": 56,
+    "input": "帮我从菜鸟驿站A区取一本书，1件。2026-10-29上午9点可以取，10点前送到一号宿舍楼值班室A架，指定点放置，静默消息通知，用放置照片与通知确认。请帮我整理需求。",
+    "reply": "已整理，还缺送达位置的确认和取件位置是否就是菜鸟驿站A区、放书的具体位置，先按你给的信息存草稿。",
+    "adoptedFields": {
+      "taskKind": "代取快递",
+      "item": "书",
+      "quantity": "1",
+      "pickupPlace": "菜鸟驿站A区",
+      "destination": "一号宿舍楼值班室A架",
+      "earliestPickup": "2026-10-29T09:00",
+      "latestDelivery": "2026-10-29T10:00",
+      "handoff": "指定点放置",
+      "dropPlace": "一号宿舍楼值班室A架",
+      "notice": "静默消息",
+      "completionProof": "放置照片与通知"
+    }
+  },
+  "validatedTaskFlow": {
+    "sessionId": 59,
+    "input": "这是本地界面验收，不是真实委托。请帮我代取一本书，1件，在菜鸟驿站A区取。2026-10-29上午9点开始取，10点前放到一号宿舍楼值班室A架，指定点放置，静默消息通知，用放置照片与通知确认。",
+    "day": "2026-10-29",
+    "reply": "需求整理好了，请核对下方内容，合适的话再保存。",
+    "fields": {
+      "taskKind": "代取快递",
+      "item": "书",
+      "quantity": "1",
+      "pickupPlace": "菜鸟驿站A区",
+      "destination": "一号宿舍楼值班室A架",
+      "earliestPickup": "2026-10-29T09:00",
+      "latestDelivery": "2026-10-29T10:00",
+      "handoff": "指定点放置",
+      "dropPlace": "一号宿舍楼值班室A架",
+      "notice": "静默消息",
+      "completionProof": "放置照片与通知"
+    },
+    "receiptId": "6904f951-adcb-4848-b312-3f644186e65d",
+    "taskId": 21,
+    "dateTimePickerRoundtrip": true,
+    "finalStatus": "CANCELLED",
+    "helperCreditDelta": -5,
+    "humanMessageVerified": true
+  },
+  "reasoningHandling": {
+    "providerReasoningChannel": "ignored",
+    "explicitReasoningTags": "filtered across fragments before SSE and assistant persistence",
+    "taskNarration": "validated outcome summary after proposal inspection",
+    "studyNarration": "concise model answer streamed; useful teaching explanation preserved",
+    "limitations": "Finite filters are not a semantic guarantee for all unmarked model text; historical unmarked prose is not bulk rewritten"
+  },
+  "failuresAndRepairs": [
+    "Initial ArkUI Select.fontSize unsupported; used SDK Select.font instead",
+    "Automation shell quotes polluted a date/time field; corrected fixture input",
+    "Date dialog opened time dialog before it had closed; switched to onDidDisappear and verified both dialogs plus publication"
+  ],
+  "noRealPayment": true,
+  "noRealCampusService": true,
+  "deploymentWorkResumed": false,
+  "finalVisualReview": {
+    "home": "03-home.png",
+    "welcome": "01-welcome.png",
+    "login": "02-login.png",
+    "study": "04-study-answer.png",
+    "taskConfirmation": "08-confirm-publish.png",
+    "messages": "12-received-message.png",
+    "borrowEntry": "14-borrow-fields.png",
+    "otherEntry": "15-other-fields.png",
+    "allSurfacesChecked": true,
+    "appLeftAt": "Home / empty conversation",
+    "historicalConversationReopened": true
+  }
+}

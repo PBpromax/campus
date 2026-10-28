@@ -86,6 +86,9 @@ public class DeepSeekClient {
                     throw new ModelFailure(kind);
                 }
             StringBuilder text=new StringBuilder(),args=new StringBuilder(),name=new StringBuilder();
+            var answer=new AnswerText();
+            Consumer<String> visible=part->{text.append(part);delta.accept(part);};
+            int rawTextSize=0;
             int size=0;boolean done=false;String finish="";Usage usage=null;
             for(String line;(line=reader.readLine())!=null;) {
                 if(cancellation.cancelled()) throw cancellation.failure();
@@ -101,9 +104,9 @@ public class DeepSeekClient {
                     if(!choice.path("finish_reason").isNull() && choice.has("finish_reason")) finish=choice.path("finish_reason").asText();
                     var d=choice.path("delta");
                     if(d.path("content").isTextual()) {
-                        String part=d.get("content").asText();text.append(part);
-                        if(text.length()>4000) throw new ModelFailure(ModelFailure.Kind.INVALID_RESPONSE);
-                        if(!part.isEmpty()) delta.accept(part);
+                        String part=d.get("content").asText();rawTextSize+=part.length();
+                        if(rawTextSize>4000) throw new ModelFailure(ModelFailure.Kind.INVALID_RESPONSE);
+                        answer.append(part,visible);
                     }
                     for(var call:d.path("tool_calls")) {
                         if(call.path("index").asInt(-1)!=0) throw new ModelFailure(ModelFailure.Kind.INVALID_RESPONSE);
@@ -112,6 +115,7 @@ public class DeepSeekClient {
                     }
                 }
             }
+            answer.finish(visible);
             if(!done || !Set.of("stop","tool_calls").contains(finish)) throw new ModelFailure(ModelFailure.Kind.INVALID_RESPONSE);
             if(!name.isEmpty() && !Set.of("propose_draft","suggest_action").contains(name.toString())) throw new ModelFailure(ModelFailure.Kind.INVALID_RESPONSE);
             if(name.isEmpty() && !args.isEmpty()) throw new ModelFailure(ModelFailure.Kind.INVALID_RESPONSE);

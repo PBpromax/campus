@@ -34,7 +34,12 @@ class NativeUI:
         walk(json.loads(self.local.read_text()));return result
 
     def swipe(self,down=True):
-        self.shell('uitest','uiInput','swipe','1100', '2400' if down else '700','1100','700' if down else '2400','2200')
+        scrolls=[n for n in self.nodes() if n.get('type')=='Scroll']
+        if not scrolls:raise LookupError('No visible scroll surface; no guessed swipe performed')
+        surfaces=[list(map(int,re.findall(r'-?\d+',n['bounds']))) for n in scrolls]
+        surface=max(surfaces,key=lambda b:b[3]-b[1]);left,top,right,bottom=surface
+        x=str((left+right)//2);high=str(top+70);low=str(bottom-70)
+        self.shell('uitest','uiInput','swipe',x,low if down else high,x,high if down else low,'1000')
         time.sleep(.25)
 
     def find(self,predicate,down=True,scroll=True):
@@ -59,7 +64,7 @@ class NativeUI:
         self.shell('uitest','uiInput','click',*self.center(n));time.sleep(.3)
 
     def fill(self,predicate,text):
-        n=self.find(lambda a:a.get('type')=='TextInput' and predicate(a))
+        n=self.find(lambda a:a.get('type') in ('TextInput','TextArea') and predicate(a))
         assert n.get('enabled')=='true','Required input is disabled'
         if n.get('text'):
             # inputText inserts at the caret; it does not replace an existing value.
@@ -78,13 +83,18 @@ class NativeUI:
         n=self.find(lambda a:a.get('type')=='Option' and a.get('text')==value,scroll=False)
         self.shell('uitest','uiInput','click',*self.center(n));time.sleep(.2)
 
+    def tap_id(self,identifier):
+        n=self.find(lambda a:a.get('id')==identifier)
+        assert n.get('enabled')=='true'
+        self.shell('uitest','uiInput','click',*self.center(n));time.sleep(.3)
+
     def login(self,user):
         self.shell('aa','force-stop','com.pbpromax.campus')
         self.shell('aa','start','-a','EntryAbility','-b','com.pbpromax.campus');time.sleep(.7)
-        self.click('进入统一需求与草稿')
-        self.fill(lambda a:a.get('hint')=='已有平台用户名',user['username'])
-        self.fill(lambda a:a.get('hint')=='密码（不保存）',user['password'])
-        self.click('登录并恢复草稿');time.sleep(.5)
+        self.tap_id('enter-campus')
+        self.fill(lambda a:a.get('id')=='login-username',user['username'])
+        self.fill(lambda a:a.get('id')=='login-password',user['password'])
+        self.tap_id('login-submit');time.sleep(.5)
 
     def screenshot(self,path):
         path=Path(path);path.parent.mkdir(parents=True,exist_ok=True)

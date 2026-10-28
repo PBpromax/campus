@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-28T15:58:23.158315+08:00",
+  "scope": "API-seeded synthetic draft; native editing, conflict, confirmation and revoke",
+  "sessionId": 65,
+  "paidModelCalls": 0,
+  "modelBudgetUnchanged": true,
+  "tasksUnchanged": true,
+  "conflictDetected": true,
+  "oldConfirmationInvalidated": true,
+  "staleExecutionHttpStatus": 409,
+  "updatedReturnPlace": "图书馆北门服务台",
+  "updatedReturnAt": "2026-10-30T12:30",
+  "confirmedAfterEdit": true,
+  "newReceiptRevoked": true,
+  "screenshots": [
+    "02-borrow-before.png",
+    "03-time-conflict.png",
+    "04-updated-confirmation.png",
+    "05-revoked.png"
+  ]
+}
