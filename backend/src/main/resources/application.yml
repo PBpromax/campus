@@ -1,6 +1,8 @@
 server:
   port: ${SERVER_PORT:8080}
 spring:
+  flyway:
+    enabled: false # Only deployment profile owns versioned migrations; developer/test DBs stay explicit.
   datasource:
     url: ${DB_URL:jdbc:mysql://127.0.0.1:3307/campus_help?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai}
     username: ${DB_USERNAME:campus}
@@ -55,3 +57,23 @@ model-controls:
   output-usd-per-million: ${MODEL_OUTPUT_USD_PER_MILLION:1.20}
   priced-model: ${MODEL_PRICED_MODEL:deepseek-flash}
   price-version: ${MODEL_PRICE_VERSION:deepseek-flash-20261024-peak-usd}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+      show-components: never
+      probes:
+        enabled: true
+      group:
+        liveness:
+          include: livenessState
+        readiness:
+          include: readinessState,db
+  health:
+    redis:
+      enabled: false # Redis is not a business dependency in this release.

@@ -1,0 +1,13 @@
+ Container campus-m3-review-database-1 Running 
+ Container campus-m3-review-backend-1 Recreate 
+ Container campus-m3-review-backend-1 Recreated 
+ Container campus-m3-review-database-1 Waiting 
+ Container campus-m3-review-database-1 Healthy 
+ Container campus-m3-review-backend-1 Starting 
+ Container campus-m3-review-backend-1 Started 
+ Container campus-m3-review-backend-1 Waiting 
+ Container campus-m3-review-database-1 Waiting 
+ Container campus-m3-review-database-1 Healthy 
+ Container campus-m3-review-backend-1 Healthy 
+Release healthy: sha256:434828089c11c191da5e6b40032b59c48e2e1bb22a01bc86d6089bce102cbef1
+Current image healthy; same session, cancelled task and replay retained; no duplicate side effect. Restored copy stopped.

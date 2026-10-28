@@ -14,7 +14,7 @@ cd backend
 mvn spring-boot:run
 ```
 
-默认 MySQL 地址为 127.0.0.1:3307/campus_help，用户 campus。也可用 DB_URL / DB_USERNAME 指定自己的隔离数据库，不使用原团队云端连接。现有 JPA ddl-auto=update 仅适合开发，生产迁移列为技术债。
+默认 MySQL 地址为 127.0.0.1:3307/campus_help，用户 campus。也可用 DB_URL / DB_USERNAME 指定自己的隔离数据库，不使用原团队云端连接。现有 JPA ddl-auto=update 仅适合开发；独立部署profile已使用Flyway与结构校验，见deploy/README.md。
 
 默认不创建演示账号。仅在隔离演示数据库需要时设置 DEMO_SEED_ENABLED=true；会创建 testuser1、testuser2、admin，演示密码123456，勿用于真实部署。
 
@@ -67,3 +67,8 @@ M1独立原型：`cd docs/M1/prototype` 后执行 `npm ci`、`npm test`、`npm r
 ## M3模型可靠性与日额度
 
 后端需要005增量迁移。默认模型HTTP全程45秒，连续3次故障冷却30秒；上海自然日按本人/全局次数、Token和估算USD额度持久化预留。客户端可查看本人额度和停止后台回复；原有确认执行不依赖模型额度。默认报价、控制变量、有限出域检查及真实账单边界见[第三步说明](./docs/M3/05-模型网关可靠性与额度.md)。本地模型替身脚本只用于隔离开发库，联调后恢复正常启动器与私有Key配置。
+
+
+## M3独立发布
+
+使用[deploy/README.md](./deploy/README.md)与`python3 scripts/release.py`，独立18082端口、新MySQL数据库和Linux仓颉组件；不复用原开发库。先init，再build/up；更新前备份，回滚要求结构向后兼容。部署默认未挂真实模型Key，原8081鸿蒙开发连接不自动切换。

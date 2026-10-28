@@ -1,0 +1,17 @@
+test_duplicate_or_broken_quotes_rejected_without_secret_in_error (test_deepseek_setup.DeepSeekSetupTest.test_duplicate_or_broken_quotes_rejected_without_secret_in_error) ... ok
+test_empty_and_malformed_success_are_rejected (test_deepseek_setup.DeepSeekSetupTest.test_empty_and_malformed_success_are_rejected) ... ok
+test_literal_secret_preserves_equals_and_shell_text (test_deepseek_setup.DeepSeekSetupTest.test_literal_secret_preserves_equals_and_shell_text) ... ok
+test_missing_key_never_makes_a_request (test_deepseek_setup.DeepSeekSetupTest.test_missing_key_never_makes_a_request) ... ok
+test_model_file_cannot_override_database_settings (test_deepseek_setup.DeepSeekSetupTest.test_model_file_cannot_override_database_settings) ... ok
+test_probe_sends_only_minimal_fixture_to_official_endpoint (test_deepseek_setup.DeepSeekSetupTest.test_probe_sends_only_minimal_fixture_to_official_endpoint) ... ok
+test_provider_error_does_not_echo_sensitive_body (test_deepseek_setup.DeepSeekSetupTest.test_provider_error_does_not_echo_sensitive_body) ... ok
+test_compose_is_scoped_and_contains_no_secret_values (test_release.ReleaseSafetyTest.test_compose_is_scoped_and_contains_no_secret_values) ... ok
+test_failed_compatible_rollout_restores_previous_id_and_keeps_state (test_release.ReleaseSafetyTest.test_failed_compatible_rollout_restores_previous_id_and_keeps_state) ... ok
+test_init_never_overwrites_secrets_and_parent_prevents_host_access (test_release.ReleaseSafetyTest.test_init_never_overwrites_secrets_and_parent_prevents_host_access) ... ok
+test_restore_refuses_nonempty_database_before_import (test_release.ReleaseSafetyTest.test_restore_refuses_nonempty_database_before_import) ... ok
+test_upgrade_without_reviewed_schema_compatibility_does_not_mutate (test_release.ReleaseSafetyTest.test_upgrade_without_reviewed_schema_compatibility_does_not_mutate) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.009s
+
+OK

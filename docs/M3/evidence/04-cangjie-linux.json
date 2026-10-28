@@ -1,0 +1,11 @@
+{
+  "platform": "Linux arm64 / non-root OCI runtime",
+  "sdkVersion": "1.2.0",
+  "sdkSha256": "40e3962472d6d1b181e685198b193b904a385ac8dbbdff8aa9c52c4bb6f6e0f1",
+  "goldenCases": 240,
+  "passed": 240,
+  "network": "none",
+  "secretMounts": false,
+  "readOnlyRoot": true,
+  "fixtureSha256": "2bdca7362a6df4d696f08ca753bef174b5477648ea531dd8d20e038d34efc9c5"
+}

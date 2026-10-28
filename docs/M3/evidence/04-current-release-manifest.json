@@ -1,0 +1,12 @@
+{
+  "image": "sha256:434828089c11c191da5e6b40032b59c48e2e1bb22a01bc86d6089bce102cbef1",
+  "tag": "campus-m3:review-20261028",
+  "javaBase": "public.ecr.aws/docker/library/eclipse-temurin@sha256:affcab5356e1270ac35d2361ee83135af2f03e8d580eca78a6d5d6fdbf048db0",
+  "sourceCommit": "7cc6cbda19f9c215ee68dadc21a0727bb3e05f60",
+  "workingTreeDirty": true,
+  "jarSha256": "5441b33b86345aca447365cdbf5ff9a4dc5efbee830ac05bedb15e9159af6d47",
+  "sdkSha256": "40e3962472d6d1b181e685198b193b904a385ac8dbbdff8aa9c52c4bb6f6e0f1",
+  "sdkVersion": "1.2.0",
+  "platform": "linux/arm64",
+  "builtAt": "2026-10-28T08:02:05.336614+00:00"
+}

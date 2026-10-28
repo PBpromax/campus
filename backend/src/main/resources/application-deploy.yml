@@ -1,0 +1,33 @@
+# Activated only by the isolated release runtime, never by the development launcher.
+server:
+  port: 8080
+  shutdown: graceful
+spring:
+  config:
+    import: configtree:/run/secrets/
+  lifecycle:
+    timeout-per-shutdown-phase: 50s
+  datasource:
+    hikari:
+      maximum-pool-size: 8
+      minimum-idle: 1
+      connection-timeout: 2000
+      validation-timeout: 1000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/release
+    baseline-on-migrate: false
+    clean-disabled: true
+    validate-on-migrate: true
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+demo:
+  seed-enabled: false
+sms:
+  enabled: false

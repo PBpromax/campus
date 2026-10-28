@@ -1,0 +1,4 @@
+# Same application jar; a distinct configuration release, not a code-upgrade claim.
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+ENV RELEASE_REVIEW_SLOT=configuration-b

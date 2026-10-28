@@ -58,3 +58,9 @@ jobs:
         with:
           name: m1-browser-evidence
           path: docs/M1/evidence
+
+  release-scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 -m unittest discover -s scripts/tests -v

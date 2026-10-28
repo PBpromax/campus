@@ -1,0 +1,25 @@
+ Container campus-m3-review-database-1 Running
+ Container campus-m3-review-backend-1 Recreate
+ Container campus-m3-review-backend-1 Recreated
+ Container campus-m3-review-database-1 Waiting
+ Container campus-m3-review-database-1 Healthy
+ Container campus-m3-review-backend-1 Starting
+ Container campus-m3-review-backend-1 Started
+ Container campus-m3-review-backend-1 Waiting
+ Container campus-m3-review-database-1 Waiting
+ Container campus-m3-review-database-1 Healthy
+container campus-m3-review-backend-1 is unhealthy
+ Container campus-m3-review-database-1 Running
+ Container campus-m3-review-backend-1 Recreate
+ Container campus-m3-review-backend-1 Recreated
+ Container campus-m3-review-database-1 Waiting
+ Container campus-m3-review-database-1 Healthy
+ Container campus-m3-review-backend-1 Starting
+ Container campus-m3-review-backend-1 Started
+ Container campus-m3-review-database-1 Waiting
+ Container campus-m3-review-backend-1 Waiting
+ Container campus-m3-review-database-1 Healthy
+ Container campus-m3-review-backend-1 Healthy
+Private logical backup saved: /Users/pbpromax/Desktop/campus/sec-ii-2026 2/deploy/private/campus-m3-review/backups/20261024T173153Z-6e8fa4.sql
+Candidate failed health/startup; previous compatible application restored. Schema was not reversed.
+Command '['docker', 'compose', '--env-file', '/dev/null', '-p', 'campus-m3-review', '-f', '/Users/pbpromax/Desktop/campus/sec-ii-2026 2/deploy/compose.yml', 'up', '-d', '--wait', '--wait-timeout', '150']' returned non-zero exit status 1.

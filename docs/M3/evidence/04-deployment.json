@@ -1,0 +1,87 @@
+{
+  "at": "2026-10-24T17:29:31.101987+00:00",
+  "paidModelCalls": 0,
+  "scope": "Isolated local Linux containers; not cloud/HTTPS/SLO acceptance",
+  "initial": {
+    "health": {
+      "liveness": {
+        "status": "UP"
+      },
+      "readiness": {
+        "status": "UP"
+      }
+    },
+    "mysqlVersion": "8.0.46",
+    "migrationVersions": "1\t1\n2\t1\n3\t1\n4\t1\n5\t1\n6\t1",
+    "noDemoAccounts": true,
+    "modelConfigured": false,
+    "componentConfigured": true,
+    "previewEngine": "Cangjie 1.2.0 / transition-v1",
+    "previewKeptTaskPending": true,
+    "persistentSessionId": 1
+  },
+  "initialComponentIssue": {
+    "status": 503,
+    "cause": "SDK runtime directory inherited root-only permission; non-root loader could not read shared libraries",
+    "fix": "chmod a+rX on staged runtime and execute protocol under image USER 10001 at build time",
+    "sameFixtureRetained": true,
+    "afterFixStatus": 200
+  },
+  "restart": {
+    "jwtRetained": true,
+    "sessionAndMessagesRetained": true,
+    "migrationCountUnchanged": true,
+    "trustedReceiptReplayAfterRestart": "SUCCEEDED",
+    "creditNotDeductedTwice": true,
+    "gracefulShutdownLogged": true
+  },
+  "databaseFault": {
+    "liveness": 200,
+    "readiness": 503,
+    "observationMsIncludingStop": 5348,
+    "recovered": true
+  },
+  "rollout": {
+    "failedCandidateRejected": true,
+    "automaticPreviousApplicationRestored": "sha256:1b4432071a7a30bf65e8a91aca8887f1f55d053d9817268e8e341ea40ad08724",
+    "validConfigurationB": "sha256:90cbeeb6dc1f9cba0abe744d2a641e19301daa012aefdbd20ca87a06e3be2c2b",
+    "explicitRollbackToA": "sha256:1b4432071a7a30bf65e8a91aca8887f1f55d053d9817268e8e341ea40ad08724",
+    "healthPassedAfterRollback": true,
+    "databaseSchemaReversed": false,
+    "boundary": "A and B use the same verified application jar; B differs only by review configuration marker, not a business code upgrade"
+  },
+  "backupRestore": {
+    "targetProject": "campus-m3-restore-review",
+    "newEmptyDatabaseUsed": true,
+    "countsMatch": true,
+    "sessionMessagesAndSucceededReceiptRetained": true,
+    "migrationChecksumsValidatedOnStartup": true,
+    "newInstanceSecretUsedForLogin": true
+  },
+  "schemaFault": {
+    "targetProject": "campus-m3-restore-review",
+    "injection": "Changed only V6 checksum in disposable restored copy; no business rows changed",
+    "checksumMismatchPreventedStartup": true,
+    "originalChecksumRestored": true,
+    "recovered": true
+  },
+  "finalReview": {
+    "at": "2026-10-28T08:02:37.567943+00:00",
+    "currentImage": "sha256:434828089c11c191da5e6b40032b59c48e2e1bb22a01bc86d6089bce102cbef1",
+    "health": {
+      "liveness": {
+        "status": "UP"
+      },
+      "readiness": {
+        "status": "UP"
+      }
+    },
+    "sameFixtureAndSessionRetained": true,
+    "succeededReceiptReplay": true,
+    "creditAndTasksUnchanged": true,
+    "sixMigrationsRetained": true,
+    "realModelKeyNotMounted": true,
+    "restoredCopyStopped": true,
+    "restoredVolumePreserved": true
+  }
+}

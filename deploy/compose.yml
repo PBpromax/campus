@@ -1,0 +1,62 @@
+# Independent of the legacy root compose.yml. Project name is always explicit.
+services:
+  database:
+    image: ${CAMPUS_MYSQL_IMAGE:?Set an immutable MySQL image reference}
+    environment:
+      MYSQL_DATABASE: campus_release
+      MYSQL_USER: campus_release
+      MYSQL_PASSWORD_FILE: /run/secrets/DB_PASSWORD
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/ROOT_PASSWORD
+      TZ: Asia/Shanghai
+    secrets: [DB_PASSWORD, ROOT_PASSWORD]
+    volumes: [release_mysql:/var/lib/mysql]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=$$(cat /run/secrets/DB_PASSWORD) mysql -h 127.0.0.1 -u campus_release campus_release -e 'SELECT 1' >/dev/null"]
+      interval: 5s
+      timeout: 3s
+      retries: 24
+      start_period: 30s
+    logging:
+      driver: json-file
+      options: {max-size: 10m, max-file: "3"}
+  backend:
+    image: ${CAMPUS_IMAGE:?Set an immutable application image ID}
+    environment:
+      DB_URL: jdbc:mysql://database:3306/campus_release?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&connectTimeout=2000&socketTimeout=5000
+      DB_USERNAME: campus_release
+      DEEPSEEK_MODEL: deepseek-flash
+      MODEL_PRICED_MODEL: deepseek-flash
+      TZ: Asia/Shanghai
+    secrets: [DB_PASSWORD, JWT_SECRET, DEEPSEEK_API_KEY]
+    ports: ["127.0.0.1:${CAMPUS_PORT:-18082}:8080"]
+    depends_on:
+      database: {condition: service_healthy}
+    restart: unless-stopped
+    read_only: true
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=128m"]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 1g
+    cpus: 2
+    stop_grace_period: 65s
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "--max-time", "4", "http://127.0.0.1:8080/actuator/health/readiness"]
+      interval: 5s
+      timeout: 5s
+      retries: 24
+      start_period: 40s
+    logging:
+      driver: json-file
+      options: {max-size: 10m, max-file: "3"}
+volumes:
+  release_mysql:
+secrets:
+  DB_PASSWORD:
+    file: ${CAMPUS_SECRETS_DIR:?Private secret directory required}/DB_PASSWORD
+  ROOT_PASSWORD:
+    file: ${CAMPUS_SECRETS_DIR}/ROOT_PASSWORD
+  JWT_SECRET:
+    file: ${CAMPUS_SECRETS_DIR}/JWT_SECRET
+  DEEPSEEK_API_KEY:
+    file: ${CAMPUS_SECRETS_DIR}/DEEPSEEK_API_KEY

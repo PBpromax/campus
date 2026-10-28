@@ -1,0 +1,15 @@
+{
+  "image": "sha256:1b4432071a7a30bf65e8a91aca8887f1f55d053d9817268e8e341ea40ad08724",
+  "localTag": "campus-m3:step4-fixed",
+  "revisionLabel": "35d1046-step4-worktree",
+  "sourceBaseCommit": "35d1046",
+  "workingTreeBuild": true,
+  "platform": "linux/arm64",
+  "javaBase": "public.ecr.aws/docker/library/eclipse-temurin@sha256:affcab5356e1270ac35d2361ee83135af2f03e8d580eca78a6d5d6fdbf048db0",
+  "mysqlImage": "mysql@sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b",
+  "jarSha256": "03a90a286f1a7ebb459b7f742a69ee78970ab2b7aaaea62288948c940e3bf95b",
+  "sdkSha256": "40e3962472d6d1b181e685198b193b904a385ac8dbbdff8aa9c52c4bb6f6e0f1",
+  "nativeUser": "10001:10001",
+  "builtAt": "2026-10-24T17:28:07.043358218Z",
+  "note": "Tested worktree artifact; base commit plus dirty revision label. Not a claim that uncommitted changes were present in base commit."
+}

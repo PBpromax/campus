@@ -1,0 +1,14 @@
+# Positive allowlist: never send the repo, private envs, SQL backups or SDK cache to Docker.
+**
+!backend/
+!backend/target/
+!backend/target/campus-help-1.0.0.jar
+!cangjie/
+!cangjie/task-preview/
+!cangjie/task-preview/src/
+!cangjie/task-preview/src/*.cj
+!deploy/
+!deploy/Dockerfile
+!deploy/build/
+!deploy/build/cangjie-sdk.tar.gz
+!deploy/build/cangjie-sdk.sha256

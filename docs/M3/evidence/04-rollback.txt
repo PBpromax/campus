@@ -1,0 +1,13 @@
+ Container campus-m3-review-database-1 Running
+ Container campus-m3-review-backend-1 Recreate
+ Container campus-m3-review-backend-1 Recreated
+ Container campus-m3-review-database-1 Waiting
+ Container campus-m3-review-database-1 Healthy
+ Container campus-m3-review-backend-1 Starting
+ Container campus-m3-review-backend-1 Started
+ Container campus-m3-review-backend-1 Waiting
+ Container campus-m3-review-database-1 Waiting
+ Container campus-m3-review-database-1 Healthy
+ Container campus-m3-review-backend-1 Healthy
+Private logical backup saved: /Users/pbpromax/Desktop/campus/sec-ii-2026 2/deploy/private/campus-m3-review/backups/20261024T173437Z-53581c.sql
+Release healthy: sha256:1b4432071a7a30bf65e8a91aca8887f1f55d053d9817268e8e341ea40ad08724

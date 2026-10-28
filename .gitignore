@@ -24,3 +24,6 @@ application-dev.*
 # Python development helpers
 **/__pycache__/
 *.pyc
+
+# Private release state and database backups
+deploy/private/

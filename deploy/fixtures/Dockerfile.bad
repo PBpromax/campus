@@ -1,0 +1,4 @@
+# Deliberate startup failure for scoped local rollback drills only.
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+ENTRYPOINT ["/bin/false"]

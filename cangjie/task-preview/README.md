@@ -10,7 +10,7 @@
 de88d6ba2185c94979e0ab2fe8ac1d81535dfdff3fcb51fbba71e4b99d851f97
 ```
 
-本机SDK位于`~/.cache/campus-toolchains/cangjie-1.2.0/cangjie`，归档和SDK均在Git之外；没有修改shell启动文件。构建脚本只对子进程设置编译/运行路径，不执行SDK envsetup中的额外系统操作。已用Xcode自带的macOS SDK成功编译链接；其他平台还未验证。
+本机SDK位于`~/.cache/campus-toolchains/cangjie-1.2.0/cangjie`，归档和SDK均在Git之外；没有修改shell启动文件。构建脚本只对子进程设置编译/运行路径，不执行SDK envsetup中的额外系统操作。已用Xcode自带的macOS SDK成功编译链接；后续第四步已补Linux arm64容器编译、普通用户运行及240共同样本验证；amd64尚未实测。
 
 ## 构建与验证
 
@@ -40,3 +40,8 @@ python3 scripts/dev-backend.py
 后端每实例最多2个子进程，等待子进程最长默认3000ms，另有读取结果的短等待；读入输出上限4096字节，异常只返回通用503。超时会终止子进程并释放准入，不自动重试。程序参数固定，不使用shell或用户传入的可执行路径。
 
 本轮运行证据见[第二步交付](../../docs/M3/03-双语言任务模型与仓颉组件.md)。
+
+
+## Linux发布
+
+[部署镜像](../../deploy/Dockerfile)使用官方Linux SDK并校验SHA256，重新编译本组件，不复制Mac二进制。SDK保留的目录权限需转为运行用户可读，最终镜像UID10001实际执行协议。完整部署与恢复结果见[M3第四步](../../docs/M3/06-可重复部署与恢复.md)。

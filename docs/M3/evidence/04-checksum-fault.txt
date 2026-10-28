@@ -1,0 +1,1 @@
+Corrupted migration checksum blocked startup; original checksum restored and copy recovered.

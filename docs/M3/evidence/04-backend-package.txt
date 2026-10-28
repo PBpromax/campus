@@ -1,0 +1,21 @@
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 283, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jacoco:0.8.11:report (report) @ campus-help ---
+[INFO] Loading execution data file /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend/target/jacoco.exec
+[INFO] Analyzed bundle 'campus-help' with 100 classes
+[INFO]
+[INFO] --- jar:3.3.0:jar (default-jar) @ campus-help ---
+[INFO] Building jar: /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend/target/campus-help-1.0.0.jar
+[INFO]
+[INFO] --- spring-boot:3.2.0:repackage (repackage) @ campus-help ---
+[INFO] Replacing main artifact /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend/target/campus-help-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/pbpromax/Desktop/campus/sec-ii-2026 2/backend/target/campus-help-1.0.0.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  17.891 s
+[INFO] Finished at: 2026-10-25T01:01:09+08:00
+[INFO] ------------------------------------------------------------------------
