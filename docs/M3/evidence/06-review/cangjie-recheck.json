@@ -1,0 +1,249 @@
+{
+  "at": "2026-10-29T14:30:38.214627+08:00",
+  "sdk": "Cangjie 1.2.0 cjnative / macOS arm64",
+  "goldenCases": 240,
+  "fixtureSha256": "2bdca7362a6df4d696f08ca753bef174b5477648ea531dd8d20e038d34efc9c5",
+  "invalidProtocolsRejected": 10,
+  "sequentialLifecycleReplayConflict": "passed",
+  "versionCap": "passed",
+  "concurrentSameIdReplay": {
+    "events": 128,
+    "applied": 1,
+    "replay": 127
+  },
+  "crossTaskEventIdIsolation": "passed",
+  "contention": {
+    "SERIAL": {
+      "rounds": 12,
+      "p50ProcessMs": 18.853,
+      "minProcessMs": 16.767,
+      "maxProcessMs": 20.014
+    },
+    "PARALLEL": {
+      "rounds": 12,
+      "p50ProcessMs": 18.786,
+      "minProcessMs": 16.814,
+      "maxProcessMs": 20.068
+    }
+  },
+  "samples": [
+    {
+      "mode": "SERIAL",
+      "round": 0,
+      "workers": 1,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.848
+    },
+    {
+      "mode": "SERIAL",
+      "round": 1,
+      "workers": 1,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.986
+    },
+    {
+      "mode": "SERIAL",
+      "round": 2,
+      "workers": 1,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.859
+    },
+    {
+      "mode": "SERIAL",
+      "round": 3,
+      "workers": 1,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.407
+    },
+    {
+      "mode": "SERIAL",
+      "round": 4,
+      "workers": 1,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 20.014
+    },
+    {
+      "mode": "SERIAL",
+      "round": 5,
+      "workers": 1,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 16.767
+    },
+    {
+      "mode": "SERIAL",
+      "round": 6,
+      "workers": 1,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.35
+    },
+    {
+      "mode": "SERIAL",
+      "round": 7,
+      "workers": 1,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 19.016
+    },
+    {
+      "mode": "SERIAL",
+      "round": 8,
+      "workers": 1,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.935
+    },
+    {
+      "mode": "SERIAL",
+      "round": 9,
+      "workers": 1,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 19.773
+    },
+    {
+      "mode": "SERIAL",
+      "round": 10,
+      "workers": 1,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.811
+    },
+    {
+      "mode": "SERIAL",
+      "round": 11,
+      "workers": 1,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.804
+    },
+    {
+      "mode": "PARALLEL",
+      "round": 0,
+      "workers": 4,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.92
+    },
+    {
+      "mode": "PARALLEL",
+      "round": 1,
+      "workers": 4,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.816
+    },
+    {
+      "mode": "PARALLEL",
+      "round": 2,
+      "workers": 4,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 19.052
+    },
+    {
+      "mode": "PARALLEL",
+      "round": 3,
+      "workers": 4,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.789
+    },
+    {
+      "mode": "PARALLEL",
+      "round": 4,
+      "workers": 4,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 20.068
+    },
+    {
+      "mode": "PARALLEL",
+      "round": 5,
+      "workers": 4,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 19.145
+    },
+    {
+      "mode": "PARALLEL",
+      "round": 6,
+      "workers": 4,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 16.814
+    },
+    {
+      "mode": "PARALLEL",
+      "round": 7,
+      "workers": 4,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.782
+    },
+    {
+      "mode": "PARALLEL",
+      "round": 8,
+      "workers": 4,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.355
+    },
+    {
+      "mode": "PARALLEL",
+      "round": 9,
+      "workers": 4,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.709
+    },
+    {
+      "mode": "PARALLEL",
+      "round": 10,
+      "workers": 4,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.506
+    },
+    {
+      "mode": "PARALLEL",
+      "round": 11,
+      "workers": 4,
+      "events": 512,
+      "applied": 1,
+      "versionConflicts": 511,
+      "processElapsedMs": 18.783
+    }
+  ],
+  "interpretation": "Process time includes startup; bounded local experiment, not system SLO or a claim of parallel speedup. In-memory preview resets every invocation.",
+  "paidModelCalls": 0
+}

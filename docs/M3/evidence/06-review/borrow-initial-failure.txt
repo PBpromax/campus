@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/pbpromax/Desktop/campus/sec-ii-2026 2/scripts/review-user-ui.py", line 124, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/pbpromax/Desktop/campus/sec-ii-2026 2/scripts/review-user-ui.py", line 113, in main
+    assert len(api('/demands'))==before
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

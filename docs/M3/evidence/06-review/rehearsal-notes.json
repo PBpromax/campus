@@ -1,0 +1,25 @@
+{
+  "recordedOn": "2026-10-29",
+  "initialBorrowAttempt": {
+    "status": "FAILED",
+    "reason": "Two rehearsal preparations accidentally overlapped in the shared development database; global task-count invariant failed after unrelated preview fixture creation",
+    "baselineTaskCount": 13,
+    "observedAfterConcurrentFixture": 14,
+    "separatePreviewFixtureTaskId": 23,
+    "originalOutput": "borrow-ui",
+    "failureLog": "borrow-initial-failure.txt"
+  },
+  "serialBorrowRehearsal": {
+    "status": "PASSED",
+    "evidence": "borrow-ui-serial/review.json",
+    "newIndependentDraftUsed": true,
+    "failedAttemptRetained": true
+  },
+  "previewRehearsal": {
+    "status": "PASSED",
+    "evidence": "preview-review.json"
+  },
+  "paidModelCallsThisStep": 0,
+  "userFeedbackInvented": false,
+  "teacherApprovalClaimed": false
+}

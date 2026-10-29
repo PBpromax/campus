@@ -1,0 +1,6 @@
+{"goldenCases": 240, "invalidProtocolsRejected": 10, "contention": {"SERIAL": {"rounds": 12, "p50ProcessMs": 18.853, "minProcessMs": 16.767, "maxProcessMs": 20.014}, "PARALLEL": {"rounds": 12, "p50ProcessMs": 18.786, "minProcessMs": 16.814, "maxProcessMs": 20.068}}, "paidModelCalls": 0}
+Native borrow edits, time conflict, stale confirmation rejection and revoke passed; 0 model calls, 0 tasks published.
+Synthetic pending task prepared; Cangjie preview did not accept it.
+Current UI state preview verified; real task still PENDING/version0/no acceptor.
+Synthetic task explicitly cancelled; no model request or real payment.
+App ready at new home conversation.

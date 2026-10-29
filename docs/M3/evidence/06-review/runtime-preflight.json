@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-29T14:45:40.004138+08:00",
+  "readOnly": true,
+  "modelCalls": 0,
+  "development8081Ready": true,
+  "isolatedDeployment18082Ready": true,
+  "expectedEmulatorConnected": true,
+  "cangjieBinaryPresent": true,
+  "privateDemoConfigPresent": true,
+  "privateDemoCredentialsPresent": true,
+  "privateDemoConfigMode600": true,
+  "privateDemoCredentialsMode600": true,
+  "readyForLocalDemo": true
+}
