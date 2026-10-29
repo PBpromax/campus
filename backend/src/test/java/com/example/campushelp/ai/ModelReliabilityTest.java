@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ModelReliabilityTest {
     HttpServer server;ExecutorService handlers;DeepSeekClient client;String mode="HEADERS";AtomicInteger requests=new AtomicInteger();CountDownLatch reached=new CountDownLatch(1);
+    CountDownLatch releaseOversized=new CountDownLatch(1);
     @BeforeEach void start() throws Exception {
         server=HttpServer.create(new InetSocketAddress("127.0.0.1",0),0);handlers=Executors.newVirtualThreadPerTaskExecutor();server.setExecutor(handlers);
         server.createContext("/chat/completions",exchange->{
@@ -23,12 +24,17 @@ class ModelReliabilityTest {
                 if(mode.equals("BODY")) {exchange.getResponseBody().flush();reached.countDown();Thread.sleep(2000);}
                 if(mode.equals("SLOW")) {for(int i=0;i<30;i++) {exchange.getResponseBody().write(": heartbeat\n\n".getBytes());exchange.getResponseBody().flush();Thread.sleep(60);}}
                 if(mode.equals("PARTIAL")) {exchange.getResponseBody().write(partial.getBytes());exchange.getResponseBody().flush();reached.countDown();Thread.sleep(2000);}
-                if(mode.equals("HUGE")) {exchange.getResponseBody().write("x".repeat(250000).getBytes());}
+                if(mode.equals("HUGE")) {
+                    exchange.getResponseBody().write("x".repeat(250000).getBytes());
+                    exchange.getResponseBody().flush();reached.countDown();
+                    // Keep both newline and EOF absent so only the byte bound can reject the line.
+                    releaseOversized.await(10,TimeUnit.SECONDS);
+                }
             }catch(Exception ignored) {}finally {exchange.close();}
         });server.start();
         client=new DeepSeekClient(new ObjectMapper(),"fixture-private-key","deepseek-flash","http://127.0.0.1:"+server.getAddress().getPort(),300);
     }
-    @AfterEach void close() {client.close();server.stop(0);handlers.shutdownNow();}
+    @AfterEach void close() {releaseOversized.countDown();client.close();server.stop(0);handlers.shutdownNow();}
     void timeout(String mode) {
         this.mode=mode;long start=System.nanoTime();
         var failure=assertThrows(ModelFailure.class,()->client.stream(List.of(),Map.of(),x->{},new DeepSeekClient.Cancellation()));
@@ -45,9 +51,13 @@ class ModelReliabilityTest {
             assertTrue(reached.await(1,TimeUnit.SECONDS));cancellation.cancel();assertEquals(ModelFailure.Kind.CLIENT_CANCELLED,future.get(1,TimeUnit.SECONDS).kind());
         }
     }
-    @Test void oversizedLineIsRejectedWithoutWaitingForNewlineOrDeadline() throws Exception {
+    @Test @Timeout(8) void oversizedLineIsRejectedWithoutWaitingForNewlineOrDeadline() throws Exception {
+        // Separate byte-limit validation from the 300ms timeout cases above, including cold HTTP startup.
+        client.close();
+        client=new DeepSeekClient(new ObjectMapper(),"fixture-private-key","deepseek-flash","http://127.0.0.1:"+server.getAddress().getPort(),5000);
         mode="HUGE";var failure=assertThrows(ModelFailure.class,()->client.stream(List.of(),Map.of(),x->{},new DeepSeekClient.Cancellation()));
         assertEquals(ModelFailure.Kind.INVALID_RESPONSE,failure.kind());
+        assertEquals(1,releaseOversized.getCount(),"The byte bound must fire before the server ends its body");
     }
     @Test void halfOpenAllowsExactlyOneProbeAndIgnoresStaleSuccess() {
         var config=new ModelControls();config.setFailureThreshold(2);config.setCircuitOpenMs(100);var clock=new AtomicLong(1000);var circuit=new ModelCircuit(config,clock::get);

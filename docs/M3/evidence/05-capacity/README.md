@@ -10,6 +10,7 @@
 | [summary.json](./summary.json) | 独立核验器从原始证据复算，含源文件SHA256；不是手填测试结论 |
 | [pricing-snapshot.json](./pricing-snapshot.json) | 10月29日核对的官方峰值报价事实；不是账单 |
 | [python-tests.txt](./python-tests.txt) | 本轮16项Python检查结果；没有重复宣称后端/设备全套测试再次运行 |
+| [backend-test-followup.json](./backend-test-followup.json)、[日志](./backend-test-followup.txt) | 后续Linux测试夹具修正及本机289项重跑，未更改生产行为 |
 | [run.txt](./run.txt) | 实验阶段完成日志 |
 | [environment.txt](./environment.txt) | 环境启动、固定转发入口和停止记录；仅规范化行尾空格，保留原语义 |
 | [final-review.json](./final-review.json) | 交付时环境核对；压测容器已停止、卷保留，原演示部署仍可用 |

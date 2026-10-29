@@ -120,4 +120,11 @@ python3 scripts/review-capacity.py --project campus-m3-capacity-demo --output /t
 python3 scripts/verify-capacity-evidence.py docs/M3/evidence/05-capacity
 ```
 
-完整报告不允许盲目重跑；部分报告需查看失败后显式`run --resume`，已完成阶段跳过，原样本和失败保留。初始化和账号准备曾分别因内部网络不发布端口、合成密码超过原有20字限制失败，均未发出模型请求；修正后沿用同一环境，没有清库或伪造初次成功。后端/鸿蒙源码本轮未修改，沿用第四步289项与用户版36项历史结果；本轮实际新增/重跑的是16项Python检查、真实HTTP实验和两次模型抽样。
+完整报告不允许盲目重跑；部分报告需查看失败后显式`run --resume`，已完成阶段跳过，原样本和失败保留。初始化和账号准备曾分别因内部网络不发布端口、合成密码超过原有20字限制失败，均未发出模型请求；修正后沿用同一环境，没有清库或伪造初次成功。生产后端/鸿蒙源码本轮未修改，设备36项仍为历史结果；本轮实际有16项Python检查、真实HTTP实验和两次模型抽样。随后复核GitHub发现旧Linux测试失败，修正巨行测试夹具后重新运行后端289项全部通过，详见下节。
+
+
+## 9. Linux CI后续修正
+
+远端复核发现[前一轮Linux检查](https://github.com/PBpromax/campus/actions/runs/40654489172)的巨行测试期待INVALID_RESPONSE，实际先触发300ms TIMEOUT。原夹具复用了短截止时间，且写完巨行后立即关闭，无法独立证明字节上限早于EOF生效。
+
+本轮仅修正测试：巨行发送后保持连接打开且没有换行；该项测试使用独立5秒截止、8秒JUnit上限，仍严格要求INVALID_RESPONSE，并核对服务器释放闩锁尚未打开。超时测试仍使用300ms，生产45秒截止与200000字节上限都未放宽。完整[289项重新通过](./evidence/05-capacity/backend-test-followup.json)，[本机测试汇总](./evidence/05-capacity/backend-test-followup.txt)与本轮压测原始数据分别保留；没有为了修正测试再发真实模型请求。Linux CI重验结果在[开发分支Actions](https://github.com/PBpromax/campus/actions?query=branch%3Afeature%2Fm3-agent-reliability)查看。

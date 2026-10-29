@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-29",
+  "tests": {
+    "tests": 289,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "priorLinuxRun": "https://github.com/PBpromax/campus/actions/runs/40654489172",
+  "priorFailure": "ModelReliabilityTest oversized line expected INVALID_RESPONSE, got TIMEOUT under shared 300ms fixture deadline",
+  "change": "Keep oversized body open without newline; independent 5s test deadline with 8s JUnit bound; assert byte-limit rejection while server release latch remains held",
+  "productionCodeChanged": false,
+  "realModelSamplesRepeated": false,
+  "linuxCiRecheck": "https://github.com/PBpromax/campus/actions?query=branch%3Afeature%2Fm3-agent-reliability"
+}

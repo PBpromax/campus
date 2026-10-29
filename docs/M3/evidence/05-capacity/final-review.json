@@ -16,8 +16,15 @@
   ],
   "coursePage14RenderedAndViewed": true,
   "pythonChecks": 16,
-  "backendNativeSourcesChangedInThisStep": false,
   "frontendDeviceTestsRerun": false,
   "knownPrivateCredentialScanPassed": true,
-  "mockKeyPublicConstantOnly": true
+  "mockKeyPublicConstantOnly": true,
+  "productionBackendOrNativeSourcesChangedInThisStep": false,
+  "backendTestFixtureChanged": true,
+  "backendTestsRerun": {
+    "tests": 289,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
 }
