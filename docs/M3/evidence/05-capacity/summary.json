@@ -1,0 +1,97 @@
+{
+  "verified": true,
+  "steadySamples": 52,
+  "steadyFailures": 0,
+  "steady": [
+    {
+      "concurrency": 1,
+      "samples": 12,
+      "wallSecondsIncludingValidation": 6.8037,
+      "validatedOperationsPerSecond": 1.764,
+      "firstVisibleText": {
+        "count": 12,
+        "p50Ms": 20.825,
+        "p95Ms": 25.439,
+        "maxMs": 25.439,
+        "quantileMethod": "nearest-rank; no interpolation"
+      },
+      "completion": {
+        "count": 12,
+        "p50Ms": 549.344,
+        "p95Ms": 603.604,
+        "maxMs": 603.604,
+        "quantileMethod": "nearest-rank; no interpolation"
+      },
+      "successCount": 12,
+      "failureCount": 0,
+      "localTargetPassed": true
+    },
+    {
+      "concurrency": 2,
+      "samples": 16,
+      "wallSecondsIncludingValidation": 4.4755,
+      "validatedOperationsPerSecond": 3.575,
+      "firstVisibleText": {
+        "count": 16,
+        "p50Ms": 22.771,
+        "p95Ms": 28.867,
+        "maxMs": 28.867,
+        "quantileMethod": "nearest-rank; no interpolation"
+      },
+      "completion": {
+        "count": 16,
+        "p50Ms": 551.749,
+        "p95Ms": 564.039,
+        "maxMs": 564.039,
+        "quantileMethod": "nearest-rank; no interpolation"
+      },
+      "successCount": 16,
+      "failureCount": 0,
+      "localTargetPassed": true
+    },
+    {
+      "concurrency": 4,
+      "samples": 24,
+      "wallSecondsIncludingValidation": 3.3615,
+      "validatedOperationsPerSecond": 7.14,
+      "firstVisibleText": {
+        "count": 24,
+        "p50Ms": 24.023,
+        "p95Ms": 65.746,
+        "maxMs": 68.195,
+        "quantileMethod": "nearest-rank; no interpolation"
+      },
+      "completion": {
+        "count": 24,
+        "p50Ms": 539.834,
+        "p95Ms": 573.982,
+        "maxMs": 586.985,
+        "quantileMethod": "nearest-rank; no interpolation"
+      },
+      "successCount": 24,
+      "failureCount": 0,
+      "localTargetPassed": true
+    }
+  ],
+  "fixtureDispatches": 79,
+  "explicitAdmissionRejections": 6,
+  "fixturePeakActive": 4,
+  "duplicateCancelCalls": 48,
+  "successfulCancelEffects": 1,
+  "unknownUsageRows": 8,
+  "resourceSampleCount": 23,
+  "sampledMaxMemoryMiB": 348.6,
+  "sampledMaxCpuPercent": 198.52,
+  "sampledMaxPids": 41,
+  "realModelSamples": 2,
+  "realModelPeakPriceEstimateUsd": "0.0012657",
+  "realModelActualBillUnknown": true,
+  "configuredPlatformBudgetUsdPerDay": "2.00",
+  "configuredCallCapPerDay": 100,
+  "effectiveDispatchCapUnderConservativeReserve": 92,
+  "sourceSha256": {
+    "report.json": "81d04aaf241087d6b1a1cfdecfe4a49a5f9e7f6bdbb252e11dee9672bafd7243",
+    "samples.jsonl": "685ad07188fafbfdf57ac561a53a33027d76683f9d781adde2f0cfece1bd9110",
+    "live-model.json": "3f4a63a2bafe4f66011d9ae1e3b9dc23d2587d2630cef43bfd17dbf8393a17bd"
+  }
+}

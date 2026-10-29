@@ -1,0 +1,91 @@
+{
+  "at": "2026-10-29T13:57:13.533701+08:00",
+  "scope": "TWO real model observations, sequential; native dev backend, not Docker capacity acceptance",
+  "automaticRetries": 0,
+  "maxDispatchedAttempts": 2,
+  "dispatchedAttempts": 2,
+  "priceVersion": "deepseek-flash-20261024-peak-usd",
+  "priceCheckedSource": "https://api-docs.deepseek.com/quick_start/pricing/",
+  "samples": [
+    {
+      "category": "STUDY",
+      "input": "用一句话解释：y=-x的导数为什么是-1？只解释负号，不需要发布求助。",
+      "sessionId": 67,
+      "traceId": "3db25627-07cf-4760-91de-996a410d3421",
+      "state": "OBSERVED",
+      "httpStatus": 200,
+      "done": true,
+      "failureKind": null,
+      "success": true,
+      "firstVisibleTextMs": 3400.559,
+      "lastVisibleTextMs": 3817.632,
+      "durationMs": 4303.136,
+      "visibleCharacters": 26,
+      "events": {
+        "session": 2,
+        "text_delta": 20,
+        "proposal": 1,
+        "done": 1
+      },
+      "proposals": 1,
+      "usage": {
+        "model": "deepseek-flash",
+        "state": "SUCCEEDED",
+        "failureKind": null,
+        "promptTokens": 1276,
+        "completionTokens": 99,
+        "estimatedUsd": 0.0005016,
+        "estimateBasis": "PEAK_SNAPSHOT_ESTIMATE",
+        "reservedUsd": 0.0215808,
+        "priceVersion": "deepseek-flash-20261024-peak-usd"
+      },
+      "outputTokensPerSecondIncludingFullRequest": 23.006,
+      "persistedAssistantReplies": [
+        "负号来自斜率：x每增加1，y减少1，变化率是 -1。"
+      ]
+    },
+    {
+      "category": "BORROW",
+      "input": "这是本地合成演示，只整理需求，不发布。想借1个USB-C转HDMI转接器用于课堂展示，2026-10-31上午9点前在图书馆一楼服务台当面交接，9点半开始用，11点结束，12点在同一服务台归还。",
+      "sessionId": 68,
+      "traceId": "49b52727-860a-4629-88f4-9956a27f314f",
+      "state": "OBSERVED",
+      "httpStatus": 200,
+      "done": true,
+      "failureKind": null,
+      "success": true,
+      "firstVisibleTextMs": 1975.503,
+      "lastVisibleTextMs": 1975.503,
+      "durationMs": 1988.391,
+      "visibleCharacters": 25,
+      "events": {
+        "session": 2,
+        "text_delta": 1,
+        "proposal": 1,
+        "done": 1
+      },
+      "proposals": 1,
+      "usage": {
+        "model": "deepseek-flash",
+        "state": "SUCCEEDED",
+        "failureKind": null,
+        "promptTokens": 1583,
+        "completionTokens": 241,
+        "estimatedUsd": 0.0007641,
+        "estimateBasis": "PEAK_SNAPSHOT_ESTIMATE",
+        "reservedUsd": 0.0215808,
+        "priceVersion": "deepseek-flash-20261024-peak-usd"
+      },
+      "outputTokensPerSecondIncludingFullRequest": 121.204,
+      "persistedAssistantReplies": [
+        "已整理你提供的信息，还需要补充规格 / 兼容要求。"
+      ]
+    }
+  ],
+  "tasksUnchanged": true,
+  "sampleCount": 2,
+  "status": "COMPLETE",
+  "notStatisticalSloAcceptance": true,
+  "tokenRateDefinition": "Provider-reported completion tokens / complete HTTP request duration; includes network, prompt and tool generation. Not decoder speed.",
+  "nativeRenderingMeasured": false
+}

@@ -1,0 +1,13 @@
+{
+  "checkedOn": "2026-10-29",
+  "source": "https://api-docs.deepseek.com/quick_start/pricing/",
+  "model": "deepseek-flash",
+  "currency": "USD",
+  "units": "per 1 million tokens, peak prices",
+  "cacheHitInput": 0.006,
+  "cacheMissInput": 0.3,
+  "output": 1.2,
+  "existingConfiguredVersion": "deepseek-flash-20261024-peak-usd",
+  "sameRatesAsExistingSnapshot": true,
+  "actualBillReconciled": false
+}

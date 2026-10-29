@@ -1,0 +1,50 @@
+# Only with the scoped capacity runner and base compose.yml; never enabled for normal deployment.
+services:
+  fixture:
+    image: ${CAMPUS_FIXTURE_IMAGE:?Immutable official Python image required}
+    command: [python, -B, /fixture.py]
+    volumes: ["../scripts/capacity_fixture.py:/fixture.py:ro"]
+    read_only: true
+    tmpfs: ["/tmp:rw,noexec,nosuid,size=16m"]
+    user: "10001:10001"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 128m
+    cpus: 0.5
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:18766/stats',timeout=1)"]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+  database:
+    mem_limit: 512m
+    cpus: 1
+  backend:
+    ports: !reset []
+    environment:
+      DEEPSEEK_BASE_URL: http://fixture:18766
+      MODEL_DEADLINE_MS: 5000
+      MODEL_CIRCUIT_OPEN_MS: 1000
+      MODEL_PRICE_VERSION: LOCAL-FIXTURE-NO-REAL-CHARGE
+    depends_on:
+      fixture: {condition: service_healthy}
+  relay:
+    image: ${CAMPUS_FIXTURE_IMAGE:?Immutable official Python image required}
+    command: [python, -B, /relay.py]
+    volumes: ["../scripts/capacity_relay.py:/relay.py:ro"]
+    ports: ["127.0.0.1:18084:18084", "127.0.0.1:18766:18766"]
+    networks: [default, ingress]
+    depends_on:
+      backend: {condition: service_healthy}
+    read_only: true
+    user: "10001:10001"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 128m
+    cpus: 1
+# Only the fixed relay has a host-facing network; backend, DB and fixture stay internal-only.
+networks:
+  ingress: {}
+
+  default:
+    internal: true

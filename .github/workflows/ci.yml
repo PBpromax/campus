@@ -64,3 +64,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 -m unittest discover -s scripts/tests -v
+      - run: python3 scripts/verify-capacity-evidence.py docs/M3/evidence/05-capacity

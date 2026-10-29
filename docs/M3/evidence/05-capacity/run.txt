@@ -1,0 +1,7 @@
+Running warmup
+Running steady
+Running saturation
+Running faults
+Running presentation
+Running restart
+Bounded drill complete. Raw samples and partial failures preserved; no real provider calls.

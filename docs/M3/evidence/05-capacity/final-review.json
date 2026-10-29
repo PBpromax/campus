@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-29T14:11:04.561778+08:00",
+  "capacityContainersStopped": true,
+  "capacityVolumeRetained": true,
+  "originalReviewDeploymentReady": {
+    "status": "UP"
+  },
+  "finishedReportRefusesDispatch": true,
+  "cliHelpValid": true,
+  "courseSourceSha256": "c10780076a1c496f98af34836c9cb2aaa5642e1729a94d8945ab1842eeca1542",
+  "coursePagesReviewed": [
+    13,
+    14,
+    21,
+    22
+  ],
+  "coursePage14RenderedAndViewed": true,
+  "pythonChecks": 16,
+  "backendNativeSourcesChangedInThisStep": false,
+  "frontendDeviceTestsRerun": false,
+  "knownPrivateCredentialScanPassed": true,
+  "mockKeyPublicConstantOnly": true
+}
